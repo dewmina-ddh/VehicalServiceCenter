@@ -16,7 +16,6 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         loadImage();
-        loadTechnicians();
     }
 
     /**
@@ -701,20 +700,4 @@ public class Register extends javax.swing.JFrame {
         }
     }
 
-    private void loadTechnicians() {
-        try {
-            String sql = "SELECT tech_id, name FROM technician WHERE status = 'Available'";
-            pst = db.con.prepareStatement(sql);
-            rs = pst.executeQuery();
-
-//            cmbTech.removeAllItems();
-//            cmbTech.addItem("- Select Technician -");
-
-            while (rs.next()) {
-//                cmbTech.addItem(rs.getString("tech_id") + " - " + rs.getString("name"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
