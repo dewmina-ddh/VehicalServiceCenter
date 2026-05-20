@@ -1302,6 +1302,8 @@ public class Dash extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String vehicleNo = txtSearch.getText().trim();
 
+        String currentCusId = "";
+
         if (vehicleNo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a License Plate number to search!");
         }
@@ -1309,19 +1311,50 @@ public class Dash extends javax.swing.JFrame {
         Vehical vehical = checkVehical(vehicleNo);
 
         if (vehical != null) {
-            txtCustName.setText(cust.getName());
-            txtNic.setText(cust.getNic());
-            txtNumber.setText(cust.getPhone());
-            txtCity.setText(cust.getCity());
-            txtTown.setText(cust.getTown());
-
-            txtLisen.setText(vehical.getVno());
-            cmbMake.setSelectedIndex(Integer.parseInt(vehical.getMake()));
-            txtLisen.setText(vehical.getVno());
-            txtLisen.setText(vehical.getVno());
-            txtLisen.setText(vehical.getVno());
-            txtLisen.setText(vehical.getVno());
+//            txtCustName.setText(cust.getName());
+//            txtNic.setText(cust.getNic());
+//            txtNumber.setText(cust.getPhone());
+//            txtCity.setText(cust.getCity());
+//            txtTown.setText(cust.getTown());
+//
+//            txtLisen.setText(vehical.getVno());
+//            cmbMake.setSelectedIndex(Integer.parseInt(vehical.getMake()));
+//            txtLisen.setText(vehical.getVno());
+//            txtLisen.setText(vehical.getVno());
+//            txtLisen.setText(vehical.getVno());
+//            txtLisen.setText(vehical.getVno());
+            JOptionPane.showMessageDialog(this, "Found ");
         } else {
+            try {
+                JOptionPane.showMessageDialog(this, "Not Found ");
+
+                currentCusId = "CUS-" + (System.currentTimeMillis() % 100000);
+
+                String sqlCustInsert = "INSERT INTO customer (cus_id, name, nic, phone, city, town) VALUES (?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sqlCustInsert);
+                pst.setString(1, currentCusId);
+                pst.setString(2, txtCustName.getText().trim());
+                pst.setString(3, txtNic.getText().trim());
+                pst.setInt(4, Integer.parseInt(txtNumber.getText().trim()));
+                pst.setString(5, txtCity.getText().trim());
+                pst.setString(6, txtTown.getText().trim());
+                pst.executeUpdate();
+
+                String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sqlVehInsert);
+                pst.setString(1, vehicleNo);
+                pst.setString(2, cmbMake.getSelectedItem().toString());
+                pst.setString(3, txtBrand.getText().trim());
+                pst.setString(4, txtModel.getText().trim());
+                pst.setString(5, cmbFuel.getSelectedItem().toString());
+                pst.setString(6, txtReading.getText());
+                pst.setString(7, txtColor.getText().trim());
+                pst.setInt(8, YearChooser.getYear());
+                pst.setString(9, currentCusId);
+
+            } catch (SQLException ex) {
+                System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
 
         }
 
@@ -1584,7 +1617,7 @@ public class Dash extends javax.swing.JFrame {
             if (rs.next()) {
                 Customer cus = new Customer();
                 cus.setName(rs.getString("name"));
-                txtCustName.setText(rs.getString("name")); // කෙලින්ම UI fields වලටත් දත්ත වැටේ
+                txtCustName.setText(rs.getString("name"));
                 txtNic.setText(rs.getString("nic"));
                 txtNumber.setText(String.valueOf(rs.getInt("phone")));
                 txtCity.setText(rs.getString("city"));
