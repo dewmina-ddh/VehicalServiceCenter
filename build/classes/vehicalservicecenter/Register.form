@@ -130,7 +130,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel3" min="-2" pref="151" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="txtSearch" min="-2" pref="240" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -158,19 +158,19 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="txtVModel" min="-2" pref="180" max="-2" attributes="0"/>
+                                                          <Component id="txtModel" min="-2" pref="180" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                                           <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="txtVBrand1" min="-2" pref="94" max="-2" attributes="0"/>
+                                                          <Component id="txtReading" min="-2" pref="94" max="-2" attributes="0"/>
                                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="txtVBrand" max="32767" attributes="0"/>
+                                                          <Component id="txtBrand" max="32767" attributes="0"/>
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="jLabel28" min="-2" pref="65" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jComboBox5" min="-2" pref="110" max="-2" attributes="0"/>
+                                                          <Component id="cmbFuel" min="-2" pref="110" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -181,7 +181,7 @@
                                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                                   <Component id="jLabel27" min="-2" pref="39" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jComboBox4" min="-2" pref="135" max="-2" attributes="0"/>
+                                                  <Component id="cmbMake" min="-2" pref="135" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -218,7 +218,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jPanel1" min="-2" pref="208" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -243,7 +243,7 @@
                           <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" pref="40" max="32767" attributes="0"/>
+                              <Component id="txtSearch" alignment="3" pref="40" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -281,7 +281,7 @@
                               <Component id="txtLisen" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox4" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="cmbMake" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel27" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -289,17 +289,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel9" alignment="0" pref="42" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtVBrand" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="txtBrand" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel28" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jComboBox5" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="cmbFuel" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="txtVModel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="txtModel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jLabel29" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="txtVBrand1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="txtReading" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -408,9 +408,9 @@
                 <Property name="text" type="java.lang.String" value="Vehicle Brand"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtVBrand">
+            <Component class="javax.swing.JTextField" name="txtBrand">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtVModel">
+            <Component class="javax.swing.JTextField" name="txtModel">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -465,7 +465,7 @@
                 <Property name="text" type="java.lang.String" value="Make"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox4">
+            <Component class="javax.swing.JComboBox" name="cmbMake">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -488,7 +488,7 @@
                 <Property name="text" type="java.lang.String" value="Fuel Type"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox5">
+            <Component class="javax.swing.JComboBox" name="cmbFuel">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -511,7 +511,7 @@
                 <Property name="text" type="java.lang.String" value="Odometer Reading"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtVBrand1">
+            <Component class="javax.swing.JTextField" name="txtReading">
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel1">
 
@@ -641,7 +641,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -870,6 +870,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add/Set Job"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
@@ -888,7 +891,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="txtSearch">
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
@@ -908,6 +911,9 @@
                   <Dimension value="[40, 40]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
