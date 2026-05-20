@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class Register extends javax.swing.JFrame {
 
@@ -12,7 +13,7 @@ public class Register extends javax.swing.JFrame {
 
     Customer cus;
     Vehical vehical;
-    
+
     PreparedStatement pst;
     ResultSet rs;
     DBConnection db = new DBConnection();
@@ -90,13 +91,13 @@ public class Register extends javax.swing.JFrame {
         jCheckBox19 = new javax.swing.JCheckBox();
         jCheckBox20 = new javax.swing.JCheckBox();
         jLabel34 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         txtSearch = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -358,23 +359,24 @@ public class Register extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel34.setText("Services");
 
-        jButton4.setText("Update");
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
-        jButton5.setText("Add/Set Job");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        btnSave.setText("Add/Set Job");
+        btnSave.addActionListener(this::btnSaveActionPerformed);
 
         jButton6.setText("Delete");
 
-        jButton7.setText("Delete");
+        btnDelete.setText("Delete");
 
         jSeparator5.setForeground(new java.awt.Color(102, 102, 102));
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 51));
-        jButton1.setBorder(null);
-        jButton1.setMaximumSize(new java.awt.Dimension(40, 40));
-        jButton1.setMinimumSize(new java.awt.Dimension(40, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnSearch.setBackground(new java.awt.Color(255, 204, 51));
+        btnSearch.setBorder(null);
+        btnSearch.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnSearch.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnSearch.setPreferredSize(new java.awt.Dimension(40, 40));
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
 
         javax.swing.GroupLayout regDetailsLayout = new javax.swing.GroupLayout(regDetails);
         regDetails.setLayout(regDetailsLayout);
@@ -466,15 +468,15 @@ public class Register extends javax.swing.JFrame {
                     .addGroup(regDetailsLayout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(regDetailsLayout.createSequentialGroup()
                             .addGap(57, 57, 57)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(regDetailsLayout.createSequentialGroup()
@@ -492,7 +494,7 @@ public class Register extends javax.swing.JFrame {
             .addGroup(regDetailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
@@ -563,10 +565,10 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -605,29 +607,40 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String vehicleNo = txtSearch.getText().trim();
-        
+
+        if (vehicleNo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a License Plate number first!");
+            return;
+        }
+
         Vehical vehical = checkVehical(vehicleNo);
-        if(vehical != null){
+        if (vehical != null) {
             txtCustName.setText(cus.getName());
             txtNic.setText(cus.getNic());
             txtNumber.setText(cus.getPhone());
             txtCity.setText(cus.getCity());
             txtTown.setText(cus.getTown());
-            
+
             txtLisen.setText(vehical.getVno());
             txtBrand.setText(vehical.getBrand());
             txtModel.setText(vehical.getModel());
             txtLisen.setText(vehical.getVno());
             txtLisen.setText(vehical.getVno());
+
+            JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle details loaded.");
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -652,14 +665,14 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JYearChooser YearChooser;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbFuel;
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JPanel details;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -732,13 +745,17 @@ public class Register extends javax.swing.JFrame {
     }
 
     private Vehical checkVehical(String vehicleNo) {
-        
+
         try {
-            pst = db.con.prepareStatement("SELECT cus_id FROM vehical_table WHERE vehical_no = ?");
+            pst = db.con.prepareStatement("SELECT * FROM vehical_table WHERE vehical_no = ?");
             pst.setString(1, vehicleNo);
             rs = pst.executeQuery();
-            return new Vehical(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8),rs.getString(9));
-            
+            if (rs.next()) {
+                return new Vehical(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9));
+            }
+
         } catch (SQLException ex) {
             System.getLogger(Register.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }

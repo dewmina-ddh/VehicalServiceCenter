@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class DBConnection {
 
     public Connection con;
-    String url = "jdbc:mysql://localhost:3306/vehicle_service";
+    String url = "jdbc:mysql://localhost:3306/vehical_service";
     String username = "root";
     String password = "";
 

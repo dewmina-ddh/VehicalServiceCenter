@@ -10,12 +10,15 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -28,6 +31,9 @@ public class Dash extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
     User user1;
     DBConnection db = new DBConnection();
+    PreparedStatement pst;
+    ResultSet rs;
+    Customer cust;
 
     public Dash(User user) {
         initComponents();
@@ -39,15 +45,15 @@ public class Dash extends javax.swing.JFrame {
         loadDigitalFont();
         setTime();
         this.user1 = user;
-        
+
         CardPanel.add(pnlDash, "card1");
         CardPanel.add(pnlAppo, "card2");
         CardPanel.add(pnlInventory, "card3");
         CardPanel.add(pnlTech, "card4");
         CardPanel.add(pnlJobs, "card5");
-        
+
         UIManager.put("TextComponent.arc", 15);
-        
+
         lblUser.setText(user1.getName());
         lblTopic.setText("DASHBOARD");
     }
@@ -126,8 +132,8 @@ public class Dash extends javax.swing.JFrame {
         txtTown = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        txtVBrand = new javax.swing.JTextField();
-        txtVModel = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
+        txtModel = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtColor = new javax.swing.JTextField();
@@ -141,16 +147,16 @@ public class Dash extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         appoTime = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cmbMake = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        cmbFuel = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
-        txtVBrand1 = new javax.swing.JTextField();
+        txtReading = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        txtSerch = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         pnlInventory = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -695,12 +701,12 @@ public class Dash extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel27.setText("Make");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMake.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel28.setText("Fuel Type");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFuel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel29.setText("Odometer Reading");
@@ -739,18 +745,18 @@ public class Dash extends javax.swing.JFrame {
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(regDetailsLayout.createSequentialGroup()
-                                                            .addComponent(txtVModel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addGap(18, 18, 18)
                                                             .addComponent(jLabel29)
                                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(txtVBrand1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(txtReading, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addGap(0, 0, Short.MAX_VALUE))
                                                         .addGroup(regDetailsLayout.createSequentialGroup()
-                                                            .addComponent(txtVBrand)
+                                                            .addComponent(txtBrand)
                                                             .addGap(18, 18, 18)
                                                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                            .addComponent(cmbFuel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, regDetailsLayout.createSequentialGroup()
                                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -758,7 +764,7 @@ public class Dash extends javax.swing.JFrame {
                                                     .addGap(28, 28, 28)
                                                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                    .addComponent(cmbMake, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(regDetailsLayout.createSequentialGroup()
                                         .addGap(24, 24, 24)
                                         .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -824,7 +830,7 @@ public class Dash extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                        .addComponent(cmbMake, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -832,15 +838,15 @@ public class Dash extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbFuel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVModel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVBrand1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtReading, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(YearChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -876,6 +882,7 @@ public class Dash extends javax.swing.JFrame {
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
         btnSearch.setText("Serch");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
 
         javax.swing.GroupLayout appoAllLayout = new javax.swing.GroupLayout(appoAll);
         appoAll.setLayout(appoAllLayout);
@@ -887,7 +894,7 @@ public class Dash extends javax.swing.JFrame {
                     .addGroup(appoAllLayout.createSequentialGroup()
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSerch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -910,7 +917,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSerch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -1225,7 +1232,7 @@ public class Dash extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card2");
         lblTopic.setText("APPOINTMENT");
-        customizeSearchBar(txtSerch, btnSearch);
+        customizeSearchBar(txtSearch, btnSearch);
     }//GEN-LAST:event_btnAppoActionPerformed
 
     private void btnTechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTechActionPerformed
@@ -1292,6 +1299,34 @@ public class Dash extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String vehicleNo = txtSearch.getText().trim();
+
+        if (vehicleNo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a License Plate number to search!");
+        }
+
+        Vehical vehical = checkVehical(vehicleNo);
+
+        if (vehical != null) {
+            txtCustName.setText(cust.getName());
+            txtNic.setText(cust.getNic());
+            txtNumber.setText(cust.getPhone());
+            txtCity.setText(cust.getCity());
+            txtTown.setText(cust.getTown());
+
+            txtLisen.setText(vehical.getVno());
+            cmbMake.setSelectedIndex(Integer.parseInt(vehical.getMake()));
+            txtLisen.setText(vehical.getVno());
+            txtLisen.setText(vehical.getVno());
+            txtLisen.setText(vehical.getVno());
+            txtLisen.setText(vehical.getVno());
+        } else {
+
+        }
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1343,6 +1378,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel card3;
     private javax.swing.JPanel card4;
     private javax.swing.JPanel cards;
+    private javax.swing.JComboBox<String> cmbFuel;
+    private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JPanel image;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
@@ -1351,8 +1388,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1417,18 +1452,18 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTable table;
     private javax.swing.JTable table1;
     private javax.swing.JTable table2;
+    private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtCustName;
     private javax.swing.JTextField txtLisen;
+    private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtNic;
     private javax.swing.JTextField txtNumber;
+    private javax.swing.JTextField txtReading;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearch2;
-    private javax.swing.JTextField txtSerch;
     private javax.swing.JTextField txtTown;
-    private javax.swing.JTextField txtVBrand;
-    private javax.swing.JTextField txtVBrand1;
-    private javax.swing.JTextField txtVModel;
     // End of variables declaration//GEN-END:variables
 
     private void customiseButtons(JButton btnSave, JButton btnUpdate, JButton btnDelete, JButton btnClear) {
@@ -1538,6 +1573,32 @@ public class Dash extends javax.swing.JFrame {
             e.printStackTrace();
             lblDateTime.setFont(new Font("Consolas", Font.BOLD, 24));
         }
+    }
+
+    private Vehical checkVehical(String vehicleNo) {
+        try {
+            pst = db.con.prepareStatement("SELECT * FROM vehical_table INNER JOIN customer ON vehical_table.cus_id = customer.cus_id WHERE vehical_no = ?");
+            pst.setString(1, vehicleNo);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                Customer cus = new Customer();
+                cus.setName(rs.getString("name"));
+                txtCustName.setText(rs.getString("name")); // කෙලින්ම UI fields වලටත් දත්ත වැටේ
+                txtNic.setText(rs.getString("nic"));
+                txtNumber.setText(String.valueOf(rs.getInt("phone")));
+                txtCity.setText(rs.getString("city"));
+                txtTown.setText(rs.getString("town"));
+
+                return new Vehical(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9));
+            }
+
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return null;
     }
 
 }

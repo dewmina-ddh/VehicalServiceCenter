@@ -953,7 +953,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnSearch" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtSerch" min="-2" pref="195" max="-2" attributes="0"/>
+                                      <Component id="txtSearch" min="-2" pref="195" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btnSave" min="-2" pref="120" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -980,7 +980,7 @@
                                   <Component id="btnDelete" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btnUpdate" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btnSave" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="txtSerch" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="txtSearch" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btnSearch" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -1090,19 +1090,19 @@
                                                                           <EmptySpace max="-2" attributes="0"/>
                                                                           <Group type="103" groupAlignment="0" attributes="0">
                                                                               <Group type="102" attributes="0">
-                                                                                  <Component id="txtVModel" min="-2" pref="180" max="-2" attributes="0"/>
+                                                                                  <Component id="txtModel" min="-2" pref="180" max="-2" attributes="0"/>
                                                                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                                                                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                                                                   <EmptySpace max="-2" attributes="0"/>
-                                                                                  <Component id="txtVBrand1" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                                  <Component id="txtReading" min="-2" pref="94" max="-2" attributes="0"/>
                                                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                                               </Group>
                                                                               <Group type="102" attributes="0">
-                                                                                  <Component id="txtVBrand" max="32767" attributes="0"/>
+                                                                                  <Component id="txtBrand" max="32767" attributes="0"/>
                                                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                                                   <Component id="jLabel28" min="-2" pref="65" max="-2" attributes="0"/>
                                                                                   <EmptySpace max="-2" attributes="0"/>
-                                                                                  <Component id="jComboBox5" min="-2" pref="110" max="-2" attributes="0"/>
+                                                                                  <Component id="cmbFuel" min="-2" pref="110" max="-2" attributes="0"/>
                                                                               </Group>
                                                                           </Group>
                                                                       </Group>
@@ -1113,7 +1113,7 @@
                                                                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                                                           <Component id="jLabel27" min="-2" pref="39" max="-2" attributes="0"/>
                                                                           <EmptySpace max="-2" attributes="0"/>
-                                                                          <Component id="jComboBox4" min="-2" pref="135" max="-2" attributes="0"/>
+                                                                          <Component id="cmbMake" min="-2" pref="135" max="-2" attributes="0"/>
                                                                       </Group>
                                                                   </Group>
                                                               </Group>
@@ -1202,7 +1202,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                              <Component id="jComboBox4" alignment="3" pref="41" max="32767" attributes="0"/>
+                                              <Component id="cmbMake" alignment="3" pref="41" max="32767" attributes="0"/>
                                               <Component id="jLabel27" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1213,16 +1213,16 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel8" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="txtVBrand" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="txtBrand" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           <Component id="jLabel28" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="jComboBox5" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Component id="cmbFuel" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel9" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="txtVModel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="txtModel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           <Component id="jLabel29" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="txtVBrand1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="txtReading" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1340,9 +1340,9 @@
                                 <Property name="text" type="java.lang.String" value="Vehicle Brand"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtVBrand">
+                            <Component class="javax.swing.JTextField" name="txtBrand">
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtVModel">
+                            <Component class="javax.swing.JTextField" name="txtModel">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel9">
                               <Properties>
@@ -1417,7 +1417,7 @@
                                 <Property name="text" type="java.lang.String" value="Make"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox4">
+                            <Component class="javax.swing.JComboBox" name="cmbMake">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="4">
@@ -1440,7 +1440,7 @@
                                 <Property name="text" type="java.lang.String" value="Fuel Type"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox5">
+                            <Component class="javax.swing.JComboBox" name="cmbFuel">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="4">
@@ -1463,7 +1463,7 @@
                                 <Property name="text" type="java.lang.String" value="Odometer Reading"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="txtVBrand1">
+                            <Component class="javax.swing.JTextField" name="txtReading">
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1492,12 +1492,15 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtSerch">
+                    <Component class="javax.swing.JTextField" name="txtSearch">
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSearch">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Serch"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
