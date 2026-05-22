@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/vehicalservicecenter/LoginForm.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>150</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Register.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/DBConnection.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/LoginForm.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Dash.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/User.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Vehical.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Customer.java</file>
-            <file>file:/C:/Users/Ewis/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/DashBoard.java</file>
-=======
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Register.java</file>
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Vehical.java</file>
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/User.java</file>
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/LoginForm.java</file>
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Customer.java</file>
             <file>file:/C:/Users/Damsith%20Dewmina/OneDrive/Documents/NetBeansProjects/VehicalServiceCenter/src/vehicalservicecenter/Dash.java</file>
->>>>>>> e27e43ba4d1676b147dcd5fcb25d29df9f94d349
         </group>
     </open-files>
 </project-private>
