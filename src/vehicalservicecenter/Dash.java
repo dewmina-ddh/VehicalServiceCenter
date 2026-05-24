@@ -38,7 +38,7 @@ public class Dash extends javax.swing.JFrame {
     public Dash(User user) {
         initComponents();
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        customiseButtons(btnSave, btnUpdate,  btnClear);
+        customiseButtons(btnSave, btnUpdate, btnDetails);
         customiseTable(table);
         cards(card1, card2, card3, card4);
         loadImage();
@@ -153,7 +153,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         txtReading = new javax.swing.JTextField();
         appo = new javax.swing.JLabel();
-        btnClear = new javax.swing.JButton();
+        btnDetails = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
@@ -805,8 +805,7 @@ public class Dash extends javax.swing.JFrame {
                     .addGroup(regDetailsLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(appo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
+                        .addComponent(appo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
         regDetailsLayout.setVerticalGroup(
@@ -883,7 +882,8 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel10.add(regDetails, java.awt.BorderLayout.CENTER);
 
-        btnClear.setText("Details >");
+        btnDetails.setText("Details >");
+        btnDetails.addActionListener(this::btnDetailsActionPerformed);
 
         btnUpdate.setText("Update");
 
@@ -912,7 +912,7 @@ public class Dash extends javax.swing.JFrame {
                     .addGroup(appoAllLayout.createSequentialGroup()
                         .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34))))
         );
         appoAllLayout.setVerticalGroup(
@@ -922,7 +922,7 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1312,43 +1312,46 @@ public class Dash extends javax.swing.JFrame {
                 return;
             }
 
-            Vehical vehical2 = checkVehical(vehicleNo);
+            String readingValue = txtReading.getText().trim();
+            if (readingValue.isEmpty()) {
+                readingValue = "0";
+            }
 
             db.con.setAutoCommit(false);
-            if (vehical2 != null) {
-                System.out.println("Existing vehicle found. Skipping customer & vehicle inserts.");
+
+            Vehical exVehical = checkVehical(vehicleNo);
+            String currentCusId = "";
+
+            if (exVehical != null) {
+                currentCusId = exVehical.getCusId();
+                System.out.println("Existing vehicle found. Linking to Customer ID: " + currentCusId);
             } else {
-                try {
-                    String currentCusId = "CUS-" + (System.currentTimeMillis() % 100000);
+                String currentCusId2 = "CUS-" + (System.currentTimeMillis() % 100000);
 
-                    String sql = "INSERT INTO customer (cus_id, name, nic, phone, city, town) VALUES (?, ?, ?, ?, ?, ?)";
-                    pst = db.con.prepareStatement(sql);
-                    pst.setString(1, currentCusId);
-                    pst.setString(2, txtCustName.getText().trim());
-                    pst.setString(3, txtNic.getText().trim());
-                    pst.setInt(4, Integer.parseInt(txtNumber.getText().trim()));
-                    pst.setString(5, txtCity.getText().trim());
-                    pst.setString(6, txtTown.getText().trim());
-                    pst.executeUpdate();
-                    pst.close();
+                String sql = "INSERT INTO customer (cus_id, name, nic, phone, city, town) VALUES (?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, currentCusId2);
+                pst.setString(2, txtCustName.getText().trim());
+                pst.setString(3, txtNic.getText().trim());
+                pst.setInt(4, Integer.parseInt(txtNumber.getText().trim()));
+                pst.setString(5, txtCity.getText().trim());
+                pst.setString(6, txtTown.getText().trim());
+                pst.executeUpdate();
+                pst.close();
 
-                    String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    pst = db.con.prepareStatement(sqlVehInsert);
-                    pst.setString(1, vehicleNo);
-                    pst.setString(2, cmbMake.getSelectedItem().toString());
-                    pst.setString(3, txtBrand.getText().trim());
-                    pst.setString(4, txtModel.getText().trim());
-                    pst.setString(5, cmbFuel.getSelectedItem().toString());
-                    pst.setString(6, txtReading.getText());
-                    pst.setString(7, txtColor.getText().trim());
-                    pst.setInt(8, YearChooser.getYear());
-                    pst.setString(9, currentCusId); // Foreign Key
-                    pst.executeUpdate();
-                    pst.close();
-
-                } catch (SQLException ex) {
-                    System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                }
+                String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sqlVehInsert);
+                pst.setString(1, vehicleNo);
+                pst.setString(2, cmbMake.getSelectedItem().toString());
+                pst.setString(3, txtBrand.getText().trim());
+                pst.setString(4, txtModel.getText().trim());
+                pst.setString(5, cmbFuel.getSelectedItem().toString());
+                pst.setString(6, txtReading.getText());
+                pst.setString(7, txtColor.getText().trim());
+                pst.setInt(8, YearChooser.getYear());
+                pst.setString(9, currentCusId2); // Foreign Key
+                pst.executeUpdate();
+                pst.close();
             }
 
             java.util.Date selectDate = appoDate.getDate();
@@ -1358,14 +1361,15 @@ public class Dash extends javax.swing.JFrame {
             //make random number
             int randomNumber = (int) (Math.random() * 9000) + 1000;
             String appoID = "APP-" + randomNumber;
-            appo.setText("Appointment Form (ID: " + appoID + ")");
+            appo.setText("Appointment ID: " + appoID + ")");
 
-            String sqlAppo = "INSERT INTO appointment (appo_id, vehical_no, date, time, status) VALUES (?, ?, ?, ?, 'Pending')";
+            String sqlAppo = "INSERT INTO appointment (appo_id, vehical_no, date, time, status ,uName) VALUES (?, ?, ?, ?, 'Pending',?)";
             pst = db.con.prepareStatement(sqlAppo);
             pst.setString(1, appoID); // Random ID
             pst.setString(2, vehicleNo);
             pst.setDate(3, AppoDate);
             pst.setString(4, AppoTime);
+            pst.setString(5, user1.getName());
 
             pst.executeUpdate();
             pst.close();
@@ -1399,45 +1403,63 @@ public class Dash extends javax.swing.JFrame {
 
         if (vehical != null) {
 
-//                String customerQuery = "SELECT * FROM customer WHERE cus_id = ?";
-//                pst = db.con.prepareStatement(customerQuery);
-//                pst.setString(1, vehical.getCusId()); // වාහන Object එකෙන් ලැබෙන cus_id එක දීම
-//                rs = pst.executeQuery();
-//
-//                if (rs.next()) {
-//                    txtCustName.setText(rs.getString("name"));
-//                    txtNic.setText(rs.getString("nic"));
-//                    txtNumber.setText(String.valueOf(rs.getInt("phone"))); // INT එක String කිරීම
-//                    txtCity.setText(rs.getString("city"));
-//                    txtTown.setText(rs.getString("town"));
-//                }
-
+            try {                
                 txtLisen.setText(vehical.getVno());
                 txtBrand.setText(vehical.getBrand());
                 txtModel.setText(vehical.getModel());
                 txtColor.setText(vehical.getColor());
-
+                
                 cmbMake.setSelectedItem(vehical.getMake());
                 cmbFuel.setSelectedItem(vehical.getFuel());
-                YearChooser.setYear(Integer.parseInt(vehical.getYear()));
-
-                txtReading.setText("");
-
+                txtReading.setText(vehical.getReading());
+                try {
+                    String yearStr = vehical.getYear();
+                    
+                    if (yearStr != null && !yearStr.trim().isEmpty()) {
+                        if (yearStr.contains("-")) {
+                            yearStr = yearStr.substring(0, 4);
+                        }
+                        YearChooser.setYear(Integer.parseInt(yearStr.trim()));
+                    } else {
+                        YearChooser.setYear(2026);
+                    }
+                } catch (Exception e) {
+                    YearChooser.setYear(2026);
+                }
+                
+                String customerId = vehical.getCusId();
+                
+                pst = db.con.prepareStatement("SELECT * FROM customer WHERE cus_id = ?");
+                pst.setString(1, customerId);
+                rs = pst.executeQuery();
+                
+                if (rs.next()) {
+                    txtCustName.setText(rs.getString("name"));
+                    txtNic.setText(rs.getString("nic"));
+                    txtNumber.setText(String.valueOf(rs.getInt("phone")));
+                    txtCity.setText(rs.getString("city"));
+                    txtTown.setText(rs.getString("town"));
+                }
+                
+                txtSearch.setText("");
+                
                 JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle & Owner details loaded.");
-
-//            txtCustName.setText(cust.getName());
-//            txtNic.setText(cust.getNic());
-//            txtNumber.setText(cust.getPhone());
-//            txtCity.setText(cust.getCity());
-//            txtTown.setText(cust.getTown());
-       
+            } catch (SQLException ex) {
+                System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
         } else {
+            txtLisen.setText(vehicleNo);
             clean();
             JOptionPane.showMessageDialog(this, "Not Found ");
 
         }
 
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
+        AppointmentDetails appoi = new AppointmentDetails();
+        appoi.setVisible(true);
+    }//GEN-LAST:event_btnDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1475,8 +1497,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel bay6;
     private javax.swing.JPanel bays;
     private javax.swing.JButton btnAppo;
-    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDash;
+    private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnInven;
     private javax.swing.JButton btnJob;
     private javax.swing.JButton btnReg;
@@ -1597,10 +1619,10 @@ public class Dash extends javax.swing.JFrame {
 //        btnDelete.putClientProperty("JButton.buttonType", "roundRect");
         btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        btnClear.setBackground(new Color(108, 117, 125)); // Grey
-        btnClear.setForeground(Color.WHITE);
+        btnDetails.setBackground(new Color(108, 117, 125)); // Grey
+        btnDetails.setForeground(Color.WHITE);
 //        btnClear.putClientProperty("JButton.buttonType", "roundRect");
-        btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnDetails.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private void customiseTable(JTable table) {
@@ -1694,14 +1716,6 @@ public class Dash extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                Customer cus = new Customer();
-                cus.setName(rs.getString("name"));
-                txtCustName.setText(rs.getString("name"));
-                txtNic.setText(rs.getString("nic"));
-                txtNumber.setText(String.valueOf(rs.getInt("phone")));
-                txtCity.setText(rs.getString("city"));
-                txtTown.setText(rs.getString("town"));
-
                 return new Vehical(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6),
                         rs.getString(7), rs.getString(8), rs.getString(9));
@@ -1728,6 +1742,7 @@ public class Dash extends javax.swing.JFrame {
         cmbMake.setSelectedIndex(0);
         cmbFuel.setSelectedIndex(0);
         YearChooser.setYear(2026);
+        txtSearch.setText("");
 
         txtLisen.setText(txtSearch.getText());
         JOptionPane.showMessageDialog(this, "New Vehicle! Please enter registration details manually.");

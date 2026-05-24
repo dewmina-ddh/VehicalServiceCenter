@@ -77,6 +77,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -110,20 +111,22 @@ public class AppointmentDetails extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateTime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(lblDateTime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28))))
         );
 
         panel.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        table.setBackground(new java.awt.Color(204, 204, 204));
+        table.setBackground(new java.awt.Color(255, 255, 255));
 
         appoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +136,11 @@ public class AppointmentDetails extends javax.swing.JFrame {
                 "Appointment ID", "Vehical No", "Date", "Time", "Status", "Record Date", "Who record"
             }
         ));
+        appoTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appoTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(appoTable);
 
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -161,6 +169,8 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
+
         javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
         table.setLayout(tableLayout);
         tableLayout.setHorizontalGroup(
@@ -168,6 +178,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -195,23 +206,23 @@ public class AppointmentDetails extends javax.swing.JFrame {
         tableLayout.setVerticalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSearch)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                    .addComponent(jTextField1))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addComponent(jTextField4)
+                    .addComponent(jTextField5)
+                    .addComponent(jTextField6)
+                    .addComponent(jTextField7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -244,6 +255,10 @@ public class AppointmentDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void appoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appoTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_appoTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +288,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -291,7 +307,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         int c;
         try {
             pst = db.con.prepareStatement("SELECT * FROM appointment");
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
 
             ResultSetMetaData rd = rs.getMetaData();
             c = rd.getColumnCount();
@@ -309,6 +325,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
                     v2.add(rs.getString("time"));
                     v2.add(rs.getString("status"));
                     v2.add(rs.getString("recorded_at"));
+                    v2.add(rs.getString("uName"));
                 }
                 df.addRow(v2);
             }
@@ -319,9 +336,11 @@ public class AppointmentDetails extends javax.swing.JFrame {
     }
 
     private void searchAppointmentTable(String keyword) {
+        int c;
         try {
             DefaultTableModel model = (DefaultTableModel) appoTable.getModel();
             model.setRowCount(0);
+            c = model.getColumnCount();
 
             String sql = "SELECT * FROM appointment WHERE vehical_no LIKE ? OR appo_id LIKE ? ORDER BY date DESC, time DESC";
             pst = db.con.prepareStatement(sql);
@@ -332,20 +351,19 @@ public class AppointmentDetails extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Object[] row = {
-                    rs.getString("appo_id"),
-                    rs.getString("vehical_no"),
-                    rs.getDate("date"),
-                    rs.getString("time"),
-                    rs.getString("status"),
-                    rs.getString("recorded_at")
-
-                };
-                model.addRow(row);
+                Vector v2 = new Vector();
+                for (int a = 1; a <= c; a++) {
+                    v2.add(rs.getString("appo_id"));
+                    v2.add(rs.getString("vehical_no"));
+                    v2.add(rs.getString("date"));
+                    v2.add(rs.getString("time"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("recorded_at"));
+                    v2.add(rs.getString("uName"));
+                }
+                model.addRow(v2);
             }
 
-            rs.close();
-            pst.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

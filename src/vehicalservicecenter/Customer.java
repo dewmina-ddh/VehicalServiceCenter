@@ -18,9 +18,6 @@ public class Customer {
         this.town = town;
     }
 
-    Customer() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public String getCusId() {
         return cusId;
