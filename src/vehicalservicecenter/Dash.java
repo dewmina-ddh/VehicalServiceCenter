@@ -37,6 +37,7 @@ public class Dash extends javax.swing.JFrame {
 
     public Dash(User user) {
         initComponents();
+        loadBayStatus();
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);
         customiseButtons(btnSave, btnUpdate, btnDetails);
         customiseTable(table);
@@ -44,6 +45,7 @@ public class Dash extends javax.swing.JFrame {
         loadImage();
         loadDigitalFont();
         setTime();
+
         this.user1 = user;
 
         CardPanel.add(pnlDash, "card1");
@@ -99,11 +101,29 @@ public class Dash extends javax.swing.JFrame {
         card4 = new javax.swing.JPanel();
         bays = new javax.swing.JPanel();
         bay1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         bay2 = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         bay3 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         bay4 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         bay5 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         bay6 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -415,15 +435,40 @@ public class Dash extends javax.swing.JFrame {
         bay1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
         bay1.setPreferredSize(new java.awt.Dimension(20, 80));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BAY - 01");
+
+        jLabel35.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel41.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel41.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel41.setText("222");
+
         javax.swing.GroupLayout bay1Layout = new javax.swing.GroupLayout(bay1);
         bay1.setLayout(bay1Layout);
         bay1Layout.setHorizontalGroup(
             bay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(bay1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(bay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bay1Layout.setVerticalGroup(
             bay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel41)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bays.add(bay1);
@@ -431,15 +476,41 @@ public class Dash extends javax.swing.JFrame {
         bay2.setBackground(new java.awt.Color(255, 255, 255));
         bay2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
+        jLabel42.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel42.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel42.setText("222");
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("BAY - 02");
+
+        jLabel36.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout bay2Layout = new javax.swing.GroupLayout(bay2);
         bay2.setLayout(bay2Layout);
         bay2Layout.setHorizontalGroup(
             bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bay2Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addGroup(bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(17, 17, 17))
         );
         bay2Layout.setVerticalGroup(
             bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bays.add(bay2);
@@ -447,15 +518,40 @@ public class Dash extends javax.swing.JFrame {
         bay3.setBackground(new java.awt.Color(255, 255, 255));
         bay3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
+        jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("BAY - 03");
+
+        jLabel37.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel43.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel43.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setText("222");
+
         javax.swing.GroupLayout bay3Layout = new javax.swing.GroupLayout(bay3);
         bay3.setLayout(bay3Layout);
         bay3Layout.setHorizontalGroup(
             bay3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(bay3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(bay3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bay3Layout.setVerticalGroup(
             bay3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel43)
+                .addContainerGap())
         );
 
         bays.add(bay3);
@@ -463,15 +559,40 @@ public class Dash extends javax.swing.JFrame {
         bay4.setBackground(new java.awt.Color(255, 255, 255));
         bay4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
+        jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("BAY - 04");
+
+        jLabel38.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel44.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel44.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setText("222");
+
         javax.swing.GroupLayout bay4Layout = new javax.swing.GroupLayout(bay4);
         bay4.setLayout(bay4Layout);
         bay4Layout.setHorizontalGroup(
             bay4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(bay4Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(bay4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bay4Layout.setVerticalGroup(
             bay4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel44)
+                .addContainerGap())
         );
 
         bays.add(bay4);
@@ -479,15 +600,41 @@ public class Dash extends javax.swing.JFrame {
         bay5.setBackground(new java.awt.Color(255, 255, 255));
         bay5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
+        jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("BAY - 05");
+
+        jLabel39.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel45.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel45.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setText("222");
+
         javax.swing.GroupLayout bay5Layout = new javax.swing.GroupLayout(bay5);
         bay5.setLayout(bay5Layout);
         bay5Layout.setHorizontalGroup(
             bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(bay5Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addGroup(bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bay5Layout.setVerticalGroup(
             bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel45)
+                .addContainerGap())
         );
 
         bays.add(bay5);
@@ -495,15 +642,40 @@ public class Dash extends javax.swing.JFrame {
         bay6.setBackground(new java.awt.Color(255, 255, 255));
         bay6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
 
+        jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setText("BAY - 06");
+
+        jLabel40.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel46.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel46.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setText("222");
+
         javax.swing.GroupLayout bay6Layout = new javax.swing.GroupLayout(bay6);
         bay6.setLayout(bay6Layout);
         bay6Layout.setHorizontalGroup(
             bay6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGroup(bay6Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(bay6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bay6Layout.setVerticalGroup(
             bay6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(bay6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel46)
+                .addContainerGap())
         );
 
         bays.add(bay6);
@@ -588,8 +760,8 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bays, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(bays, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
@@ -1403,18 +1575,18 @@ public class Dash extends javax.swing.JFrame {
 
         if (vehical != null) {
             desableEditable();
-            try {                
+            try {
                 txtLisen.setText(vehical.getVno());
                 txtBrand.setText(vehical.getBrand());
                 txtModel.setText(vehical.getModel());
                 txtColor.setText(vehical.getColor());
-                
+
                 cmbMake.setSelectedItem(vehical.getMake());
                 cmbFuel.setSelectedItem(vehical.getFuel());
                 txtReading.setText(vehical.getReading());
                 try {
                     String yearStr = vehical.getYear();
-                    
+
                     if (yearStr != null && !yearStr.trim().isEmpty()) {
                         if (yearStr.contains("-")) {
                             yearStr = yearStr.substring(0, 4);
@@ -1426,13 +1598,13 @@ public class Dash extends javax.swing.JFrame {
                 } catch (Exception e) {
                     YearChooser.setYear(2026);
                 }
-                
+
                 String customerId = vehical.getCusId();
-                
+
                 pst = db.con.prepareStatement("SELECT * FROM customer WHERE cus_id = ?");
                 pst.setString(1, customerId);
                 rs = pst.executeQuery();
-                
+
                 if (rs.next()) {
                     txtCustName.setText(rs.getString("name"));
                     txtNic.setText(rs.getString("nic"));
@@ -1440,9 +1612,9 @@ public class Dash extends javax.swing.JFrame {
                     txtCity.setText(rs.getString("city"));
                     txtTown.setText(rs.getString("town"));
                 }
-                
+
                 txtSearch.setText("");
-                
+
                 JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle & Owner details loaded.");
             } catch (SQLException ex) {
                 System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -1522,6 +1694,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1544,7 +1717,24 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1745,7 +1935,6 @@ public class Dash extends javax.swing.JFrame {
         txtSearch.setText("");
 
         txtLisen.setText(txtSearch.getText());
-        JOptionPane.showMessageDialog(this, "New Vehicle! Please enter registration details manually.");
     }
 
     private void desableEditable() {
@@ -1761,6 +1950,21 @@ public class Dash extends javax.swing.JFrame {
         cmbMake.setEditable(false);
         cmbFuel.setEditable(false);
         YearChooser.setEnabled(false);
+    }
+
+    private void loadBayStatus() {
+        Color freeColor = Color.WHITE;
+        Color busyColor = Color.decode("#a2d2ff");
+
+        bay1.setBackground(freeColor);
+        bay2.setBackground(freeColor);
+        bay3.setBackground(freeColor);
+        bay4.setBackground(freeColor);
+        bay5.setBackground(freeColor);
+        bay6.setBackground(freeColor);
+        
+        
+
     }
 
 }

@@ -524,16 +524,15 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkNormalService" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkEngineOil" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkBodtWash" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkOilFilter" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkFluidLevel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkAirFilter" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -545,26 +544,24 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkNormalService" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox2" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkBodtWash" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox3" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkEngineOil" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox4" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkOilFilter" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox5" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkFluidLevel" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox6" min="-2" pref="17" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox7" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <Component id="chkAirFilter" min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace pref="66" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                <Component class="javax.swing.JCheckBox" name="chkNormalService">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="16" style="1"/>
@@ -572,7 +569,7 @@
                     <Property name="text" type="java.lang.String" value="Normal Service "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+                <Component class="javax.swing.JCheckBox" name="chkBodtWash">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -580,7 +577,7 @@
                     <Property name="text" type="java.lang.String" value="Body Wash &amp; Vacuum"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+                <Component class="javax.swing.JCheckBox" name="chkEngineOil">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -588,7 +585,7 @@
                     <Property name="text" type="java.lang.String" value="Engine Oil Change"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+                <Component class="javax.swing.JCheckBox" name="chkOilFilter">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -596,15 +593,7 @@
                     <Property name="text" type="java.lang.String" value="Oil Filter Replacement"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox5">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI Semibold" size="14" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Engine Oil Change"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox6">
+                <Component class="javax.swing.JCheckBox" name="chkFluidLevel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -612,7 +601,7 @@
                     <Property name="text" type="java.lang.String" value="Fluid Level Check"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox7">
+                <Component class="javax.swing.JCheckBox" name="chkAirFilter">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -630,17 +619,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkFullService" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkLubrication" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkFullNormal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkAlignment" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkTuneUp" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkBrakeServ" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkUnderCarriage" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkAcSystem" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -652,28 +641,28 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="jCheckBox8" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkFullService" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox9" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkFullNormal" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox10" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkLubrication" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox11" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkAlignment" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox12" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkTuneUp" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox13" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkBrakeServ" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox14" min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="chkUnderCarriage" min="-2" pref="18" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox15" min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="chkAcSystem" min="-2" pref="16" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox11">
+                <Component class="javax.swing.JCheckBox" name="chkAlignment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -681,7 +670,7 @@
                     <Property name="text" type="java.lang.String" value="Wheel Alignment &amp; Balancing"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox10">
+                <Component class="javax.swing.JCheckBox" name="chkLubrication">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -689,7 +678,7 @@
                     <Property name="text" type="java.lang.String" value="Full Lubrication Service"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox13">
+                <Component class="javax.swing.JCheckBox" name="chkBrakeServ">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -697,7 +686,7 @@
                     <Property name="text" type="java.lang.String" value="Brake System Servicing"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox8">
+                <Component class="javax.swing.JCheckBox" name="chkFullService">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="16" style="1"/>
@@ -705,10 +694,10 @@
                     <Property name="text" type="java.lang.String" value="Full Service "/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox8ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkFullServiceActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox12">
+                <Component class="javax.swing.JCheckBox" name="chkTuneUp">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -716,10 +705,10 @@
                     <Property name="text" type="java.lang.String" value="Engine Tune-up &amp; Scanning"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox12ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkTuneUpActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox14">
+                <Component class="javax.swing.JCheckBox" name="chkUnderCarriage">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -727,7 +716,7 @@
                     <Property name="text" type="java.lang.String" value="Under-carriage Degreasing &amp; Washing"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox9">
+                <Component class="javax.swing.JCheckBox" name="chkFullNormal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -735,7 +724,7 @@
                     <Property name="text" type="java.lang.String" value="Normal Service"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox15">
+                <Component class="javax.swing.JCheckBox" name="chkAcSystem">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -776,16 +765,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox18" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkSparkPlug" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox16" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox17" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkBrakePad" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkBattery" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox19" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox20" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkWiper" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chkHeadlight" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -798,23 +787,23 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox16" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="jCheckBox19" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="chkBrakePad" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="chkWiper" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox17" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="jCheckBox20" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="chkBattery" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="chkHeadlight" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox18" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="chkSparkPlug" min="-2" pref="17" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox16">
+                <Component class="javax.swing.JCheckBox" name="chkBrakePad">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -822,15 +811,18 @@
                     <Property name="text" type="java.lang.String" value="Brake Pad Replacement"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox17">
+                <Component class="javax.swing.JCheckBox" name="chkBattery">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Battery Charging &amp; Replacement"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkBatteryActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox18">
+                <Component class="javax.swing.JCheckBox" name="chkSparkPlug">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -838,7 +830,7 @@
                     <Property name="text" type="java.lang.String" value="Spark Plug Replacement"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox19">
+                <Component class="javax.swing.JCheckBox" name="chkWiper">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>
@@ -846,7 +838,7 @@
                     <Property name="text" type="java.lang.String" value="Wiper Blade Replacement"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox20">
+                <Component class="javax.swing.JCheckBox" name="chkHeadlight">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="14" style="1"/>

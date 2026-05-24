@@ -10,9 +10,8 @@ import javax.swing.JOptionPane;
 public class Register extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Register.class.getName());
-
+    User user1;
     Customer cus;
-    Vehical vehical;
 
     PreparedStatement pst;
     ResultSet rs;
@@ -65,31 +64,30 @@ public class Register extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         txtReading = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
+        chkNormalService = new javax.swing.JCheckBox();
+        chkBodtWash = new javax.swing.JCheckBox();
+        chkEngineOil = new javax.swing.JCheckBox();
+        chkOilFilter = new javax.swing.JCheckBox();
+        chkFluidLevel = new javax.swing.JCheckBox();
+        chkAirFilter = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
+        chkAlignment = new javax.swing.JCheckBox();
+        chkLubrication = new javax.swing.JCheckBox();
+        chkBrakeServ = new javax.swing.JCheckBox();
+        chkFullService = new javax.swing.JCheckBox();
+        chkTuneUp = new javax.swing.JCheckBox();
+        chkUnderCarriage = new javax.swing.JCheckBox();
+        chkFullNormal = new javax.swing.JCheckBox();
+        chkAcSystem = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jCheckBox20 = new javax.swing.JCheckBox();
+        chkBrakePad = new javax.swing.JCheckBox();
+        chkBattery = new javax.swing.JCheckBox();
+        chkSparkPlug = new javax.swing.JCheckBox();
+        chkWiper = new javax.swing.JCheckBox();
+        chkHeadlight = new javax.swing.JCheckBox();
         jLabel34 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
@@ -171,26 +169,23 @@ public class Register extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel29.setText("Odometer Reading");
 
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jCheckBox1.setText("Normal Service ");
+        chkNormalService.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        chkNormalService.setText("Normal Service ");
 
-        jCheckBox2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox2.setText("Body Wash & Vacuum");
+        chkBodtWash.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkBodtWash.setText("Body Wash & Vacuum");
 
-        jCheckBox3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox3.setText("Engine Oil Change");
+        chkEngineOil.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkEngineOil.setText("Engine Oil Change");
 
-        jCheckBox4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox4.setText("Oil Filter Replacement");
+        chkOilFilter.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkOilFilter.setText("Oil Filter Replacement");
 
-        jCheckBox5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox5.setText("Engine Oil Change");
+        chkFluidLevel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkFluidLevel.setText("Fluid Level Check");
 
-        jCheckBox6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox6.setText("Fluid Level Check");
-
-        jCheckBox7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox7.setText("Air Filter Cleaning");
+        chkAirFilter.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkAirFilter.setText("Air Filter Cleaning");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,63 +194,60 @@ public class Register extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
+                    .addComponent(chkNormalService)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox5)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jCheckBox7))))
+                            .addComponent(chkEngineOil)
+                            .addComponent(chkBodtWash)
+                            .addComponent(chkOilFilter)
+                            .addComponent(chkFluidLevel)
+                            .addComponent(chkAirFilter))))
                 .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkNormalService, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkBodtWash, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkEngineOil, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkOilFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkFluidLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(chkAirFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jCheckBox11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox11.setText("Wheel Alignment & Balancing");
+        chkAlignment.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkAlignment.setText("Wheel Alignment & Balancing");
 
-        jCheckBox10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox10.setText("Full Lubrication Service");
+        chkLubrication.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkLubrication.setText("Full Lubrication Service");
 
-        jCheckBox13.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox13.setText("Brake System Servicing");
+        chkBrakeServ.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkBrakeServ.setText("Brake System Servicing");
 
-        jCheckBox8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jCheckBox8.setText("Full Service ");
-        jCheckBox8.addActionListener(this::jCheckBox8ActionPerformed);
+        chkFullService.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        chkFullService.setText("Full Service ");
+        chkFullService.addActionListener(this::chkFullServiceActionPerformed);
 
-        jCheckBox12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox12.setText("Engine Tune-up & Scanning");
-        jCheckBox12.addActionListener(this::jCheckBox12ActionPerformed);
+        chkTuneUp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkTuneUp.setText("Engine Tune-up & Scanning");
+        chkTuneUp.addActionListener(this::chkTuneUpActionPerformed);
 
-        jCheckBox14.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox14.setText("Under-carriage Degreasing & Washing");
+        chkUnderCarriage.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkUnderCarriage.setText("Under-carriage Degreasing & Washing");
 
-        jCheckBox9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox9.setText("Normal Service");
+        chkFullNormal.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkFullNormal.setText("Normal Service");
 
-        jCheckBox15.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox15.setText("AC System Inspection & Top-up");
+        chkAcSystem.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkAcSystem.setText("AC System Inspection & Top-up");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -264,38 +256,38 @@ public class Register extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox8)
+                    .addComponent(chkFullService)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox10)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox11)
-                            .addComponent(jCheckBox12)
-                            .addComponent(jCheckBox13)
-                            .addComponent(jCheckBox14)
-                            .addComponent(jCheckBox15))))
+                            .addComponent(chkLubrication)
+                            .addComponent(chkFullNormal)
+                            .addComponent(chkAlignment)
+                            .addComponent(chkTuneUp)
+                            .addComponent(chkBrakeServ)
+                            .addComponent(chkUnderCarriage)
+                            .addComponent(chkAcSystem))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jCheckBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkFullService, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkFullNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkLubrication, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkAlignment, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkTuneUp, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkBrakeServ, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkUnderCarriage, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkAcSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -307,20 +299,21 @@ public class Register extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
 
-        jCheckBox16.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox16.setText("Brake Pad Replacement");
+        chkBrakePad.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkBrakePad.setText("Brake Pad Replacement");
 
-        jCheckBox17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox17.setText("Battery Charging & Replacement");
+        chkBattery.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkBattery.setText("Battery Charging & Replacement");
+        chkBattery.addActionListener(this::chkBatteryActionPerformed);
 
-        jCheckBox18.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox18.setText("Spark Plug Replacement");
+        chkSparkPlug.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkSparkPlug.setText("Spark Plug Replacement");
 
-        jCheckBox19.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox19.setText("Wiper Blade Replacement");
+        chkWiper.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkWiper.setText("Wiper Blade Replacement");
 
-        jCheckBox20.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jCheckBox20.setText("Headlight/Tail-light Bulb Replacement");
+        chkHeadlight.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        chkHeadlight.setText("Headlight/Tail-light Bulb Replacement");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -329,15 +322,15 @@ public class Register extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox18)
+                    .addComponent(chkSparkPlug)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox16)
-                            .addComponent(jCheckBox17))
+                            .addComponent(chkBrakePad)
+                            .addComponent(chkBattery))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox19)
-                            .addComponent(jCheckBox20))))
+                            .addComponent(chkWiper)
+                            .addComponent(chkHeadlight))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -345,14 +338,14 @@ public class Register extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chkBrakePad, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkWiper, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox20, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chkBattery, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkHeadlight, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox18, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chkSparkPlug, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -599,41 +592,191 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTownActionPerformed
 
-    private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
+    private void chkTuneUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTuneUpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox12ActionPerformed
+    }//GEN-LAST:event_chkTuneUpActionPerformed
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void chkFullServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkFullServiceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_chkFullServiceActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        try {
+            String vehicleNo = txtLisen.getText().trim();
 
+            if (vehicleNo.isEmpty() || txtCustName.getText().trim().isEmpty() || txtNumber.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Vehicle No, Owner's Name and Phone Number!");
+                return;
+            }
+
+            String readingValue = txtReading.getText().trim();
+            if (readingValue.isEmpty()) {
+                readingValue = "0";
+            }
+
+            db.con.setAutoCommit(false);
+
+            Vehical exVehical = checkVehical(vehicleNo);
+            String currentCusId = "";
+
+            if (exVehical != null) {
+                currentCusId = exVehical.getCusId();
+                System.out.println("Existing vehicle found. Linking to Customer ID: " + currentCusId);
+            } else {
+                String currentCusId2 = "CUS-" + (System.currentTimeMillis() % 100000);
+
+                String sql = "INSERT INTO customer (cus_id, name, nic, phone, city, town) VALUES (?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, currentCusId2);
+                pst.setString(2, txtCustName.getText().trim());
+                pst.setString(3, txtNic.getText().trim());
+                pst.setInt(4, Integer.parseInt(txtNumber.getText().trim()));
+                pst.setString(5, txtCity.getText().trim());
+                pst.setString(6, txtTown.getText().trim());
+                pst.executeUpdate();
+                pst.close();
+
+                String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                pst = db.con.prepareStatement(sqlVehInsert);
+                pst.setString(1, vehicleNo);
+                pst.setString(2, cmbMake.getSelectedItem().toString());
+                pst.setString(3, txtBrand.getText().trim());
+                pst.setString(4, txtModel.getText().trim());
+                pst.setString(5, cmbFuel.getSelectedItem().toString());
+                pst.setString(6, txtReading.getText());
+                pst.setString(7, txtColor.getText().trim());
+                pst.setInt(8, YearChooser.getYear());
+                pst.setString(9, currentCusId2); // Foreign Key
+                pst.executeUpdate();
+                pst.close();
+            }
+
+            int randomJob = (int) (Math.random() * 9000) + 1000;
+            String jobID = "JOB-" + randomJob;
+
+            String serviceType = "Custom";
+            if (chkNormalService.isSelected()) {
+                serviceType = "Normal Service";
+            }
+            if (chkFullService.isSelected()) {
+                serviceType = "Full Service";
+            }
+            //Additional
+            StringBuilder additionalServices = new StringBuilder();
+            if (chkBrakePad.isSelected()) {
+                additionalServices.append("Brake Pad Replacement");
+            }
+            if (chkBattery.isSelected()) {
+                additionalServices.append("Battery Charging & Replacement");
+            }
+            if (chkSparkPlug.isSelected()) {
+                additionalServices.append("Spark Plug Replacement");
+            }
+            if (chkWiper.isSelected()) {
+                additionalServices.append("Wiper Blade Replacement");
+            }
+            if (chkHeadlight.isSelected()) {
+                additionalServices.append("Headlight/Tail-light Bulb Replacement");
+            }
+
+            String addServiceStr = additionalServices.toString().trim();
+            if (addServiceStr.endsWith(",")) {
+                addServiceStr = addServiceStr.substring(0, addServiceStr.length() - 1);
+            }
+            if (addServiceStr.isEmpty()) {
+                addServiceStr = ""; 
+            }
+
+            pst = db.con.prepareStatement("INSERT INTO job_card (job_id, vehical_no, service_type, additional_services, odometer, status) VALUES (?, ?, ?, ?, ?, 'Ongoing')");
+            pst.setString(1, jobID);
+            pst.setString(2, vehicleNo);
+            pst.setString(3, serviceType);
+            pst.setString(3, serviceType);  
+            pst.setString(4, addServiceStr);
+            pst.setString(5, txtReading.getText().trim());
+
+            pst.executeUpdate();
+            pst.close();
+
+            db.con.commit();
+            JOptionPane.showMessageDialog(this, "Job Created Successfully! Job ID: " + jobID);
+            clean();
+
+        } catch (SQLException ex) {
+            try {
+                db.con.rollback();
+                JOptionPane.showMessageDialog(this, "Save Error: " + ex.getMessage());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            try {
+                db.con.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String vehicleNo = txtSearch.getText().trim();
 
         if (vehicleNo.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a License Plate number first!");
-            return;
+            JOptionPane.showMessageDialog(this, "Please enter a License Plate number to search!");
         }
 
         Vehical vehical = checkVehical(vehicleNo);
+
         if (vehical != null) {
-            txtCustName.setText(cus.getName());
-            txtNic.setText(cus.getNic());
-            txtNumber.setText(cus.getPhone());
-            txtCity.setText(cus.getCity());
-            txtTown.setText(cus.getTown());
+            desableEditable();
+            try {
+                txtLisen.setText(vehical.getVno());
+                txtBrand.setText(vehical.getBrand());
+                txtModel.setText(vehical.getModel());
+                txtColor.setText(vehical.getColor());
 
-            txtLisen.setText(vehical.getVno());
-            txtBrand.setText(vehical.getBrand());
-            txtModel.setText(vehical.getModel());
-            txtLisen.setText(vehical.getVno());
-            txtLisen.setText(vehical.getVno());
+                cmbMake.setSelectedItem(vehical.getMake());
+                cmbFuel.setSelectedItem(vehical.getFuel());
+                txtReading.setText(vehical.getReading());
+                try {
+                    String yearStr = vehical.getYear();
 
-            JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle details loaded.");
+                    if (yearStr != null && !yearStr.trim().isEmpty()) {
+                        if (yearStr.contains("-")) {
+                            yearStr = yearStr.substring(0, 4);
+                        }
+                        YearChooser.setYear(Integer.parseInt(yearStr.trim()));
+                    } else {
+                        YearChooser.setYear(2026);
+                    }
+                } catch (Exception e) {
+                    YearChooser.setYear(2026);
+                }
+
+                String customerId = vehical.getCusId();
+
+                pst = db.con.prepareStatement("SELECT * FROM customer WHERE cus_id = ?");
+                pst.setString(1, customerId);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    txtCustName.setText(rs.getString("name"));
+                    txtNic.setText(rs.getString("nic"));
+                    txtNumber.setText(String.valueOf(rs.getInt("phone")));
+                    txtCity.setText(rs.getString("city"));
+                    txtTown.setText(rs.getString("town"));
+                }
+
+                txtSearch.setText("");
+
+                JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle & Owner details loaded.");
+            } catch (SQLException ex) {
+                System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+        } else {
+            txtLisen.setText(vehicleNo);
+            clean();
+            JOptionPane.showMessageDialog(this, "Not Found ");
+
         }
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -641,6 +784,10 @@ public class Register extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void chkBatteryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBatteryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkBatteryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -669,30 +816,29 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JCheckBox chkAcSystem;
+    private javax.swing.JCheckBox chkAirFilter;
+    private javax.swing.JCheckBox chkAlignment;
+    private javax.swing.JCheckBox chkBattery;
+    private javax.swing.JCheckBox chkBodtWash;
+    private javax.swing.JCheckBox chkBrakePad;
+    private javax.swing.JCheckBox chkBrakeServ;
+    private javax.swing.JCheckBox chkEngineOil;
+    private javax.swing.JCheckBox chkFluidLevel;
+    private javax.swing.JCheckBox chkFullNormal;
+    private javax.swing.JCheckBox chkFullService;
+    private javax.swing.JCheckBox chkHeadlight;
+    private javax.swing.JCheckBox chkLubrication;
+    private javax.swing.JCheckBox chkNormalService;
+    private javax.swing.JCheckBox chkOilFilter;
+    private javax.swing.JCheckBox chkSparkPlug;
+    private javax.swing.JCheckBox chkTuneUp;
+    private javax.swing.JCheckBox chkUnderCarriage;
+    private javax.swing.JCheckBox chkWiper;
     private javax.swing.JComboBox<String> cmbFuel;
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JPanel details;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox18;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -760,6 +906,63 @@ public class Register extends javax.swing.JFrame {
             System.getLogger(Register.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return null;
+    }
+
+    private void clean() {
+        txtCustName.setText("");
+        txtNic.setText("");
+        txtNumber.setText("");
+        txtCity.setText("");
+        txtTown.setText("");
+        txtBrand.setText("");
+        txtModel.setText("");
+        txtColor.setText("");
+        txtReading.setText("");
+        cmbMake.setSelectedIndex(0);
+        cmbFuel.setSelectedIndex(0);
+        YearChooser.setYear(2026);
+
+        chkNormalService.setSelected(false);
+        chkBodtWash.setSelected(false);     // Body Wash & Vacuum
+        chkEngineOil.setSelected(false);    // Engine Oil Change
+        chkOilFilter.setSelected(false);    // Oil Filter Replacement
+        chkAirFilter.setSelected(false);    // Air Filter Cleaning
+        chkFluidLevel.setSelected(false);
+
+        chkFullService.setSelected(false);
+        chkFullNormal.setSelected(false);   // Normal Service (Full යටතේ ඇති)
+        chkLubrication.setSelected(false);  // Full Lubrication Service
+        chkAlignment.setSelected(false);    // Wheel Alignment & Balancing
+        chkTuneUp.setSelected(false);       // Engine Tune-up & Scanning
+        chkBrakeServ.setSelected(false);    // Brake System Servicing
+        chkUnderCarriage.setSelected(false); // Under-carriage Degreasing
+        chkAcSystem.setSelected(false);
+
+        chkBrakePad.setSelected(false);     // Brake Pad Replacement
+        chkBattery.setSelected(false);      // Battery Charging
+        chkSparkPlug.setSelected(false);    // Spark Plug Replacement
+        chkWiper.setSelected(false);        // Wiper Blade Replacement
+        chkHeadlight.setSelected(false);
+
+        txtLisen.setText(txtSearch.getText());
+
+        txtSearch.setText("");
+        txtSearch.requestFocus();
+    }
+
+    private void desableEditable() {
+        txtCustName.setEditable(false);
+        txtNic.setEditable(false);
+        txtNumber.setEditable(false);
+        txtCity.setEditable(false);
+        txtTown.setEditable(false);
+        txtBrand.setEditable(false);
+        txtModel.setEditable(false);
+        txtColor.setEditable(false);
+        txtReading.setEditable(false);
+        cmbMake.setEditable(false);
+        cmbFuel.setEditable(false);
+        YearChooser.setEnabled(false);
     }
 
 }

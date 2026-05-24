@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package vehicalservicecenter;
 
 import java.awt.Color;
@@ -72,7 +69,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
-        txtxVNo = new javax.swing.JTextField();
+        txtVNo = new javax.swing.JTextField();
         txtDate = new javax.swing.JTextField();
         txtTime = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
@@ -82,7 +79,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtStatus1 = new javax.swing.JTextField();
+        txtRecord = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         jLabel6.setText("Time");
@@ -182,7 +179,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
         txtId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtxVNo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtVNo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -202,7 +199,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
         jLabel7.setText("Status");
 
-        txtStatus1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtRecord.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setText("Recorded Date");
 
@@ -213,7 +210,6 @@ public class AppointmentDetails extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -227,7 +223,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
                             .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtxVNo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtVNo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +240,8 @@ public class AppointmentDetails extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
         tableLayout.setVerticalGroup(
@@ -267,11 +264,11 @@ public class AppointmentDetails extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(txtxVNo)
+                    .addComponent(txtVNo)
                     .addComponent(txtDate)
                     .addComponent(txtTime)
                     .addComponent(txtStatus)
-                    .addComponent(txtStatus1))
+                    .addComponent(txtRecord))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -300,15 +297,100 @@ public class AppointmentDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        String appoId = txtId.getText().trim();
+
+        if (appoId.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an appointment from the table to delete!");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to DELETE Appointment ID: " + appoId + "?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+
+                String sql = "DELETE FROM appointment WHERE appo_id = ?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, appoId);
+
+                int result = pst.executeUpdate();
+                pst.close();
+
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "Appointment deleted successfully!");
+                    searchAppointmentTable("");
+                    clear();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Delete Error: " + ex.getMessage());
+            }
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+        String appoId = txtId.getText().trim();
+        String newDate = txtDate.getText().trim();
+        String newTime = txtTime.getText().trim();
+
+        if (appoId.isEmpty() || newDate.isEmpty() || newTime.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an appointment and fill Date & Time!");
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to update this Appointment?", "Confirm Update", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+
+                String sql = "UPDATE appointment SET date = ?, time = ? WHERE appo_id = ?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, newDate);
+                pst.setString(2, newTime);
+                pst.setString(3, appoId);
+
+                int result = pst.executeUpdate();
+                pst.close();
+
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "Appointment updated successfully!");
+                    searchAppointmentTable("");
+                    clear();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Update Error: " + ex.getMessage());
+            }
+        }
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void appoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appoTableMouseClicked
-        // TODO add your handling code here:
+        int selectedRow = appoTable.getSelectedRow();
+
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) appoTable.getModel();
+
+            txtId.setText(model.getValueAt(selectedRow, 0).toString()); // Appointment ID
+            txtVNo.setText(model.getValueAt(selectedRow, 1).toString()); // Vehical No
+            txtStatus.setText(model.getValueAt(selectedRow, 4).toString()); // Status
+            txtRecord.setText(model.getValueAt(selectedRow, 5).toString()); // Record Date
+            txtDate.setText(model.getValueAt(selectedRow, 2).toString()); // Date (Editable)
+            txtTime.setText(model.getValueAt(selectedRow, 3).toString()); // Time (Editable)
+
+            txtId.setEditable(false);
+            txtVNo.setEditable(false);
+            txtStatus.setEditable(false);
+            txtRecord.setEditable(false);
+
+            txtDate.setEditable(true);
+            txtTime.setEditable(true);
+
+            txtDate.requestFocus();
+
+            btnUpdate.setEnabled(true);
+            btnDelete.setEnabled(true);
+
+            txtSearch.setText("");
+        }
     }//GEN-LAST:event_appoTableMouseClicked
 
     /**
@@ -354,11 +436,11 @@ public class AppointmentDetails extends javax.swing.JFrame {
     private javax.swing.JPanel table;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtRecord;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtStatus;
-    private javax.swing.JTextField txtStatus1;
     private javax.swing.JTextField txtTime;
-    private javax.swing.JTextField txtxVNo;
+    private javax.swing.JTextField txtVNo;
     // End of variables declaration//GEN-END:variables
 
     private void tableLoad() {
@@ -414,17 +496,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
                     v2.add(rs.getString("vehical_no"));
                     v2.add(rs.getString("date"));
                     v2.add(rs.getString("time"));
-
-                    String dbStatus = rs.getString("status");
-                    String displayStatus = dbStatus;
-
-                    if (dbStatus != null && dbStatus.equalsIgnoreCase("Pending")) {
-                        displayStatus = "<html><b style='color:#dc3545;'>Pending</b></html>";
-                    } else if (dbStatus != null && dbStatus.equalsIgnoreCase("Completed")) {
-                        displayStatus = "<html><b style='color:#28a745;'>Completed</b></html>";
-                    }
-
-                    v2.add(rs.getString(displayStatus));
+                    v2.add(rs.getString("status"));
                     v2.add(rs.getString("recorded_at"));
                     v2.add(rs.getString("uName"));
 
@@ -513,5 +585,17 @@ public class AppointmentDetails extends javax.swing.JFrame {
             lblDateTime1.setText(time);
             lblDateTime.setForeground(new java.awt.Color(4, 102, 200));
         }).start();
+    }
+
+    private void clear() {
+        txtId.setText("");
+        txtVNo.setText("");
+        txtDate.setText("");
+        txtTime.setText("");
+        txtStatus.setText("");
+        txtRecord.setText("");
+
+        btnUpdate.setEnabled(false);
+        btnDelete.setEnabled(false);
     }
 }
