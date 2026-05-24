@@ -1402,7 +1402,7 @@ public class Dash extends javax.swing.JFrame {
         Vehical vehical = checkVehical(vehicleNo);
 
         if (vehical != null) {
-
+            desableEditable();
             try {                
                 txtLisen.setText(vehical.getVno());
                 txtBrand.setText(vehical.getBrand());
@@ -1746,6 +1746,21 @@ public class Dash extends javax.swing.JFrame {
 
         txtLisen.setText(txtSearch.getText());
         JOptionPane.showMessageDialog(this, "New Vehicle! Please enter registration details manually.");
+    }
+
+    private void desableEditable() {
+        txtCustName.setEditable(false);
+        txtNic.setEditable(false);
+        txtNumber.setEditable(false);
+        txtCity.setEditable(false);
+        txtTown.setEditable(false);
+        txtBrand.setEditable(false);
+        txtModel.setEditable(false);
+        txtColor.setEditable(false);
+        txtReading.setEditable(false);
+        cmbMake.setEditable(false);
+        cmbFuel.setEditable(false);
+        YearChooser.setEnabled(false);
     }
 
 }

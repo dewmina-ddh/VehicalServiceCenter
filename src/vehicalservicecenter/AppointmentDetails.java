@@ -59,6 +59,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lblDateTime = new javax.swing.JLabel();
@@ -70,14 +71,21 @@ public class AppointmentDetails extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
+        txtxVNo = new javax.swing.JTextField();
+        txtDate = new javax.swing.JTextField();
+        txtTime = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtStatus1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+
+        jLabel6.setText("Time");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -135,13 +143,30 @@ public class AppointmentDetails extends javax.swing.JFrame {
             new String [] {
                 "Appointment ID", "Vehical No", "Date", "Time", "Status", "Record Date", "Who record"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         appoTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 appoTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(appoTable);
+        if (appoTable.getColumnModel().getColumnCount() > 0) {
+            appoTable.getColumnModel().getColumn(0).setResizable(false);
+            appoTable.getColumnModel().getColumn(1).setResizable(false);
+            appoTable.getColumnModel().getColumn(2).setResizable(false);
+            appoTable.getColumnModel().getColumn(3).setResizable(false);
+            appoTable.getColumnModel().getColumn(4).setResizable(false);
+            appoTable.getColumnModel().getColumn(5).setResizable(false);
+            appoTable.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -155,21 +180,31 @@ public class AppointmentDetails extends javax.swing.JFrame {
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtxVNo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTime.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setText("Appointment ID");
+
+        jLabel3.setText("Vehical No");
+
+        jLabel4.setText("Date");
+
+        jLabel5.setText("Time");
+
+        jLabel7.setText("Status");
+
+        txtStatus1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel8.setText("Recorded Date");
 
         javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
         table.setLayout(tableLayout);
@@ -187,20 +222,29 @@ public class AppointmentDetails extends javax.swing.JFrame {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tableLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtxVNo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(24, 24, 24))
         );
         tableLayout.setVerticalGroup(
@@ -212,17 +256,24 @@ public class AppointmentDetails extends javax.swing.JFrame {
                     .addComponent(txtSearch)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(3, 3, 3)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(txtxVNo)
+                    .addComponent(txtDate)
+                    .addComponent(txtTime)
+                    .addComponent(txtStatus)
+                    .addComponent(txtStatus1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -240,6 +291,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -285,22 +337,28 @@ public class AppointmentDetails extends javax.swing.JFrame {
     private javax.swing.JTable appoTable;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel lblDateTime;
     private javax.swing.JLabel lblDateTime1;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel table;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtStatus;
+    private javax.swing.JTextField txtStatus1;
+    private javax.swing.JTextField txtTime;
+    private javax.swing.JTextField txtxVNo;
     // End of variables declaration//GEN-END:variables
 
     private void tableLoad() {
@@ -344,7 +402,6 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
             String sql = "SELECT * FROM appointment WHERE vehical_no LIKE ? OR appo_id LIKE ? ORDER BY date DESC, time DESC";
             pst = db.con.prepareStatement(sql);
-
             pst.setString(1, "%" + keyword + "%");
             pst.setString(2, "%" + keyword + "%");
 
@@ -357,9 +414,20 @@ public class AppointmentDetails extends javax.swing.JFrame {
                     v2.add(rs.getString("vehical_no"));
                     v2.add(rs.getString("date"));
                     v2.add(rs.getString("time"));
-                    v2.add(rs.getString("status"));
+
+                    String dbStatus = rs.getString("status");
+                    String displayStatus = dbStatus;
+
+                    if (dbStatus != null && dbStatus.equalsIgnoreCase("Pending")) {
+                        displayStatus = "<html><b style='color:#dc3545;'>Pending</b></html>";
+                    } else if (dbStatus != null && dbStatus.equalsIgnoreCase("Completed")) {
+                        displayStatus = "<html><b style='color:#28a745;'>Completed</b></html>";
+                    }
+
+                    v2.add(rs.getString(displayStatus));
                     v2.add(rs.getString("recorded_at"));
                     v2.add(rs.getString("uName"));
+
                 }
                 model.addRow(v2);
             }
