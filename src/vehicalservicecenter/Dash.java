@@ -38,7 +38,7 @@ public class Dash extends javax.swing.JFrame {
     public Dash(User user) {
         initComponents();
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        customiseButtons(btnSave, btnUpdate, btnDelete, btnClear);
+        customiseButtons(btnSave, btnUpdate,  btnClear);
         customiseTable(table);
         cards(card1, card2, card3, card4);
         loadImage();
@@ -154,7 +154,6 @@ public class Dash extends javax.swing.JFrame {
         txtReading = new javax.swing.JTextField();
         appo = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
@@ -886,8 +885,6 @@ public class Dash extends javax.swing.JFrame {
 
         btnClear.setText("Details >");
 
-        btnDelete.setText("Delete");
-
         btnUpdate.setText("Update");
 
         btnSave.setText("Save");
@@ -901,8 +898,8 @@ public class Dash extends javax.swing.JFrame {
         appoAllLayout.setHorizontalGroup(
             appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, appoAllLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(appoAllLayout.createSequentialGroup()
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -911,12 +908,12 @@ public class Dash extends javax.swing.JFrame {
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                        .addGap(310, 310, 310))
+                    .addGroup(appoAllLayout.createSequentialGroup()
+                        .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))))
         );
         appoAllLayout.setVerticalGroup(
             appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -926,7 +923,6 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1481,7 +1477,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnAppo;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDash;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInven;
     private javax.swing.JButton btnJob;
     private javax.swing.JButton btnReg;
@@ -1583,7 +1578,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField txtTown;
     // End of variables declaration//GEN-END:variables
 
-    private void customiseButtons(JButton btnSave, JButton btnUpdate, JButton btnDelete, JButton btnClear) {
+    private void customiseButtons(JButton btnSave, JButton btnUpdate, JButton btnDelete) {
         // Save Button - Blue
         btnSave.setBackground(new Color(4, 102, 200));
         btnSave.setForeground(Color.WHITE);
