@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2026 at 04:13 AM
+-- Generation Time: May 25, 2026 at 04:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,8 +33,17 @@ CREATE TABLE `appointment` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'Pending',
-  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `uName` varchar(20) DEFAULT 'Admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appo_id`, `vehical_no`, `date`, `time`, `status`, `recorded_at`, `uName`) VALUES
+('APP-1411', 'BEO-8269', '2026-05-28', '00:00:02', 'Pending', '2026-05-24 06:51:57', 'Dewmina'),
+('APP-6224', 'BEO-8269', '2026-05-08', '00:00:02', 'Pending', '2026-05-24 06:03:17', 'Dewmina');
 
 -- --------------------------------------------------------
 
@@ -77,6 +86,13 @@ CREATE TABLE `customer` (
   `town` varchar(100) DEFAULT NULL,
   `recorded_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cus_id`, `name`, `nic`, `phone`, `city`, `town`, `recorded_time`) VALUES
+('CUS-97650', 'dasdas', '2313', 2315, 'dasdas', 'sdasd', '2026-05-24 06:03:17');
 
 -- --------------------------------------------------------
 
@@ -171,6 +187,19 @@ CREATE TABLE `services` (
   `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`service_id`, `service_name`, `price`, `recorded_at`) VALUES
+('SRV001', 'Normal Service', 1500, '2026-05-24 21:21:22'),
+('SRV010', 'Full Service', 15000, '2026-05-24 21:21:22'),
+('SRV020', 'Brake Pad Replacement', 4500, '2026-05-24 21:21:22'),
+('SRV021', 'Battery Charging & Replacement', 12000, '2026-05-24 21:21:22'),
+('SRV022', 'Spark Plug Replacement', 950, '2026-05-24 21:21:22'),
+('SRV023', 'Wiper Blade Replacement', 1750, '2026-05-24 21:21:22'),
+('SRV024', 'Headlight/Tail-light Bulb Replacement', 650, '2026-05-24 21:21:22');
+
 -- --------------------------------------------------------
 
 --
@@ -235,9 +264,31 @@ CREATE TABLE `vehical_table` (
   `brand` varchar(100) NOT NULL,
   `model` varchar(50) NOT NULL,
   `fuel` varchar(50) NOT NULL,
+  `reading` int(10) DEFAULT 0,
   `color` varchar(50) NOT NULL,
   `make_year` year(4) NOT NULL,
-  `cus_id` varchar(20) NOT NULL
+  `cus_id` varchar(20) NOT NULL,
+  `recodede_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vehical_table`
+--
+
+INSERT INTO `vehical_table` (`vehical_no`, `make`, `brand`, `model`, `fuel`, `reading`, `color`, `make_year`, `cus_id`, `recodede_time`) VALUES
+('BEO-8269', 'Item 2', 'dsadasd', 'dasdasd', 'Item 2', 123, 'dsadasd', '2026', 'CUS-97650', '2026-05-24 06:03:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workers`
+--
+
+CREATE TABLE `workers` (
+  `wID` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `nic` varchar(12) NOT NULL,
+  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -326,6 +377,12 @@ ALTER TABLE `user`
 ALTER TABLE `vehical_table`
   ADD PRIMARY KEY (`vehical_no`),
   ADD KEY `cus_id` (`cus_id`);
+
+--
+-- Indexes for table `workers`
+--
+ALTER TABLE `workers`
+  ADD PRIMARY KEY (`wID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
