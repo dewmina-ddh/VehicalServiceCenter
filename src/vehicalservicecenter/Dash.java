@@ -247,7 +247,7 @@ public class Dash extends javax.swing.JFrame {
         btnReg.setBackground(new java.awt.Color(27, 42, 71));
         btnReg.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnReg.setForeground(new java.awt.Color(255, 255, 255));
-        btnReg.setText("REGISTRATION");
+        btnReg.setText("SET JOB CARD");
         btnReg.setBorder(null);
         btnReg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReg.addActionListener(this::btnRegActionPerformed);
@@ -265,7 +265,7 @@ public class Dash extends javax.swing.JFrame {
         btnJob.setBackground(new java.awt.Color(27, 42, 71));
         btnJob.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnJob.setForeground(new java.awt.Color(255, 255, 255));
-        btnJob.setText("JobCARD");
+        btnJob.setText("SERVISE DETAILS");
         btnJob.setBorder(null);
         btnJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnJob.addActionListener(this::btnJobActionPerformed);
@@ -496,9 +496,8 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addGroup(bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                        .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
         );
         bay2Layout.setVerticalGroup(
@@ -620,9 +619,8 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addGroup(bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         bay5Layout.setVerticalGroup(
