@@ -96,9 +96,16 @@ public class Dash extends javax.swing.JFrame {
         cards = new javax.swing.JPanel();
         card1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        lblAppoNo = new javax.swing.JLabel();
         card2 = new javax.swing.JPanel();
+        lblAppoNo1 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         card3 = new javax.swing.JPanel();
+        lblAppoNo2 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         card4 = new javax.swing.JPanel();
+        lblAppoNo3 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
         bays = new javax.swing.JPanel();
         bay1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -357,13 +364,23 @@ public class Dash extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 204, 51));
         jLabel10.setText("ToDays' Appointment ");
 
+        lblAppoNo.setBackground(new java.awt.Color(255, 255, 255));
+        lblAppoNo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblAppoNo.setForeground(new java.awt.Color(255, 204, 51));
+        lblAppoNo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout card1Layout = new javax.swing.GroupLayout(card1);
         card1.setLayout(card1Layout);
         card1Layout.setHorizontalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel10)
+                .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel10))
+                    .addGroup(card1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(lblAppoNo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
@@ -371,57 +388,124 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(card1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAppoNo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         cards.add(card1);
 
         card2.setBackground(new java.awt.Color(255, 255, 255));
-        card2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(224, 224, 224), 3, true));
+        card2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 3, true));
         card2.setPreferredSize(new java.awt.Dimension(30, 100));
+
+        lblAppoNo1.setBackground(new java.awt.Color(255, 255, 255));
+        lblAppoNo1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblAppoNo1.setForeground(new java.awt.Color(204, 0, 0));
+        lblAppoNo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel47.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel47.setText("ToDays' Appointment ");
 
         javax.swing.GroupLayout card2Layout = new javax.swing.GroupLayout(card2);
         card2.setLayout(card2Layout);
         card2Layout.setHorizontalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblAppoNo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
         card2Layout.setVerticalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
+            .addGroup(card2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAppoNo1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         cards.add(card2);
 
         card3.setBackground(new java.awt.Color(255, 255, 255));
-        card3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(224, 224, 224), 3, true));
+        card3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 3, true));
         card3.setPreferredSize(new java.awt.Dimension(30, 100));
+
+        lblAppoNo2.setBackground(new java.awt.Color(255, 255, 255));
+        lblAppoNo2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblAppoNo2.setForeground(new java.awt.Color(0, 51, 204));
+        lblAppoNo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel48.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("Technicians");
 
         javax.swing.GroupLayout card3Layout = new javax.swing.GroupLayout(card3);
         card3.setLayout(card3Layout);
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAppoNo2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
+                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
+                .addGap(33, 33, 33))
         );
         card3Layout.setVerticalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
+            .addGroup(card3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAppoNo2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         cards.add(card3);
 
         card4.setBackground(new java.awt.Color(255, 255, 255));
-        card4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(224, 224, 224), 3, true));
+        card4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 3, true));
+
+        lblAppoNo3.setBackground(new java.awt.Color(255, 255, 255));
+        lblAppoNo3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblAppoNo3.setForeground(new java.awt.Color(0, 153, 51));
+        lblAppoNo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel49.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel49.setText("Total Services");
 
         javax.swing.GroupLayout card4Layout = new javax.swing.GroupLayout(card4);
         card4.setLayout(card4Layout);
         card4Layout.setHorizontalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGroup(card4Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(lblAppoNo3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         card4Layout.setVerticalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
+            .addGroup(card4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAppoNo3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         cards.add(card4);
@@ -432,10 +516,11 @@ public class Dash extends javax.swing.JFrame {
         bays.setLayout(new java.awt.GridLayout(1, 6, 10, 0));
 
         bay1.setBackground(new java.awt.Color(255, 255, 255));
-        bay1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
         bay1.setPreferredSize(new java.awt.Dimension(20, 80));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BAY - 01");
 
@@ -457,7 +542,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         bay1Layout.setVerticalGroup(
             bay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +559,7 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay1);
 
         bay2.setBackground(new java.awt.Color(255, 255, 255));
-        bay2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
         jLabel42.setBackground(new java.awt.Color(255, 255, 255));
         jLabel42.setForeground(new java.awt.Color(0, 102, 153));
@@ -482,6 +567,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel42.setText("222");
 
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 51, 204));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("BAY - 02");
 
@@ -493,7 +579,7 @@ public class Dash extends javax.swing.JFrame {
         bay2Layout.setHorizontalGroup(
             bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bay2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(bay2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
@@ -515,9 +601,10 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay2);
 
         bay3.setBackground(new java.awt.Color(255, 255, 255));
-        bay3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
         jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 51, 204));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("BAY - 03");
 
@@ -539,7 +626,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         bay3Layout.setVerticalGroup(
             bay3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,9 +643,10 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay3);
 
         bay4.setBackground(new java.awt.Color(255, 255, 255));
-        bay4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
         jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 51, 204));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("BAY - 04");
 
@@ -580,7 +668,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         bay4Layout.setVerticalGroup(
             bay4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -597,9 +685,10 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay4);
 
         bay5.setBackground(new java.awt.Color(255, 255, 255));
-        bay5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
         jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 51, 204));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("BAY - 05");
 
@@ -621,7 +710,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         bay5Layout.setVerticalGroup(
             bay5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,9 +727,10 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay5);
 
         bay6.setBackground(new java.awt.Color(255, 255, 255));
-        bay6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
+        bay6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 51, 204));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("BAY - 06");
 
@@ -662,7 +752,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         bay6Layout.setVerticalGroup(
             bay6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1733,6 +1823,9 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1757,6 +1850,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblAppoNo;
+    private javax.swing.JLabel lblAppoNo1;
+    private javax.swing.JLabel lblAppoNo2;
+    private javax.swing.JLabel lblAppoNo3;
     private javax.swing.JLabel lblDateTime;
     private javax.swing.JLabel lblDateTime1;
     private javax.swing.JLabel lblImage;
