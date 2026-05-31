@@ -687,7 +687,7 @@ public class Register extends javax.swing.JFrame {
                 addServiceStr = ""; 
             }
 
-            pst = db.con.prepareStatement("INSERT INTO job_card (job_id, vehical_no, service_type, additional_services, odometer, status) VALUES (?, ?, ?, ?, ?, 'Ongoing')");
+            pst = db.con.prepareStatement("INSERT INTO job_table (job_id, vehical_no, service_type, additional_services, odometer, status) VALUES (?, ?, ?, ?, ?, 'Ongoing')");
             pst.setString(1, jobID);
             pst.setString(2, vehicleNo);
             pst.setString(3, serviceType);
