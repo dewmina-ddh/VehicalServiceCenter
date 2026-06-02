@@ -38,13 +38,13 @@ public class Dash extends javax.swing.JFrame {
     public Dash(User user) {
         initComponents();
         loadBayStatus();
-//        setExtendedState(JFrame.MAXIMIZED_BOTH);
         customiseButtons(btnSave, btnUpdate, btnDetails);
         customiseTable(table);
         cards(card1, card2, card3, card4);
         loadImage();
         loadDigitalFont();
         setTime();
+        loadTechnicianCards();
 
         this.user1 = user;
 
@@ -52,7 +52,7 @@ public class Dash extends javax.swing.JFrame {
         CardPanel.add(pnlAppo, "card2");
         CardPanel.add(pnlInventory, "card3");
         CardPanel.add(pnlTech, "card4");
-        CardPanel.add(pnlJobs, "card5");
+        CardPanel.add(pnlHistory, "card5");
 
         UIManager.put("TextComponent.arc", 15);
 
@@ -212,10 +212,12 @@ public class Dash extends javax.swing.JFrame {
         table1 = new javax.swing.JTable();
         txtSearch2 = new javax.swing.JTextField();
         btnSearch2 = new javax.swing.JButton();
-        pnlJobs = new javax.swing.JPanel();
+        pnlHistory = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         pnlTech = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        techMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,7 +274,7 @@ public class Dash extends javax.swing.JFrame {
         btnJob.setBackground(new java.awt.Color(27, 42, 71));
         btnJob.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnJob.setForeground(new java.awt.Color(255, 255, 255));
-        btnJob.setText("SERVICE DETAILS");
+        btnJob.setText("SERVICE HISTORY");
         btnJob.setBorder(null);
         btnJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnJob.addActionListener(this::btnJobActionPerformed);
@@ -1455,34 +1457,64 @@ public class Dash extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout pnlJobsLayout = new javax.swing.GroupLayout(pnlJobs);
-        pnlJobs.setLayout(pnlJobsLayout);
-        pnlJobsLayout.setHorizontalGroup(
-            pnlJobsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJobsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlHistoryLayout = new javax.swing.GroupLayout(pnlHistory);
+        pnlHistory.setLayout(pnlHistoryLayout);
+        pnlHistoryLayout.setHorizontalGroup(
+            pnlHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHistoryLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
-        pnlJobsLayout.setVerticalGroup(
-            pnlJobsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlJobsLayout.createSequentialGroup()
-                .addContainerGap(408, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlHistoryLayout.setVerticalGroup(
+            pnlHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHistoryLayout.createSequentialGroup()
+                .addContainerGap(278, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
-        CardPanel.add(pnlJobs, "card3");
+        CardPanel.add(pnlHistory, "card3");
+
+        pnlTech.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        techMain.setBackground(new java.awt.Color(255, 255, 255));
+        techMain.setLayout(new java.awt.GridLayout(3, 4, 20, 20));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(techMain, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(techMain, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlTechLayout = new javax.swing.GroupLayout(pnlTech);
         pnlTech.setLayout(pnlTechLayout);
         pnlTechLayout.setHorizontalGroup(
             pnlTechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGroup(pnlTechLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlTechLayout.setVerticalGroup(
             pnlTechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 679, Short.MAX_VALUE)
+            .addGroup(pnlTechLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         CardPanel.add(pnlTech, "card2");
@@ -1837,6 +1869,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1866,14 +1899,15 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlAppo;
     private javax.swing.JPanel pnlDash;
+    private javax.swing.JPanel pnlHistory;
     private javax.swing.JPanel pnlInventory;
-    private javax.swing.JPanel pnlJobs;
     private javax.swing.JPanel pnlTech;
     private javax.swing.JPanel regDetails;
     private javax.swing.JPanel sidebar;
     private javax.swing.JTable table;
     private javax.swing.JTable table1;
     private javax.swing.JTable table2;
+    private javax.swing.JPanel techMain;
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtColor;
@@ -1914,25 +1948,25 @@ public class Dash extends javax.swing.JFrame {
     }
 
     private void customiseTable(JTable table) {
-        // 1. Header 
+        // 1. Header
         table.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
         table.getTableHeader().setBackground(new Color(43, 76, 126));
         table.getTableHeader().setForeground(Color.WHITE);
         table.getTableHeader().setPreferredSize(new Dimension(0, 30));
         table.getTableHeader().setBorder(BorderFactory.createEmptyBorder());
 
-        // 2. Table 
+        // 2. Table
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         table.setRowHeight(40);
         table.setSelectionBackground(new Color(240, 245, 255));
         table.setSelectionForeground(new Color(0, 102, 204));
 
-        // 3. Grid Lines 
+        // 3. Grid Lines
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
         table.setGridColor(new Color(230, 230, 230));
 
-        // 4. Matte Border 
+        // 4. Matte Border
         table.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(230, 230, 230)));
 
         // 5. Scroll Pane
@@ -1940,7 +1974,7 @@ public class Dash extends javax.swing.JFrame {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.getViewport().setBackground(Color.WHITE);
 
-        // 6. Body 
+        // 6. Body
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
@@ -2062,6 +2096,100 @@ public class Dash extends javax.swing.JFrame {
         bay6.setBackground(freeColor);
         
         
+
+    }
+
+    private void loadTechnicianCards() {
+        techMain.removeAll();
+
+        techMain.setLayout(new java.awt.GridLayout(0, 4, 20, 20));
+
+        PreparedStatement pstTech = null;
+        ResultSet rsTech = null;
+
+        try {
+            String sql = "SELECT * FROM technician";
+            pstTech = db.con.prepareStatement(sql);
+            rsTech = pstTech.executeQuery();
+
+            while (rsTech.next()) {
+                String id = rsTech.getString("tech_id");
+                String name = rsTech.getString("name");
+                String phone = rsTech.getString("phone");
+                String spec = rsTech.getString("specialty");
+                String status = rsTech.getString("status");
+
+                javax.swing.JPanel card = new javax.swing.JPanel();
+                card.setLayout(new javax.swing.BoxLayout(card, javax.swing.BoxLayout.Y_AXIS));
+                card.setBackground(Color.WHITE);
+                card.setPreferredSize(new java.awt.Dimension(200, 140));
+
+                card.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                        javax.swing.BorderFactory.createLineBorder(new Color(220, 224, 230), 1, true),
+                        javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12)
+                ));
+
+                javax.swing.JLabel lblId = new javax.swing.JLabel(id);
+                lblId.setFont(new Font("Segoe UI", Font.BOLD, 13));
+                lblId.setForeground(new Color(0, 51, 153));
+                lblId.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
+
+                javax.swing.JLabel lblName = new javax.swing.JLabel(name);
+                lblName.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                lblName.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
+
+                javax.swing.JLabel lblPhone = new javax.swing.JLabel("📞 " + phone);
+                lblPhone.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblPhone.setForeground(Color.GRAY);
+                lblPhone.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
+
+                javax.swing.JLabel lblSpec = new javax.swing.JLabel(spec);
+                lblSpec.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                lblSpec.setForeground(Color.DARK_GRAY);
+                lblSpec.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
+
+                javax.swing.JLabel lblStatus = new javax.swing.JLabel("  " + status + "  ");
+                lblStatus.setFont(new Font("Segoe UI", Font.BOLD, 11));
+                lblStatus.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
+                lblStatus.setOpaque(true);
+
+                if (status.equalsIgnoreCase("Available")) {
+                    lblStatus.setBackground(new Color(232, 245, 233));
+                    lblStatus.setForeground(new Color(46, 125, 50));
+                } else {
+                    lblStatus.setBackground(new Color(255, 235, 235));
+                    lblStatus.setForeground(new Color(211, 47, 47));
+                }
+
+                card.add(lblId);
+                card.add(javax.swing.Box.createVerticalStrut(4));
+                card.add(lblName);
+                card.add(javax.swing.Box.createVerticalStrut(4));
+                card.add(lblPhone);
+                card.add(javax.swing.Box.createVerticalStrut(4));
+                card.add(lblSpec);
+                card.add(javax.swing.Box.createVerticalStrut(8));
+                card.add(lblStatus);
+
+                techMain.add(card);
+            }
+
+            techMain.revalidate();
+            techMain.repaint();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rsTech != null) {
+                    rsTech.close();
+                }
+                if (pstTech != null) {
+                    pstTech.close();
+                }
+            } catch (Exception e) {
+            }
+        }
 
     }
 
