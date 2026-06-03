@@ -100,7 +100,6 @@ public class LoginForm extends javax.swing.JFrame {
                 dsh.setVisible(true);
                 this.dispose();
             }
-
 //            JOptionPane.showMessageDialog(null, "Logging ");
         } else {
             JOptionPane.showMessageDialog(null, "Logging Failed ");

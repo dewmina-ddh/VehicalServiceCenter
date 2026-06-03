@@ -651,56 +651,59 @@ public class Register extends javax.swing.JFrame {
                 pst.close();
             }
 
+            db.con.commit();
+
+            java.util.ArrayList<String> selectedServices = new java.util.ArrayList<>();
+
+            if (selectedServices.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select at least one service from checkboxes!");
+                return;
+            }
+
             int randomJob = (int) (Math.random() * 9000) + 1000;
             String jobID = "JOB-" + randomJob;
 
-            String serviceType = "Custom";
             if (chkNormalService.isSelected()) {
-                serviceType = "Normal Service";
+                selectedServices.add("SRV001"); // Normal Service
             }
             if (chkFullService.isSelected()) {
-                serviceType = "Full Service";
+                selectedServices.add("SRV010"); // Full Service
             }
-            //Additional
-            StringBuilder additionalServices = new StringBuilder();
             if (chkBrakePad.isSelected()) {
-                additionalServices.append("Brake Pad Replacement");
+                selectedServices.add("SRV020"); // Brake Pad Replacement
             }
             if (chkBattery.isSelected()) {
-                additionalServices.append("Battery Charging & Replacement");
+                selectedServices.add("SRV021"); // Battery Charging
             }
             if (chkSparkPlug.isSelected()) {
-                additionalServices.append("Spark Plug Replacement");
+                selectedServices.add("SRV022"); // Spark Plug Replacement
             }
             if (chkWiper.isSelected()) {
-                additionalServices.append("Wiper Blade Replacement");
+                selectedServices.add("SRV023"); // Wiper Blade
             }
             if (chkHeadlight.isSelected()) {
-                additionalServices.append("Headlight/Tail-light Bulb Replacement");
+                selectedServices.add("SRV024"); // Headlight Bulb
             }
 
-            String addServiceStr = additionalServices.toString().trim();
-            if (addServiceStr.endsWith(",")) {
-                addServiceStr = addServiceStr.substring(0, addServiceStr.length() - 1);
+            double totalAmount = 0.0;
+
+            for (String sId : selectedServices) {
+                String sqlPrice = "SELECT price FROM services WHERE service_id = ?";
+                pst = db.con.prepareStatement(sqlPrice);
+                pst.setString(1, sId);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    totalAmount += rs.getInt("price");
+                }
+                rs.close();
+                pst.close();
             }
-            if (addServiceStr.isEmpty()) {
-                addServiceStr = ""; 
-            }
+            setJob setJob = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices);
+            JobSet setJobFrame = new JobSet(setJob);
+            setJobFrame.setVisible(true);
 
-            pst = db.con.prepareStatement("INSERT INTO job_table (job_id, vehical_no, service_type, additional_services, odometer, status) VALUES (?, ?, ?, ?, ?, 'Ongoing')");
-            pst.setString(1, jobID);
-            pst.setString(2, vehicleNo);
-            pst.setString(3, serviceType);
-            pst.setString(3, serviceType);  
-            pst.setString(4, addServiceStr);
-            pst.setString(5, txtReading.getText().trim());
-
-            pst.executeUpdate();
-            pst.close();
-
-            db.con.commit();
-            JOptionPane.showMessageDialog(this, "Job Created Successfully! Job ID: " + jobID);
             clean();
+            JOptionPane.showMessageDialog(this, "Job Created Successfully! Job ID: " + jobID);
 
         } catch (SQLException ex) {
             try {

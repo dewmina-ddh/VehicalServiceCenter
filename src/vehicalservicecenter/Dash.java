@@ -222,8 +222,8 @@ public class Dash extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table5 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        txtSearch5 = new javax.swing.JTextField();
+        btnSearch5 = new javax.swing.JButton();
         pnlTech = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         techMain = new javax.swing.JPanel();
@@ -1483,9 +1483,7 @@ public class Dash extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table5);
 
-        jTextField1.setText("jTextField1");
-
-        jButton2.setText("jButton2");
+        btnSearch5.setText("Search");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1496,9 +1494,9 @@ public class Dash extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1506,8 +1504,8 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch5)
+                    .addComponent(btnSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
@@ -1629,6 +1627,8 @@ public class Dash extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card5");
         lblTopic.setText("JobCARD");
+        customiseTable(table5);
+        customizeSearchBar(txtSearch5, btnSearch5);
     }//GEN-LAST:event_btnJobActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
@@ -1855,6 +1855,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch2;
+    private javax.swing.JButton btnSearch5;
     private javax.swing.JButton btnTech;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel card1;
@@ -1866,7 +1867,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JPanel image;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1936,7 +1936,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField8;
@@ -1974,6 +1973,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField txtReading;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearch2;
+    private javax.swing.JTextField txtSearch5;
     private javax.swing.JTextField txtTown;
     // End of variables declaration//GEN-END:variables
 
