@@ -23,6 +23,26 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         loadImage();
         styleFormButtons();
+        normalCheck();
+
+    }
+
+    private double getServicePrice(String serviceId) {
+        double price = 0.0;
+        try {
+            String sql = "SELECT price FROM services WHERE service_id = ?";
+            PreparedStatement pstTmp = db.con.prepareStatement(sql);
+            pstTmp.setString(1, serviceId);
+            ResultSet rsTmp = pstTmp.executeQuery();
+            if (rsTmp.next()) {
+                price = rsTmp.getDouble("price");
+            }
+            rsTmp.close();
+            pstTmp.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return price;
     }
 
     @SuppressWarnings("unchecked")
@@ -75,7 +95,6 @@ public class Register extends javax.swing.JFrame {
         chkFullService = new javax.swing.JCheckBox();
         chkTuneUp = new javax.swing.JCheckBox();
         chkUnderCarriage = new javax.swing.JCheckBox();
-        chkFullNormal = new javax.swing.JCheckBox();
         chkAcSystem = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -195,26 +214,23 @@ public class Register extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkNormalService)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkEngineOil)
-                            .addComponent(chkBodtWash)
-                            .addComponent(chkOilFilter)
-                            .addComponent(chkFluidLevel)
-                            .addComponent(chkAirFilter))))
-                .addGap(37, 37, 37))
+                    .addComponent(chkEngineOil)
+                    .addComponent(chkBodtWash)
+                    .addComponent(chkOilFilter)
+                    .addComponent(chkFluidLevel)
+                    .addComponent(chkAirFilter))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(19, 19, 19)
                 .addComponent(chkNormalService, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(chkBodtWash, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkEngineOil, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,7 +240,7 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(chkFluidLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkAirFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         chkAlignment.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
@@ -247,9 +263,6 @@ public class Register extends javax.swing.JFrame {
         chkUnderCarriage.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         chkUnderCarriage.setText("Under-carriage Degreasing & Washing");
 
-        chkFullNormal.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        chkFullNormal.setText("Normal Service");
-
         chkAcSystem.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         chkAcSystem.setText("AC System Inspection & Top-up");
 
@@ -257,30 +270,24 @@ public class Register extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkFullService)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkLubrication)
-                            .addComponent(chkFullNormal)
-                            .addComponent(chkAlignment)
-                            .addComponent(chkTuneUp)
-                            .addComponent(chkBrakeServ)
-                            .addComponent(chkUnderCarriage)
-                            .addComponent(chkAcSystem))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(chkLubrication)
+                    .addComponent(chkAlignment)
+                    .addComponent(chkTuneUp)
+                    .addComponent(chkBrakeServ)
+                    .addComponent(chkUnderCarriage)
+                    .addComponent(chkAcSystem))
+                .addGap(24, 24, 24))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(chkFullService, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkFullNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(chkLubrication, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkAlignment, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +299,7 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(chkUnderCarriage, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkAcSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Symbol", 1, 18)); // NOI18N
@@ -363,6 +370,7 @@ public class Register extends javax.swing.JFrame {
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         btnDelete.setText("Delete");
 
@@ -456,7 +464,7 @@ public class Register extends javax.swing.JFrame {
                                             .addComponent(cmbMake, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(regDetailsLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -675,6 +683,7 @@ public class Register extends javax.swing.JFrame {
             // === (A) Normal Service කාණ්ඩය ===
             if (chkNormalService.isSelected()) {
                 selectedServices.add("SRV001");
+                normalCheck();
             }
             if (chkBodtWash.isSelected()) {
                 selectedServices.add("SRV002"); // Body Wash & Vacuum
@@ -695,9 +704,6 @@ public class Register extends javax.swing.JFrame {
             // === (B) Full Service කාණ්ඩය ===
             if (chkFullService.isSelected()) {
                 selectedServices.add("SRV010");
-            }
-            if (chkFullNormal.isSelected()) {
-                selectedServices.add("SRV011"); // Normal Service
             }
             if (chkLubrication.isSelected()) {
                 selectedServices.add("SRV012"); // Full Lubrication Service
@@ -740,28 +746,108 @@ public class Register extends javax.swing.JFrame {
                 return;
             }
 
+            double totalAmount = 0.0;
+
             int randomJob = (int) (Math.random() * 9000) + 1000;
             String jobID = "JOB-" + randomJob;
 
-            double totalAmount = 0.0;
-            for (String sId : selectedServices) {
-                String sqlPrice = "SELECT price FROM services WHERE service_id = ?";
-                pst = db.con.prepareStatement(sqlPrice);
-                pst.setString(1, sId);
-                rs = pst.executeQuery();
-                if (rs.next()) {
-                    totalAmount += rs.getInt("price");
+            if (chkFullService.isSelected()) {
+                totalAmount += getServicePrice("SRV010");
+
+                if (chkBrakePad.isSelected()) {
+                    totalAmount += getServicePrice("SRV020");
                 }
-                rs.close();
-                pst.close();
+                if (chkBattery.isSelected()) {
+                    totalAmount += getServicePrice("SRV021");
+                }
+                if (chkSparkPlug.isSelected()) {
+                    totalAmount += getServicePrice("SRV022");
+                }
+                if (chkWiper.isSelected()) {
+                    totalAmount += getServicePrice("SRV023");
+                }
+                if (chkHeadlight.isSelected()) {
+                    totalAmount += getServicePrice("SRV024");
+                }
+            } else if (chkNormalService.isSelected()) {
+                totalAmount += getServicePrice("SRV001"); // Normal package price
+
+                if (chkLubrication.isSelected()) {
+                    totalAmount += getServicePrice("SRV012");
+                }
+                if (chkAlignment.isSelected()) {
+                    totalAmount += getServicePrice("SRV013");
+                }
+                if (chkTuneUp.isSelected()) {
+                    totalAmount += getServicePrice("SRV014");
+                }
+                if (chkBrakeServ.isSelected()) {
+                    totalAmount += getServicePrice("SRV015");
+                }
+                if (chkUnderCarriage.isSelected()) {
+                    totalAmount += getServicePrice("SRV016");
+                }
+                if (chkAcSystem.isSelected()) {
+                    totalAmount += getServicePrice("SRV017");
+                }
+
+                // Additional services
+                if (chkBrakePad.isSelected()) {
+                    totalAmount += getServicePrice("SRV020");
+                }
+                if (chkBattery.isSelected()) {
+                    totalAmount += getServicePrice("SRV021");
+                }
+                if (chkSparkPlug.isSelected()) {
+                    totalAmount += getServicePrice("SRV022");
+                }
+                if (chkWiper.isSelected()) {
+                    totalAmount += getServicePrice("SRV023");
+                }
+                if (chkHeadlight.isSelected()) {
+                    totalAmount += getServicePrice("SRV024");
+                }
+            } else {
+                for (String sId : selectedServices) {
+                    totalAmount += getServicePrice(sId);
+                }
             }
 
-            setJob setJob = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices);
+            String sType = "";
+            if (chkFullService.isSelected()) {
+                sType = "Full Service"; // Full Service 
+            } else if (chkNormalService.isSelected()) {
+                sType = "Normal Service"; // Normal Service
+            } else {
+                sType = "Custom Services"; // 
+            }
+
+            java.util.ArrayList<String> addList = new java.util.ArrayList<>();
+            if (chkBrakePad.isSelected()) {
+                addList.add("Brake Pad Replacement");
+            }
+            if (chkBattery.isSelected()) {
+                addList.add("Battery Charging & Replacement");
+            }
+            if (chkSparkPlug.isSelected()) {
+                addList.add("Spark Plug Replacement");
+            }
+            if (chkWiper.isSelected()) {
+                addList.add("Wiper Blade Replacement");
+            }
+            if (chkHeadlight.isSelected()) {
+                addList.add("Headlight/Tail-light Bulb Replacement");
+            }
+
+            String addServicesString = String.join(", ", addList);
+
+            setJob setJob = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices, sType, addServicesString);
             JobSet setJobFrame = new JobSet(setJob);
             setJobFrame.setVisible(true);
-
-            clean();
+            
             JOptionPane.showMessageDialog(this, "Job Created Successfully! Job ID: " + jobID);
+            clean();
+            
 
         } catch (SQLException ex) {
             try {
@@ -850,6 +936,10 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkBatteryActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clean();
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -887,7 +977,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkBrakeServ;
     private javax.swing.JCheckBox chkEngineOil;
     private javax.swing.JCheckBox chkFluidLevel;
-    private javax.swing.JCheckBox chkFullNormal;
     private javax.swing.JCheckBox chkFullService;
     private javax.swing.JCheckBox chkHeadlight;
     private javax.swing.JCheckBox chkLubrication;
@@ -956,7 +1045,7 @@ public class Register extends javax.swing.JFrame {
             ImageIcon icon2 = new ImageIcon(imgURL2);
             Image img2 = icon2.getImage();
 
-            Image scaledImg2 = img2.getScaledInstance(280, imLable3.getHeight(), Image.SCALE_SMOOTH);
+            Image scaledImg2 = img2.getScaledInstance(300, imLable3.getHeight(), Image.SCALE_SMOOTH);
             imLable3.setIcon(new ImageIcon(scaledImg2));
         }
     }
@@ -1001,7 +1090,6 @@ public class Register extends javax.swing.JFrame {
         chkFluidLevel.setSelected(false);
 
         chkFullService.setSelected(false);
-        chkFullNormal.setSelected(false);   // Normal Service (Full යටතේ ඇති)
         chkLubrication.setSelected(false);  // Full Lubrication Service
         chkAlignment.setSelected(false);    // Wheel Alignment & Balancing
         chkTuneUp.setSelected(false);       // Engine Tune-up & Scanning
@@ -1059,6 +1147,37 @@ public class Register extends javax.swing.JFrame {
         btnClear.setForeground(Color.WHITE);
 //        btnClear.putClientProperty("JButton.buttonType", "roundRect");
         btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    private void normalCheck() {
+        chkNormalService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boolean isSelected = chkNormalService.isSelected();
+                chkBodtWash.setSelected(isSelected);
+                chkEngineOil.setSelected(isSelected);
+                chkOilFilter.setSelected(isSelected);
+                chkFluidLevel.setSelected(isSelected);
+                chkAirFilter.setSelected(isSelected);
+            }
+        });
+
+        chkFullService.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boolean isSelected = chkFullService.isSelected();
+                chkLubrication.setSelected(isSelected);
+                chkAlignment.setSelected(isSelected);
+                chkTuneUp.setSelected(isSelected);
+                chkBrakeServ.setSelected(isSelected);
+                chkUnderCarriage.setSelected(isSelected);
+                chkAcSystem.setSelected(isSelected);
+
+                chkBodtWash.setSelected(isSelected);   // Body Wash
+                chkEngineOil.setSelected(isSelected);  // Engine Oil
+                chkOilFilter.setSelected(isSelected);  // Oil Filter
+                chkFluidLevel.setSelected(isSelected); // Fluid Level
+                chkAirFilter.setSelected(isSelected);
+            }
+        });
     }
 
 }

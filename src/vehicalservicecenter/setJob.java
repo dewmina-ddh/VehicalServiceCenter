@@ -9,13 +9,17 @@ public class setJob {
     private String odometerReading;
     private double totalAmount;
     private java.util.ArrayList<String> serviceList;
+    private String serviceType;
+    private String additionalServices;
 
-    public setJob(String jobId, String vehicleNo, String odometerReading, double totalAmount, ArrayList<String> serviceList) {
+    public setJob(String jobId, String vehicleNo, String odometerReading, double totalAmount, ArrayList<String> serviceList, String serviceType, String additionalServices) {
         this.jobId = jobId;
         this.vehicleNo = vehicleNo;
         this.odometerReading = odometerReading;
         this.totalAmount = totalAmount;
         this.serviceList = serviceList;
+        this.serviceType = serviceType;
+        this.additionalServices = additionalServices;
     }
 
     public String getJobId() {
@@ -57,8 +61,21 @@ public class setJob {
     public void setServiceList(ArrayList<String> serviceList) {
         this.serviceList = serviceList;
     }
-    
-    
-    
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public String getAdditionalServices() {
+        return additionalServices;
+    }
+
+    public void setAdditionalServices(String additionalServices) {
+        this.additionalServices = additionalServices;
+    }
 
 }
