@@ -1,5 +1,7 @@
 package vehicalservicecenter;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.sql.PreparedStatement;
@@ -20,6 +22,7 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         loadImage();
+        styleFormButtons();
     }
 
     @SuppressWarnings("unchecked")
@@ -86,7 +89,7 @@ public class Register extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         txtSearch = new javax.swing.JTextField();
@@ -98,7 +101,7 @@ public class Register extends javax.swing.JFrame {
 
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 865));
 
-        lblImage2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImage2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -359,7 +362,7 @@ public class Register extends javax.swing.JFrame {
         btnSave.setText("Add/Set Job");
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
-        jButton6.setText("Clear");
+        btnClear.setText("Clear");
 
         btnDelete.setText("Delete");
 
@@ -459,7 +462,7 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(regDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -575,7 +578,7 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regDetailsLayout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64))
         );
 
@@ -678,27 +681,64 @@ public class Register extends javax.swing.JFrame {
             String jobID = "JOB-" + randomJob;
 
             if (chkNormalService.isSelected()) {
-                selectedServices.add("SRV001"); // Normal Service
+                selectedServices.add("SRV001");
             }
+            if (chkBodtWash.isSelected()) {
+                selectedServices.add("SRV002"); // Body Wash & Vacuum
+            }
+            if (chkEngineOil.isSelected()) {
+                selectedServices.add("SRV003"); // Engine Oil Change
+            }
+            if (chkOilFilter.isSelected()) {
+                selectedServices.add("SRV004"); // Oil Filter Replacement
+            }
+            if (chkFluidLevel.isSelected()) {
+                selectedServices.add("SRV005"); // Fluid Level Check
+            }
+            if (chkAirFilter.isSelected()) {
+                selectedServices.add("SRV006"); // Air Filter Cleaning
+            }
+
             if (chkFullService.isSelected()) {
-                selectedServices.add("SRV010"); // Full Service
+                selectedServices.add("SRV010");
             }
+            if (chkFullNormal.isSelected()) {
+                selectedServices.add("SRV011"); // Normal Service
+            }
+            if (chkLubrication.isSelected()) {
+                selectedServices.add("SRV012"); // Full Lubrication Service
+            }
+            if (chkAlignment.isSelected()) {
+                selectedServices.add("SRV013"); // Wheel Alignment & Balancing
+            }
+            if (chkTuneUp.isSelected()) {
+                selectedServices.add("SRV014"); // Engine Tune-up & Scanning
+            }
+            if (chkBrakeServ.isSelected()) {
+                selectedServices.add("SRV015"); // Brake System Servicing
+            }
+            if (chkUnderCarriage.isSelected()) {
+                selectedServices.add("SRV016"); // Under-carriage Degreasing
+            }
+            if (chkAcSystem.isSelected()) {
+                selectedServices.add("SRV017"); // AC System Inspection
+            }
+            // === (C) Additional Services ===
             if (chkBrakePad.isSelected()) {
                 selectedServices.add("SRV020"); // Brake Pad Replacement
             }
             if (chkBattery.isSelected()) {
-                selectedServices.add("SRV021"); // Battery Charging
+                selectedServices.add("SRV021"); // Battery Charging & Replacement
             }
             if (chkSparkPlug.isSelected()) {
                 selectedServices.add("SRV022"); // Spark Plug Replacement
             }
             if (chkWiper.isSelected()) {
-                selectedServices.add("SRV023"); // Wiper Blade
+                selectedServices.add("SRV023"); // Wiper Blade Replacement
             }
             if (chkHeadlight.isSelected()) {
-                selectedServices.add("SRV024"); // Headlight Bulb
+                selectedServices.add("SRV024"); // Headlight/Tail-light
             }
-
             double totalAmount = 0.0;
 
             for (String sId : selectedServices) {
@@ -829,6 +869,7 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JYearChooser YearChooser;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
@@ -856,7 +897,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JPanel details;
     private javax.swing.JLabel imLable3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -897,8 +937,8 @@ public class Register extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadImage() {
-        java.net.URL imgURL = getClass().getResource("/Images/car3.jpg");
-        java.net.URL imgURL2 = getClass().getResource("/Images/car4.jpg");
+        java.net.URL imgURL = getClass().getResource("/Images/car5.jpg");
+        java.net.URL imgURL2 = getClass().getResource("/Images/car6.png");
 
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
@@ -907,12 +947,12 @@ public class Register extends javax.swing.JFrame {
             Image scaledImg = img.getScaledInstance(500, lblImage2.getHeight(), Image.SCALE_SMOOTH);
             lblImage2.setIcon(new ImageIcon(scaledImg));
         }
-        
+
         if (imgURL2 != null) {
             ImageIcon icon2 = new ImageIcon(imgURL2);
             Image img2 = icon2.getImage();
 
-            Image scaledImg2 = img2.getScaledInstance(500, imLable3.getHeight(), Image.SCALE_SMOOTH);
+            Image scaledImg2 = img2.getScaledInstance(280, imLable3.getHeight(), Image.SCALE_SMOOTH);
             imLable3.setIcon(new ImageIcon(scaledImg2));
         }
     }
@@ -990,6 +1030,31 @@ public class Register extends javax.swing.JFrame {
         cmbMake.setEditable(false);
         cmbFuel.setEditable(false);
         YearChooser.setEnabled(false);
+    }
+
+    private void styleFormButtons() {
+        // Save Button - Blue
+        btnSave.setBackground(new Color(4, 102, 200));
+        btnSave.setForeground(Color.WHITE);
+//        btnSave.putClientProperty("JButton.buttonType", "roundRect");
+        btnSave.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // Update Button - Green (Success)
+        btnUpdate.setBackground(new Color(42, 157, 143));
+        btnUpdate.setForeground(Color.WHITE);
+//        btnUpdate.putClientProperty("JButton.buttonType", "roundRect");
+        btnUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // Delete Button - Red (Danger)
+        btnDelete.setBackground(new Color(230, 57, 70));
+        btnDelete.setForeground(Color.WHITE);
+//        btnDelete.putClientProperty("JButton.buttonType", "roundRect");
+        btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        btnClear.setBackground(new Color(244, 162, 97)); // Grey
+        btnClear.setForeground(Color.WHITE);
+//        btnClear.putClientProperty("JButton.buttonType", "roundRect");
+        btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
 }

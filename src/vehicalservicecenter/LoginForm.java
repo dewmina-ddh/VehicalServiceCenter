@@ -46,9 +46,11 @@ public class LoginForm extends javax.swing.JFrame {
         txtUname.addActionListener(this::txtUnameActionPerformed);
         jPanel1.add(txtUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 186, 220, 20));
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btns/login.png"))); // NOI18N
+        btnLogin.setBackground(new java.awt.Color(0, 29, 61));
+        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("LogIn");
         btnLogin.setBorder(null);
-        btnLogin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/btns/login D.png"))); // NOI18N
         btnLogin.addActionListener(this::btnLoginActionPerformed);
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 110, 40));
 
@@ -56,9 +58,11 @@ public class LoginForm extends javax.swing.JFrame {
         txtPass.addActionListener(this::txtPassActionPerformed);
         jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 220, 20));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btns/Cancle.png"))); // NOI18N
+        jButton2.setBackground(new java.awt.Color(0, 29, 61));
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Calcle");
         jButton2.setBorder(null);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/btns/Cancle D.png"))); // NOI18N
         jButton2.addActionListener(this::jButton2ActionPerformed);
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 110, 40));
 
