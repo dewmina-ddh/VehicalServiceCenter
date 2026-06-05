@@ -653,17 +653,17 @@ public class Register extends javax.swing.JFrame {
                 pst.executeUpdate();
                 pst.close();
 
-                String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel, reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 pst = db.con.prepareStatement(sqlVehInsert);
                 pst.setString(1, vehicleNo);
                 pst.setString(2, cmbMake.getSelectedItem().toString());
                 pst.setString(3, txtBrand.getText().trim());
                 pst.setString(4, txtModel.getText().trim());
                 pst.setString(5, cmbFuel.getSelectedItem().toString());
-                pst.setString(6, txtReading.getText());
+                pst.setString(6, readingValue);
                 pst.setString(7, txtColor.getText().trim());
                 pst.setInt(8, YearChooser.getYear());
-                pst.setString(9, currentCusId2); // Foreign Key
+                pst.setString(9, currentCusId2);
                 pst.executeUpdate();
                 pst.close();
             }
@@ -672,14 +672,7 @@ public class Register extends javax.swing.JFrame {
 
             java.util.ArrayList<String> selectedServices = new java.util.ArrayList<>();
 
-            if (selectedServices.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please select at least one service from checkboxes!");
-                return;
-            }
-
-            int randomJob = (int) (Math.random() * 9000) + 1000;
-            String jobID = "JOB-" + randomJob;
-
+            // === (A) Normal Service කාණ්ඩය ===
             if (chkNormalService.isSelected()) {
                 selectedServices.add("SRV001");
             }
@@ -699,6 +692,7 @@ public class Register extends javax.swing.JFrame {
                 selectedServices.add("SRV006"); // Air Filter Cleaning
             }
 
+            // === (B) Full Service කාණ්ඩය ===
             if (chkFullService.isSelected()) {
                 selectedServices.add("SRV010");
             }
@@ -723,6 +717,7 @@ public class Register extends javax.swing.JFrame {
             if (chkAcSystem.isSelected()) {
                 selectedServices.add("SRV017"); // AC System Inspection
             }
+
             // === (C) Additional Services ===
             if (chkBrakePad.isSelected()) {
                 selectedServices.add("SRV020"); // Brake Pad Replacement
@@ -739,8 +734,16 @@ public class Register extends javax.swing.JFrame {
             if (chkHeadlight.isSelected()) {
                 selectedServices.add("SRV024"); // Headlight/Tail-light
             }
-            double totalAmount = 0.0;
 
+            if (selectedServices.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select at least one service from checkboxes!");
+                return;
+            }
+
+            int randomJob = (int) (Math.random() * 9000) + 1000;
+            String jobID = "JOB-" + randomJob;
+
+            double totalAmount = 0.0;
             for (String sId : selectedServices) {
                 String sqlPrice = "SELECT price FROM services WHERE service_id = ?";
                 pst = db.con.prepareStatement(sqlPrice);
@@ -752,6 +755,7 @@ public class Register extends javax.swing.JFrame {
                 rs.close();
                 pst.close();
             }
+
             setJob setJob = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices);
             JobSet setJobFrame = new JobSet(setJob);
             setJobFrame.setVisible(true);
