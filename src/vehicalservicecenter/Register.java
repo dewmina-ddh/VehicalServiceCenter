@@ -14,16 +14,18 @@ public class Register extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Register.class.getName());
     User user1;
     Customer cus;
+    Dash dsh;
 
     PreparedStatement pst;
     ResultSet rs;
     DBConnection db = new DBConnection();
 
-    public Register() {
+    public Register(Dash dash) {
         initComponents();
         loadImage();
         styleFormButtons();
         normalCheck();
+        this.dsh = dash;
 
     }
 
@@ -840,12 +842,12 @@ public class Register extends javax.swing.JFrame {
             }
 
             String addServicesString = String.join(", ", addList);
-
-            setJob setJob = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices, sType, addServicesString);
-            JobSet setJobFrame = new JobSet(setJob);
-            setJobFrame.setVisible(true);
             
-            JOptionPane.showMessageDialog(this, "Job Created Successfully! Job ID: " + jobID);
+            setJob setJ = new setJob(jobID, vehicleNo, readingValue, totalAmount, selectedServices, sType, addServicesString);
+            JobSet setJobFrame = new JobSet(setJ , this.dsh);
+            setJobFrame.setVisible(true);
+            this.dispose();
+            
             clean();
             
 
@@ -955,7 +957,7 @@ public class Register extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                new Register(null).setVisible(true);
             }
         });
 

@@ -1632,7 +1632,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJobActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
-        Register reg = new Register();
+        Register reg = new Register(this);
         reg.setVisible(true);
 
     }//GEN-LAST:event_btnRegActionPerformed
@@ -2211,7 +2211,7 @@ public class Dash extends javax.swing.JFrame {
 
     }
 
-    private void loadTechnicianCards() {
+    public void loadTechnicianCards() {
         techMain.removeAll();
 
         techMain.setLayout(new java.awt.GridLayout(0, 4, 20, 20));
@@ -2305,7 +2305,7 @@ public class Dash extends javax.swing.JFrame {
 
     }
 
-    private void loadOverviewCounts() {
+    public void loadOverviewCounts() {
         PreparedStatement pstCount;
         ResultSet rsCount;
 
@@ -2350,7 +2350,7 @@ public class Dash extends javax.swing.JFrame {
 
     }
 
-    private void loadOngoingJobsTable() {
+    public void loadOngoingJobsTable() {
         int c;
         try {
             pst = db.con.prepareStatement("SELECT job_id, vehicle_no, bay_id, tech_id,status FROM job_table WHERE status = 'Ongoing'");
@@ -2379,7 +2379,7 @@ public class Dash extends javax.swing.JFrame {
         }
     }
 
-    private void loadInventoryTable() {
+    public void loadInventoryTable() {
         int c;
         try {
             pst = db.con.prepareStatement("SELECT item_id, item_name, brand, qty, unit_price FROM inventory");
