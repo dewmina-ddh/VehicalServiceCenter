@@ -289,6 +289,7 @@ public class JobSet extends javax.swing.JFrame {
             this.dash.loadOngoingJobsTable();
             this.dash.loadOverviewCounts();
             this.dash.loadTechnicianCards();
+            this.dash.loadBayStatus();
             
             String successMessage = "Job Activated Successfully! 👍\n\n"
                                   + "🚗 Vehicle No: " + setJ.getVehicleNo() + "\n"

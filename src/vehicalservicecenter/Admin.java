@@ -1135,8 +1135,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJobActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
-        Register reg = new Register(dash);
-        reg.setVisible(true);
+        
 
     }//GEN-LAST:event_btnRegActionPerformed
 

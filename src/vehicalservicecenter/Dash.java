@@ -52,6 +52,9 @@ public class Dash extends javax.swing.JFrame {
         loadOngoingJobsTable();
         loadInventoryTable();
 
+        loadInventoryItemNames();
+        loadBrand();
+
         this.user1 = user;
 
         CardPanel.add(pnlDash, "card1");
@@ -196,15 +199,15 @@ public class Dash extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbName = new javax.swing.JComboBox<>();
+        cmbBrand = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbDetails = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txtQtuInvent = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
         jTextField8 = new javax.swing.JTextField();
@@ -212,7 +215,9 @@ public class Dash extends javax.swing.JFrame {
         btnBill = new javax.swing.JButton();
         btnBill1 = new javax.swing.JButton();
         btnBill2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        invenAdd = new javax.swing.JButton();
+        jLabel50 = new javax.swing.JLabel();
+        txtFinalPrice = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
@@ -1225,30 +1230,42 @@ public class Dash extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Segoe UI Symbol", 1, 18)); // NOI18N
         jLabel20.setText("I n v e n t o r y");
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel21.setText("Item Type");
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel21.setText("Catagory");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbName.addActionListener(this::cmbNameActionPerformed);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBrand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBrand.addActionListener(this::cmbBrandActionPerformed);
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel22.setText("Item Brand");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDetails.addActionListener(this::cmbDetailsActionPerformed);
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setText("Details");
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setText("Price");
 
-        jTextField10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPrice.setEditable(false);
+        txtPrice.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPrice.setForeground(new java.awt.Color(51, 102, 255));
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setText("Quantity");
 
-        jTextField12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtQtuInvent.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtQtuInvent.addActionListener(this::txtQtuInventActionPerformed);
+        txtQtuInvent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQtuInventKeyReleased(evt);
+            }
+        });
 
         table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1290,54 +1307,69 @@ public class Dash extends javax.swing.JFrame {
         btnBill2.setText("Remove");
         btnBill2.addActionListener(this::btnBill2ActionPerformed);
 
-        jButton1.setText("Add");
+        invenAdd.setText("Add");
+        invenAdd.addActionListener(this::invenAddActionPerformed);
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel50.setText("Last Price");
+
+        txtFinalPrice.setEditable(false);
+        txtFinalPrice.setBackground(new java.awt.Color(255, 255, 255));
+        txtFinalPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFinalPrice.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jTextField10)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                    .addComponent(jTextField12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
                                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12))
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(btnBill2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel7Layout.createSequentialGroup()
+                                            .addComponent(btnBill2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFinalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cmbName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbBrand, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtPrice)
+                                    .addComponent(cmbDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(txtQtuInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(invenAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(24, 24, 24))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1347,28 +1379,33 @@ public class Dash extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtQtuInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel50, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFinalPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(invenAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1378,7 +1415,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(btnBill2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(28, 28, 28))
         );
 
         jPanel2.add(jPanel7, java.awt.BorderLayout.LINE_START);
@@ -1416,6 +1453,14 @@ public class Dash extends javax.swing.JFrame {
 
         txtSearch2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSearch2.addActionListener(this::txtSearch2ActionPerformed);
+        txtSearch2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch2KeyReleased(evt);
+            }
+        });
 
         btnSearch2.setText("Search");
 
@@ -1808,6 +1853,151 @@ public class Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBill2ActionPerformed
 
+    private void txtSearch2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyPressed
+
+    }//GEN-LAST:event_txtSearch2KeyPressed
+
+    private void txtSearch2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyReleased
+        String searchKey = txtSearch2.getText();
+
+        try {
+            String sql = "SELECT catagory, brand, details, qty, unit_price FROM inventory WHERE catagory LIKE ? OR brand LIKE ? OR details LIKE ?";
+
+            pst = db.con.prepareStatement(sql);
+
+            pst.setString(1, "%" + searchKey + "%");
+            pst.setString(2, "%" + searchKey + "%");
+            pst.setString(3, "%" + searchKey + "%");
+
+            rs = pst.executeQuery();
+
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) table1.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("catagory"),
+                    rs.getString("brand"),
+                    rs.getString("details"),
+                    rs.getString("qty"),
+                    rs.getString("unit_price")
+                };
+                model.addRow(row);
+            }
+
+            rs.close();
+            pst.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSearch2KeyReleased
+
+    private void cmbNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNameActionPerformed
+        if (cmbName.getSelectedIndex() > 0) {
+            String selectedType = cmbName.getSelectedItem().toString();
+
+            try {
+                pst = db.con.prepareStatement("SELECT brand FROM inventory WHERE catagory=? ");
+                pst.setString(1, selectedType);
+                rs = pst.executeQuery();
+
+                cmbBrand.removeAllItems();
+                cmbBrand.addItem("- Select Item -");
+                while (rs.next()) {
+
+                    cmbBrand.addItem(rs.getString("brand"));
+                }
+                rs.close();
+                pst.close();
+            } catch (SQLException ex) {
+                System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+        } else {
+            cmbBrand.removeAllItems();
+            cmbBrand.addItem("- Select Brand -");
+        }
+    }//GEN-LAST:event_cmbNameActionPerformed
+
+    private void cmbBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBrandActionPerformed
+        if (cmbBrand.getSelectedItem() != null && cmbBrand.getSelectedIndex() > 0) {
+
+            String selectedType = cmbName.getSelectedItem().toString();
+            String selectedBrand = cmbBrand.getSelectedItem().toString();
+
+            try {
+                String sql = "SELECT details FROM inventory WHERE catagory = ? AND brand = ?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, selectedType);
+                pst.setString(2, selectedBrand);
+                rs = pst.executeQuery();
+
+                cmbDetails.removeAllItems();
+                cmbDetails.addItem("- Select Item -");
+
+                while (rs.next()) {
+                    cmbDetails.addItem(rs.getString("details"));
+                }
+
+                rs.close();
+                pst.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (cmbDetails != null) {
+                cmbDetails.removeAllItems();
+                cmbDetails.addItem("- Select Item -");
+            }
+        }
+    }//GEN-LAST:event_cmbBrandActionPerformed
+
+    private void cmbDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDetailsActionPerformed
+        if (cmbDetails.getSelectedItem() != null && cmbDetails.getSelectedIndex() > 0) {
+            
+            String selectedType = cmbName.getSelectedItem().toString();
+            String selectedBrand = cmbBrand.getSelectedItem().toString();
+            String selectedDetails = cmbDetails.getSelectedItem().toString();
+
+            try {
+                String sql = "SELECT unit_price FROM inventory WHERE catagory = ? AND brand = ? AND details = ?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, selectedType);
+                pst.setString(2, selectedBrand);
+                pst.setString(3, selectedDetails);
+
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    txtPrice.setText(rs.getString("unit_price"));
+                }
+
+                rs.close();
+                pst.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (txtPrice != null) {
+                txtPrice.setText("");
+            }
+        }
+    }//GEN-LAST:event_cmbDetailsActionPerformed
+
+    private void invenAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invenAddActionPerformed
+        
+    }//GEN-LAST:event_invenAddActionPerformed
+
+    private void txtQtuInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtuInventActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQtuInventActionPerformed
+
+    private void txtQtuInventKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtuInventKeyReleased
+       
+    }//GEN-LAST:event_txtQtuInventKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1863,13 +2053,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel card3;
     private javax.swing.JPanel card4;
     private javax.swing.JPanel cards;
+    private javax.swing.JComboBox<String> cmbBrand;
+    private javax.swing.JComboBox<String> cmbDetails;
     private javax.swing.JComboBox<String> cmbFuel;
     private javax.swing.JComboBox<String> cmbMake;
+    private javax.swing.JComboBox<String> cmbName;
     private javax.swing.JPanel image;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton invenAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1915,6 +2105,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1936,8 +2127,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblAppoNo;
     private javax.swing.JLabel lblAppoNo1;
@@ -1966,10 +2155,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtCustName;
+    private javax.swing.JTextField txtFinalPrice;
     private javax.swing.JTextField txtLisen;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtNic;
     private javax.swing.JTextField txtNumber;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQtuInvent;
     private javax.swing.JTextField txtReading;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearch2;
@@ -2139,7 +2331,7 @@ public class Dash extends javax.swing.JFrame {
         YearChooser.setEnabled(false);
     }
 
-    private void loadBayStatus() {
+    public void loadBayStatus() {
         try {
             Color freeColor = Color.WHITE;
             Color busyColor = Color.decode("#a2d2ff");
@@ -2382,7 +2574,7 @@ public class Dash extends javax.swing.JFrame {
     public void loadInventoryTable() {
         int c;
         try {
-            pst = db.con.prepareStatement("SELECT item_id, item_name, brand, qty, unit_price FROM inventory");
+            pst = db.con.prepareStatement("SELECT catagory, brand, details, qty, unit_price FROM inventory");
             rs = pst.executeQuery();
 
             ResultSetMetaData rd = rs.getMetaData();
@@ -2394,9 +2586,9 @@ public class Dash extends javax.swing.JFrame {
             while (rs.next()) {
                 Vector v4 = new Vector();
                 for (int a = 1; a <= c; a++) {
-                    v4.add(rs.getString("item_id"));
-                    v4.add(rs.getString("item_name"));
+                    v4.add(rs.getString("catagory"));
                     v4.add(rs.getString("brand"));
+                    v4.add(rs.getString("details"));
                     v4.add(rs.getString("qty"));
                     v4.add(rs.getString("unit_price"));
                 }
@@ -2406,6 +2598,29 @@ public class Dash extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+    }
+
+    private void loadInventoryItemNames() {
+        try {
+            db.con.prepareStatement("SELECT catagory FROM inventory");
+            rs = pst.executeQuery();
+            cmbName.removeAllItems();
+            cmbName.addItem("- Select Item -");
+
+            while (rs.next()) {
+                cmbName.addItem(rs.getString("catagory"));
+            }
+            rs.close();
+            pst.close();
+
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+    }
+
+    private void loadBrand() {
+
     }
 
 }
