@@ -238,6 +238,8 @@ public class LoginForm extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         UIManager.put("TextComponent.arc", 15);
+        UIManager.put("Component.arc", 15);
+        UIManager.put("Button.arc", 15);
         try {
             com.formdev.flatlaf.FlatLightLaf.setup();
 //            com.formdev.flatlaf.FlatDarkLaf.setup();
