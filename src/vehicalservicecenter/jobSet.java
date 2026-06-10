@@ -402,7 +402,7 @@ public class JobSet extends javax.swing.JFrame {
     }
 
     private void loadGif() {
-        java.net.URL imgURL = getClass().getResource("download.gif");
+        java.net.URL imgURL = getClass().getResource("/Images/download.gif");
         
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
