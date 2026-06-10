@@ -23,11 +23,12 @@ public class JobSet extends javax.swing.JFrame {
         loadTechnicians();
         leadServiceBays();
         loadBays();
+        loadGif();
         this.setJ = setJob;
         this.serviceList = setJ.getServiceList();
         this.dash = dsh;
-        loadGif();
 
+        
         txtJobID.setText(setJob.getJobId());
         txtPrices.setText(String.valueOf(setJob.getTotalAmount()));
 
@@ -123,6 +124,8 @@ public class JobSet extends javax.swing.JFrame {
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
+        lblGif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,8 +161,7 @@ public class JobSet extends javax.swing.JFrame {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtJobID, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblGif, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(txtJobID, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -167,15 +169,19 @@ public class JobSet extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblGif, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(lblGif, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(lblGif, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtJobID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -286,8 +292,8 @@ public class JobSet extends javax.swing.JFrame {
 
             pstInv.executeUpdate();
             pstInv.close();
-            
-            String bayUpdate = "UPDATE bay_table SET status = 'occupied' WHERE bay_id = ?"; 
+
+            String bayUpdate = "UPDATE bay_table SET status = 'occupied' WHERE bay_id = ?";
             pst = db.con.prepareStatement(bayUpdate);
             pst.setString(1, selectedBay);
             pst.executeUpdate();
@@ -382,7 +388,7 @@ public class JobSet extends javax.swing.JFrame {
     }
 
     private void loadBays() {
-        
+
     }
 
     private void leadServiceBays() {
@@ -402,14 +408,19 @@ public class JobSet extends javax.swing.JFrame {
     }
 
     private void loadGif() {
-        java.net.URL imgURL = getClass().getResource("/Images/download.gif");
+       try {
+        java.net.URL imgURL = getClass().getResource("/images/download.gif");
         
         if (imgURL != null) {
-            ImageIcon icon = new ImageIcon(imgURL);
-            Image img = icon.getImage();
-
-            Image scaledImg = img.getScaledInstance(lblGif.getWidth(), lblGif.getHeight(), Image.SCALE_SMOOTH);
-            lblGif.setIcon(new ImageIcon(scaledImg));
+            String html = "<html><img src='" + imgURL + "' width='250' height='150'></html>";
+            
+            lblGif.setText(html);
+            lblGif.setIcon(null); 
         }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    }
+
+    
 }

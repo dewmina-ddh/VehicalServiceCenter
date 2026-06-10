@@ -1908,11 +1908,13 @@
                             <Component class="javax.swing.JComboBox" name="cmbMake">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="4">
-                                    <StringItem index="0" value="Item 1"/>
-                                    <StringItem index="1" value="Item 2"/>
-                                    <StringItem index="2" value="Item 3"/>
-                                    <StringItem index="3" value="Item 4"/>
+                                  <StringArray count="6">
+                                    <StringItem index="0" value="Motor Bicycle"/>
+                                    <StringItem index="1" value="TreeWheel"/>
+                                    <StringItem index="2" value="Car"/>
+                                    <StringItem index="3" value="Van"/>
+                                    <StringItem index="4" value="SUV"/>
+                                    <StringItem index="5" value="Lorry"/>
                                   </StringArray>
                                 </Property>
                               </Properties>
@@ -1931,11 +1933,9 @@
                             <Component class="javax.swing.JComboBox" name="cmbFuel">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="4">
-                                    <StringItem index="0" value="Item 1"/>
-                                    <StringItem index="1" value="Item 2"/>
-                                    <StringItem index="2" value="Item 3"/>
-                                    <StringItem index="3" value="Item 4"/>
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Petrol"/>
+                                    <StringItem index="1" value="Desel"/>
                                   </StringArray>
                                 </Property>
                               </Properties>
@@ -2089,7 +2089,7 @@
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel20" min="-2" pref="136" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                                          <Component id="jComboBox1" min="-2" pref="207" max="-2" attributes="0"/>
+                                                          <Component id="conbTableSelect" min="-2" pref="207" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -2143,7 +2143,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel20" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="conbTableSelect" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2441,17 +2441,21 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox1">
+                        <Component class="javax.swing.JComboBox" name="conbTableSelect">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Calibri" size="14" style="1"/>
+                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="2">
+                                <StringItem index="0" value="Accessories"/>
+                                <StringItem index="1" value="SpairParts"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="conbTableSelectActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -2609,7 +2613,7 @@
                         <Container class="javax.swing.JPanel" name="Accessories">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                              <Color blue="e7" green="c7" red="a7" type="rgb"/>
                             </Property>
                           </Properties>
                           <Constraints>

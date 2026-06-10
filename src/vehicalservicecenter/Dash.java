@@ -219,7 +219,7 @@ public class Dash extends javax.swing.JFrame {
         invenAdd = new javax.swing.JButton();
         jLabel50 = new javax.swing.JLabel();
         txtFinalPrice = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        conbTableSelect = new javax.swing.JComboBox<>();
         right = new javax.swing.JPanel();
         Spair = new javax.swing.JPanel();
         txtSearch3 = new javax.swing.JTextField();
@@ -992,12 +992,12 @@ public class Dash extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel27.setText("Make");
 
-        cmbMake.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMake.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Bicycle", "TreeWheel", "Car", "Van", "SUV", "Lorry" }));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel28.setText("Fuel Type");
 
-        cmbFuel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFuel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Petrol", "Desel" }));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel29.setText("Odometer Reading");
@@ -1339,7 +1339,9 @@ public class Dash extends javax.swing.JFrame {
         txtFinalPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtFinalPrice.setForeground(new java.awt.Color(204, 0, 0));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        conbTableSelect.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        conbTableSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accessories", "SpairParts" }));
+        conbTableSelect.addActionListener(this::conbTableSelectActionPerformed);
 
         javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
         left.setLayout(leftLayout);
@@ -1366,7 +1368,7 @@ public class Dash extends javax.swing.JFrame {
                                     .addGroup(leftLayout.createSequentialGroup()
                                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(42, 42, 42)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(conbTableSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(leftLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1402,7 +1404,7 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(conbTableSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1530,7 +1532,7 @@ public class Dash extends javax.swing.JFrame {
 
         right.add(Spair, "card2");
 
-        Accessories.setBackground(new java.awt.Color(255, 255, 255));
+        Accessories.setBackground(new java.awt.Color(167, 199, 231));
 
         txtSearch2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSearch2.addActionListener(this::txtSearch2ActionPerformed);
@@ -2017,7 +2019,7 @@ public class Dash extends javax.swing.JFrame {
             String selectedType = cmbName.getSelectedItem().toString();
 
             try {
-                pst = db.con.prepareStatement("SELECT brand FROM inventory WHERE catagory=? ");
+                pst = db.con.prepareStatement("SELECT DISTINCT brand FROM inventory WHERE catagory=? ");
                 pst.setString(1, selectedType);
                 rs = pst.executeQuery();
 
@@ -2074,7 +2076,7 @@ public class Dash extends javax.swing.JFrame {
 
     private void cmbDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDetailsActionPerformed
         if (cmbDetails.getSelectedItem() != null && cmbDetails.getSelectedIndex() > 0) {
-            
+
             String selectedType = cmbName.getSelectedItem().toString();
             String selectedBrand = cmbBrand.getSelectedItem().toString();
             String selectedDetails = cmbDetails.getSelectedItem().toString();
@@ -2106,7 +2108,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDetailsActionPerformed
 
     private void invenAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invenAddActionPerformed
-        
+
     }//GEN-LAST:event_invenAddActionPerformed
 
     private void txtQtuInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtuInventActionPerformed
@@ -2114,7 +2116,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtuInventActionPerformed
 
     private void txtQtuInventKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtuInventKeyReleased
-       
+
     }//GEN-LAST:event_txtQtuInventKeyReleased
 
     private void btnSearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch2ActionPerformed
@@ -2136,6 +2138,18 @@ public class Dash extends javax.swing.JFrame {
     private void btnSearch3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSearch3ActionPerformed
+
+    private void conbTableSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conbTableSelectActionPerformed
+        String selected = conbTableSelect.getSelectedItem().toString();
+
+        if (selected.equals("Accessories")) {
+            Accessories.setVisible(true);
+            Spair.setVisible(false);
+        } else if (selected.equals("SpairParts")) {
+            Accessories.setVisible(false);
+            Spair.setVisible(true);
+        }
+    }//GEN-LAST:event_conbTableSelectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2200,10 +2214,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbFuel;
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JComboBox<String> cmbName;
+    private javax.swing.JComboBox<String> conbTableSelect;
     private javax.swing.JPanel image;
     private javax.swing.JButton invenAdd;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2751,7 +2765,7 @@ public class Dash extends javax.swing.JFrame {
 
     private void loadInventoryItemNames() {
         try {
-            db.con.prepareStatement("SELECT catagory FROM inventory");
+            pst = db.con.prepareStatement("SELECT DISTINCT catagory FROM inventory");
             rs = pst.executeQuery();
             cmbName.removeAllItems();
             cmbName.addItem("- Select Item -");

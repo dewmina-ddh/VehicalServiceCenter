@@ -86,7 +86,6 @@
                                               <Component id="txtJobID" min="-2" pref="255" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="lblGif" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -101,6 +100,11 @@
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblGif" min="-2" pref="325" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -108,9 +112,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="lblGif" pref="214" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <Component id="lblGif" min="-2" pref="180" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtJobID" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -285,6 +289,9 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="lblGif">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
