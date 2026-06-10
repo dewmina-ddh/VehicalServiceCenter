@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -1793,6 +1794,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtCustName">
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCustNameKeyReleased"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtNic">
                             </Component>
@@ -1896,6 +1900,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="appoTime">
+                              <Events>
+                                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="appoTimeFocusLost"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel27">
                               <Properties>

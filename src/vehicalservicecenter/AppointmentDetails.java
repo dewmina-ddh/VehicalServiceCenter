@@ -18,7 +18,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -30,16 +29,20 @@ public class AppointmentDetails extends javax.swing.JFrame {
     DBConnection db = new DBConnection();
     PreparedStatement pst;
     ResultSet rs;
+    
+    Dash dsh;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AppointmentDetails.class.getName());
 
-    public AppointmentDetails() {
+    public AppointmentDetails(Dash dash) {
         initComponents();
         tableLoad();
         customiseTable(appoTable);
         customiseButtons(btnUpdate, btnDelete);
         loadDigitalFont();
         setTime();
+        
+        this.dsh = dash;
 
         UIManager.put("TextComponent.arc", 15);
 
@@ -81,6 +84,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtRecord = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel6.setText("Time");
 
@@ -203,19 +207,25 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
         jLabel8.setText("Recorded Date");
 
+        jButton1.setText("Back");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 51), 2, true));
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
         javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
         table.setLayout(tableLayout);
         tableLayout.setHorizontalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -251,8 +261,12 @@ public class AppointmentDetails extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSearch)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addGroup(tableLayout.createSequentialGroup()
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -319,6 +333,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Appointment deleted successfully!");
                     searchAppointmentTable("");
                     clear();
+                    dsh.loadOverviewCounts();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -393,6 +408,10 @@ public class AppointmentDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_appoTableMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,7 +428,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppointmentDetails().setVisible(true);
+                new AppointmentDetails(null).setVisible(true);
             }
         });
 
@@ -419,6 +438,7 @@ public class AppointmentDetails extends javax.swing.JFrame {
     private javax.swing.JTable appoTable;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

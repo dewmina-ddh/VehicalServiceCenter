@@ -1,27 +1,29 @@
 package vehicalservicecenter;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -38,6 +40,10 @@ public class Dash extends javax.swing.JFrame {
     ResultSet rs;
     Customer cust;
 
+    javax.swing.JPopupMenu popupMenu = new javax.swing.JPopupMenu();
+    javax.swing.DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
+    javax.swing.JList<String> suggestionList = new javax.swing.JList<>(listModel);
+
     public Dash(User user) {
         initComponents();
         loadBayStatus();
@@ -51,7 +57,7 @@ public class Dash extends javax.swing.JFrame {
         loadOverviewCounts();
         loadOngoingJobsTable();
         loadInventoryTable();
-
+        setupAutocomplete();
         loadInventoryItemNames();
         loadBrand();
 
@@ -67,6 +73,7 @@ public class Dash extends javax.swing.JFrame {
 
         lblUser.setText(user1.getName());
         lblTopic.setText("DASHBOARD");
+
     }
 
     private void setTime() {
@@ -244,6 +251,7 @@ public class Dash extends javax.swing.JFrame {
         techMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         sidebar.setBackground(new java.awt.Color(27, 42, 71));
         sidebar.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 10, 1, 10));
@@ -959,6 +967,12 @@ public class Dash extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel6.setText("City");
 
+        txtCustName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCustNameKeyReleased(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel7.setText("Town");
 
@@ -988,6 +1002,12 @@ public class Dash extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel15.setText("Time");
+
+        appoTime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                appoTimeFocusLost(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel27.setText("Make");
@@ -1800,7 +1820,6 @@ public class Dash extends javax.swing.JFrame {
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         Register reg = new Register(this);
         reg.setVisible(true);
-
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -1811,17 +1830,14 @@ public class Dash extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please enter Vehicle No, Owner's Name and Phone Number!");
                 return;
             }
-
             if (appoDate.getDate() == null || appoTime.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please select an Appointment Date and Time!");
                 return;
             }
-
             String readingValue = txtReading.getText().trim();
             if (readingValue.isEmpty()) {
                 readingValue = "0";
             }
-
             db.con.setAutoCommit(false);
 
             Vehical exVehical = checkVehical(vehicleNo);
@@ -1956,13 +1972,11 @@ public class Dash extends javax.swing.JFrame {
             txtLisen.setText(vehicleNo);
             clean();
             JOptionPane.showMessageDialog(this, "Not Found ");
-
         }
-
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
-        AppointmentDetails appoi = new AppointmentDetails();
+        AppointmentDetails appoi = new AppointmentDetails(this);
         appoi.setVisible(true);
     }//GEN-LAST:event_btnDetailsActionPerformed
 
@@ -2150,6 +2164,70 @@ public class Dash extends javax.swing.JFrame {
             Spair.setVisible(true);
         }
     }//GEN-LAST:event_conbTableSelectActionPerformed
+
+    private void txtCustNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustNameKeyReleased
+        String search = txtCustName.getText().trim();
+        if (search.length() >= 2) {
+            try {
+                String sql = "SELECT name, phone FROM customer WHERE name LIKE ?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, search + "%");
+                rs = pst.executeQuery();
+
+                listModel.clear();
+
+                while (rs.next()) {
+                    listModel.addElement(rs.getString("name") + " - 0" + rs.getInt("phone"));
+                }
+
+                if (listModel.getSize() > 0) {
+                    popupMenu.show(txtCustName, 0, txtCustName.getHeight());
+                    txtCustName.requestFocus();
+                } else {
+                    popupMenu.setVisible(false);
+                }
+
+                rs.close();
+                pst.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            popupMenu.setVisible(false);
+        }
+
+    }//GEN-LAST:event_txtCustNameKeyReleased
+
+    private void appoTimeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_appoTimeFocusLost
+        String timeStr = appoTime.getText().trim();
+
+        if (!timeStr.isEmpty()) {
+            try {
+                if (timeStr.length() == 1 || timeStr.length() == 2) {
+                    int hour = Integer.parseInt(timeStr);
+                    if (hour >= 0 && hour <= 23) {
+                        appoTime.setText(String.format("%02d:00", hour));
+                    } else {
+                        throw new NumberFormatException();
+                    }
+                }
+                else if (timeStr.length() == 4 && !timeStr.contains(":")) {
+                    int hour = Integer.parseInt(timeStr.substring(0, 2));
+                    int min = Integer.parseInt(timeStr.substring(2, 4));
+                    if (hour >= 0 && hour <= 23 && min >= 0 && min <= 59) {
+                        appoTime.setText(String.format("%02d:%02d", hour, min));
+                    } else {
+                        throw new NumberFormatException();
+                    }
+                }
+            } catch (NumberFormatException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Please Enter Correct Time! (උදා: 10:30 හෝ 14:00).", "Wront Typeි", javax.swing.JOptionPane.WARNING_MESSAGE);
+                appoTime.setText(""); 
+                appoTime.requestFocus(); 
+            }
+        }
+    }//GEN-LAST:event_appoTimeFocusLost
 
     /**
      * @param args the command line arguments
@@ -2475,8 +2553,10 @@ public class Dash extends javax.swing.JFrame {
         cmbFuel.setSelectedIndex(0);
         YearChooser.setYear(2026);
         txtSearch.setText("");
-
+        appoDate.setDate(null);
+        appoTime.setText("");
         txtLisen.setText(txtSearch.getText());
+        appo.setText("");
     }
 
     private void desableEditable() {
@@ -2784,6 +2864,155 @@ public class Dash extends javax.swing.JFrame {
 
     private void loadBrand() {
 
+    }
+
+    private void setupAutocomplete() {
+        popupMenu = new JPopupMenu();
+        popupMenu.setBorder(BorderFactory.createLineBorder(new java.awt.Color(200, 200, 200), 1));
+
+        listModel = new DefaultListModel<>();
+        suggestionList = new JList<>(listModel);
+
+        suggestionList.setCellRenderer(new javax.swing.DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                list.setFixedCellHeight(35);
+
+                label.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+                if (value != null) {
+                    String[] parts = value.toString().split(" - ");
+                    if (parts.length == 2) {
+                        label.setText("<html><b style='font-size:11px; color:#333333;'>" + parts[0] + "</b> <span style='font-size:10px; color:#888888;'>&nbsp;&nbsp;📞 " + parts[1] + "</span></html>");
+                    }
+                }
+                if (isSelected) {
+                    label.setBackground(new java.awt.Color(235, 245, 255));
+                    label.setForeground(new java.awt.Color(0, 102, 204));
+                } else {
+                    label.setBackground(java.awt.Color.WHITE);
+                }
+
+                return label;
+            }
+        });
+
+        JScrollPane scrollPane = new javax.swing.JScrollPane(suggestionList);
+        scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        scrollPane.setPreferredSize(new java.awt.Dimension(371, 100));
+        popupMenu.add(scrollPane);
+
+        suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 1) {
+                    String selectedValue = suggestionList.getSelectedValue();
+                    if (selectedValue != null) {
+                        try {
+                            String[] parts = selectedValue.split(" - ");
+                            String nameOnly = parts[0];
+                            String phoneOnly = parts[1];
+
+                            txtCustName.setText(nameOnly);
+                            popupMenu.setVisible(false);
+
+                            int dbPhone = Integer.parseInt(phoneOnly);
+                            String sql = "SELECT cus_id, nic, phone, city, town FROM customer WHERE name = ? AND phone = ?";
+                            PreparedStatement pstLocal = db.con.prepareStatement(sql);
+                            pstLocal.setString(1, nameOnly);
+                            pstLocal.setInt(2, dbPhone);
+
+                            ResultSet rsLocal = pstLocal.executeQuery();
+                            String customerId = "";
+                            if (rsLocal.next()) {
+                                customerId = rsLocal.getString("cus_id");
+                                txtNic.setText(rsLocal.getString("nic"));
+                                txtNumber.setText("0" + rsLocal.getInt("phone"));
+                                txtCity.setText(rsLocal.getString("city"));
+                                txtTown.setText(rsLocal.getString("town"));
+                            }
+                            rsLocal.close();
+                            pstLocal.close();
+
+                            if (!customerId.isEmpty()) {
+                                String sqlVehList = "SELECT vehical_no FROM vehical_table WHERE cus_id = ?";
+                                PreparedStatement pstVehList = db.con.prepareStatement(sqlVehList);
+                                pstVehList.setString(1, customerId);
+                                ResultSet rsVehList = pstVehList.executeQuery();
+
+                                ArrayList<String> vList = new ArrayList<>();
+                                vList.add("Add New Vehical");
+                                while (rsVehList.next()) {
+                                    vList.add(rsVehList.getString("vehical_no"));
+                                }
+                                rsVehList.close();
+                                pstVehList.close();
+
+                                String selectedVehNo = "";
+
+                                if (vList.size() > 0) {
+                                    String[] vehArray = vList.toArray(new String[0]);
+                                    selectedVehNo = (String) JOptionPane.showInputDialog(
+                                            null,
+                                            "Select Number Plate in the Vehicle:",
+                                            "Select Number Plate",
+                                            JOptionPane.QUESTION_MESSAGE,
+                                            null,
+                                            vehArray,
+                                            vehArray[0]
+                                    );
+                                }
+                                if (selectedVehNo != null && !selectedVehNo.isEmpty()) {
+
+                                    if (selectedVehNo.equals("Add New Vehicle")) {
+                                        txtLisen.setText("");
+                                        cmbMake.setSelectedIndex(0);
+                                        txtBrand.setText("");
+                                        txtModel.setText("");
+                                        cmbFuel.setSelectedIndex(0);
+                                        txtReading.setText("");
+                                        txtColor.setText("");
+                                        YearChooser.setYear(2026);
+                                        txtLisen.requestFocus();
+
+                                    } else {
+                                        String sqlGetVeh = "SELECT * FROM vehical_table WHERE vehical_no = ?";
+                                        PreparedStatement pstGetVeh = db.con.prepareStatement(sqlGetVeh);
+                                        pstGetVeh.setString(1, selectedVehNo);
+                                        ResultSet rsGetVeh = pstGetVeh.executeQuery();
+
+                                        if (rsGetVeh.next()) {
+                                            txtLisen.setText(rsGetVeh.getString("vehical_no"));
+                                            cmbMake.setSelectedItem(rsGetVeh.getString("make"));
+                                            txtBrand.setText(rsGetVeh.getString("brand"));
+                                            txtModel.setText(rsGetVeh.getString("model"));
+                                            cmbFuel.setSelectedItem(rsGetVeh.getString("fuel"));
+                                            txtReading.setText(rsGetVeh.getString("reading"));
+                                            txtColor.setText(rsGetVeh.getString("color"));
+
+                                            try {
+                                                String yearStr = rsGetVeh.getString("make_year");
+                                                if (yearStr != null && !yearStr.trim().isEmpty()) {
+                                                    YearChooser.setYear(Integer.parseInt(yearStr.trim()));
+                                                }
+                                            } catch (Exception e) {
+                                                YearChooser.setYear(2026);
+                                            }
+                                        }
+                                        rsGetVeh.close();
+                                        pstGetVeh.close();
+                                    }
+                                }
+                            }
+                        } catch (SQLException ex) {
+                            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                        }
+
+                    }
+                }
+            }
+        });
     }
 
 }

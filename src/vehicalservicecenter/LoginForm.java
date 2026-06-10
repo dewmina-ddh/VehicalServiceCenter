@@ -1,6 +1,7 @@
 package vehicalservicecenter;
 
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,6 +85,9 @@ public class LoginForm extends javax.swing.JFrame {
         txtUname.setPreferredSize(new java.awt.Dimension(200, 40));
         txtUname.addActionListener(this::txtUnameActionPerformed);
         txtUname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUnameKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtUnameKeyReleased(evt);
             }
@@ -103,6 +107,11 @@ public class LoginForm extends javax.swing.JFrame {
         txtPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtPass.setPreferredSize(new java.awt.Dimension(200, 40));
         txtPass.addActionListener(this::txtPassActionPerformed);
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 29, 61));
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -228,12 +237,24 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUnameActionPerformed
 
     private void txtUnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnameKeyTyped
-        
+
     }//GEN-LAST:event_txtUnameKeyTyped
 
     private void txtUnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnameKeyReleased
-        txtPass.requestFocus();
+
     }//GEN-LAST:event_txtUnameKeyReleased
+
+    private void txtUnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnameKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPass.requestFocus();
+        }
+    }//GEN-LAST:event_txtUnameKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnLogin.doClick();
+        }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     public static void main(String args[]) {
 
