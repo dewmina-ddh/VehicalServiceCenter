@@ -92,12 +92,16 @@ public class Dash extends javax.swing.JFrame {
     private void initComponents() {
 
         sidebar = new javax.swing.JPanel();
+        logo = new javax.swing.JPanel();
+        buttons = new javax.swing.JPanel();
         btnDash = new javax.swing.JButton();
         btnAppo = new javax.swing.JButton();
         btnInven = new javax.swing.JButton();
         btnReg = new javax.swing.JButton();
         btnTech = new javax.swing.JButton();
         btnJob = new javax.swing.JButton();
+        logOut = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         main = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         lblTopic = new javax.swing.JLabel();
@@ -254,9 +258,26 @@ public class Dash extends javax.swing.JFrame {
         setResizable(false);
 
         sidebar.setBackground(new java.awt.Color(27, 42, 71));
-        sidebar.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 10, 1, 10));
         sidebar.setPreferredSize(new java.awt.Dimension(250, 720));
-        sidebar.setLayout(new java.awt.GridLayout(9, 0, 10, 0));
+        sidebar.setLayout(new java.awt.BorderLayout());
+
+        logo.setBackground(new java.awt.Color(27, 42, 71));
+
+        javax.swing.GroupLayout logoLayout = new javax.swing.GroupLayout(logo);
+        logo.setLayout(logoLayout);
+        logoLayout.setHorizontalGroup(
+            logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        logoLayout.setVerticalGroup(
+            logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        sidebar.add(logo, java.awt.BorderLayout.PAGE_START);
+
+        buttons.setBackground(new java.awt.Color(27, 42, 71));
+        buttons.setLayout(new java.awt.GridLayout(8, 1));
 
         btnDash.setBackground(new java.awt.Color(27, 42, 71));
         btnDash.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -265,7 +286,7 @@ public class Dash extends javax.swing.JFrame {
         btnDash.setBorder(null);
         btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDash.addActionListener(this::btnDashActionPerformed);
-        sidebar.add(btnDash);
+        buttons.add(btnDash);
 
         btnAppo.setBackground(new java.awt.Color(27, 42, 71));
         btnAppo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -274,7 +295,7 @@ public class Dash extends javax.swing.JFrame {
         btnAppo.setBorder(null);
         btnAppo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAppo.addActionListener(this::btnAppoActionPerformed);
-        sidebar.add(btnAppo);
+        buttons.add(btnAppo);
 
         btnInven.setBackground(new java.awt.Color(27, 42, 71));
         btnInven.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -283,7 +304,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBorder(null);
         btnInven.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInven.addActionListener(this::btnInvenActionPerformed);
-        sidebar.add(btnInven);
+        buttons.add(btnInven);
 
         btnReg.setBackground(new java.awt.Color(27, 42, 71));
         btnReg.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -292,7 +313,7 @@ public class Dash extends javax.swing.JFrame {
         btnReg.setBorder(null);
         btnReg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReg.addActionListener(this::btnRegActionPerformed);
-        sidebar.add(btnReg);
+        buttons.add(btnReg);
 
         btnTech.setBackground(new java.awt.Color(27, 42, 71));
         btnTech.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -301,7 +322,7 @@ public class Dash extends javax.swing.JFrame {
         btnTech.setBorder(null);
         btnTech.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTech.addActionListener(this::btnTechActionPerformed);
-        sidebar.add(btnTech);
+        buttons.add(btnTech);
 
         btnJob.setBackground(new java.awt.Color(27, 42, 71));
         btnJob.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -310,7 +331,23 @@ public class Dash extends javax.swing.JFrame {
         btnJob.setBorder(null);
         btnJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnJob.addActionListener(this::btnJobActionPerformed);
-        sidebar.add(btnJob);
+        buttons.add(btnJob);
+
+        sidebar.add(buttons, java.awt.BorderLayout.CENTER);
+
+        logOut.setBackground(new java.awt.Color(27, 42, 71));
+        logOut.setPreferredSize(new java.awt.Dimension(250, 100));
+        logOut.setLayout(new java.awt.GridLayout(1, 1));
+
+        jButton2.setBackground(new java.awt.Color(27, 42, 71));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 51, 51));
+        jButton2.setText("LOG OUT");
+        jButton2.setBorder(null);
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        logOut.add(jButton2);
+
+        sidebar.add(logOut, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(sidebar, java.awt.BorderLayout.LINE_START);
 
@@ -1223,6 +1260,7 @@ public class Dash extends javax.swing.JFrame {
                             .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(appoAllLayout.createSequentialGroup()
                                 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
                                 .addComponent(regDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(34, 34, 34))))
         );
@@ -1453,9 +1491,8 @@ public class Dash extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtQtuInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQtuInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrice))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2309,6 +2346,17 @@ public class Dash extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtQtuInventMouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        int k = JOptionPane.showConfirmDialog(this,"Are you sure?","CONFIRM",JOptionPane.YES_NO_OPTION ,JOptionPane.INFORMATION_MESSAGE);
+        
+        if(k == JOptionPane.YES_OPTION){
+            System.exit(0);
+            LoginForm log = new LoginForm();
+            log.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2362,6 +2410,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch5;
     private javax.swing.JButton btnTech;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JPanel buttons;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
     private javax.swing.JPanel card3;
@@ -2376,6 +2425,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel image;
     private javax.swing.JButton invenAdd;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2456,6 +2506,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUser1;
     private javax.swing.JPanel left;
+    private javax.swing.JPanel logOut;
+    private javax.swing.JPanel logo;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlAppo;
     private javax.swing.JPanel pnlDash;
