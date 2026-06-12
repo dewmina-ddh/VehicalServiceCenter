@@ -52,6 +52,7 @@ public class Dash extends javax.swing.JFrame {
         cards(card1, card2, card3, card4);
         loadImage();
         loadDigitalFont();
+        loadLogo();
         setTime();
         loadTechnicianCards();
         loadOverviewCounts();
@@ -263,6 +264,7 @@ public class Dash extends javax.swing.JFrame {
         sidebar.setLayout(new java.awt.BorderLayout());
 
         logo.setBackground(new java.awt.Color(27, 42, 71));
+        logo.setPreferredSize(new java.awt.Dimension(250, 120));
 
         javax.swing.GroupLayout logoLayout = new javax.swing.GroupLayout(logo);
         logo.setLayout(logoLayout);
@@ -275,9 +277,9 @@ public class Dash extends javax.swing.JFrame {
         );
         logoLayout.setVerticalGroup(
             logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(logoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -287,56 +289,62 @@ public class Dash extends javax.swing.JFrame {
         buttons.setLayout(new java.awt.GridLayout(8, 1));
 
         btnDash.setBackground(new java.awt.Color(27, 42, 71));
-        btnDash.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnDash.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnDash.setForeground(new java.awt.Color(255, 255, 255));
         btnDash.setText("DASHBOARD");
-        btnDash.setBorder(null);
+        btnDash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDash.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnDash.addActionListener(this::btnDashActionPerformed);
         buttons.add(btnDash);
 
         btnAppo.setBackground(new java.awt.Color(27, 42, 71));
-        btnAppo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnAppo.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnAppo.setForeground(new java.awt.Color(255, 255, 255));
         btnAppo.setText("APPOINTMENT");
-        btnAppo.setBorder(null);
+        btnAppo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnAppo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAppo.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnAppo.addActionListener(this::btnAppoActionPerformed);
         buttons.add(btnAppo);
 
         btnInven.setBackground(new java.awt.Color(27, 42, 71));
-        btnInven.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnInven.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnInven.setForeground(new java.awt.Color(255, 255, 255));
         btnInven.setText("INVENTORY");
-        btnInven.setBorder(null);
+        btnInven.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnInven.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInven.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnInven.addActionListener(this::btnInvenActionPerformed);
         buttons.add(btnInven);
 
         btnReg.setBackground(new java.awt.Color(27, 42, 71));
-        btnReg.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnReg.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnReg.setForeground(new java.awt.Color(255, 255, 255));
         btnReg.setText("SET JOB CARD");
-        btnReg.setBorder(null);
+        btnReg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnReg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReg.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnReg.addActionListener(this::btnRegActionPerformed);
         buttons.add(btnReg);
 
         btnTech.setBackground(new java.awt.Color(27, 42, 71));
-        btnTech.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnTech.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnTech.setForeground(new java.awt.Color(255, 255, 255));
         btnTech.setText("TECHNICIANS");
-        btnTech.setBorder(null);
+        btnTech.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnTech.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTech.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnTech.addActionListener(this::btnTechActionPerformed);
         buttons.add(btnTech);
 
         btnJob.setBackground(new java.awt.Color(27, 42, 71));
-        btnJob.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnJob.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         btnJob.setForeground(new java.awt.Color(255, 255, 255));
         btnJob.setText("SERVICE HISTORY");
-        btnJob.setBorder(null);
+        btnJob.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnJob.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnJob.addActionListener(this::btnJobActionPerformed);
         buttons.add(btnJob);
 
@@ -425,7 +433,7 @@ public class Dash extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 224, 224)));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Semilight", 1, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel16.setText("WELCOME  BACK,");
 
         cards.setBackground(new java.awt.Color(255, 255, 255));
@@ -456,7 +464,7 @@ public class Dash extends javax.swing.JFrame {
                 .addGroup(card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblAppoNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         card1Layout.setVerticalGroup(
             card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +497,7 @@ public class Dash extends javax.swing.JFrame {
         card2Layout.setHorizontalGroup(
             card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card2Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblAppoNo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -527,7 +535,7 @@ public class Dash extends javax.swing.JFrame {
         card3Layout.setHorizontalGroup(
             card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card3Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(card3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblTech, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
@@ -563,7 +571,7 @@ public class Dash extends javax.swing.JFrame {
         card4Layout.setHorizontalGroup(
             card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card4Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(card4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                     .addComponent(lblTotSer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -840,12 +848,12 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay6);
 
         jLabel17.setBackground(new java.awt.Color(79, 115, 186));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(73, 80, 87));
         jLabel17.setText("Todays' Overview");
 
         jLabel18.setBackground(new java.awt.Color(79, 115, 186));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(73, 80, 87));
         jLabel18.setText("Service Bay Status");
 
@@ -856,7 +864,7 @@ public class Dash extends javax.swing.JFrame {
         jSeparator6.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel19.setBackground(new java.awt.Color(79, 115, 186));
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(73, 80, 87));
         jLabel19.setText("Ongoing Servises");
 
@@ -886,6 +894,7 @@ public class Dash extends javax.swing.JFrame {
         }
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 102, 255));
         jButton1.setText("Service Billing");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
         jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -901,17 +910,16 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jSeparator4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bays, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(671, 671, 671)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -3160,6 +3168,18 @@ public class Dash extends javax.swing.JFrame {
                 }
             }
         });
+    }
+
+    private void loadLogo() {
+       java.net.URL imgURL = getClass().getResource("/Images/pLogo.png");
+       if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage();
+            
+            Image scaledImg = img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH);
+            lblLogo.setIcon(new ImageIcon(scaledImg));
+        }
+       
     }
     
 }
