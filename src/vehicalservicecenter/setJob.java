@@ -8,7 +8,7 @@ public class setJob {
     private String vehicleNo;
     private String odometerReading;
     private double totalAmount;
-    private java.util.ArrayList<String> serviceList;
+    private ArrayList<String> serviceList;
     private String serviceType;
     private String additionalServices;
 
