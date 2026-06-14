@@ -32,18 +32,18 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Dash extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
     User user1;
     DBConnection db = new DBConnection();
     PreparedStatement pst;
     ResultSet rs;
     Customer cust;
-    
+
     javax.swing.JPopupMenu popupMenu = new javax.swing.JPopupMenu();
     javax.swing.DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
     javax.swing.JList<String> suggestionList = new javax.swing.JList<>(listModel);
-    
+
     public Dash(User user) {
         initComponents();
         loadBayStatus();
@@ -62,21 +62,22 @@ public class Dash extends javax.swing.JFrame {
         loadInventoryItemNames();
         loadBrand();
         
+
         this.user1 = user;
-        
+
         CardPanel.add(pnlDash, "card1");
         CardPanel.add(pnlAppo, "card2");
         CardPanel.add(pnlInventory, "card3");
         CardPanel.add(pnlTech, "card4");
         CardPanel.add(pnlHistory, "card5");
-        
+
         UIManager.put("TextComponent.arc", 15);
-        
+
         lblUser.setText(user1.getName());
         lblTopic.setText("DASHBOARD");
-        
+
     }
-    
+
     private void setTime() {
         new javax.swing.Timer(1000, e -> {
             // Digital font and 24-hour format (HH:mm:ss)
@@ -87,7 +88,7 @@ public class Dash extends javax.swing.JFrame {
             lblDateTime.setForeground(new java.awt.Color(4, 102, 200));
         }).start();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -264,6 +265,7 @@ public class Dash extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
         jLabel51 = new javax.swing.JLabel();
+        accesChart = new javax.swing.JButton();
         Spair = new javax.swing.JPanel();
         txtSearch3 = new javax.swing.JTextField();
         btnSearch3 = new javax.swing.JButton();
@@ -1344,6 +1346,9 @@ public class Dash extends javax.swing.JFrame {
         CardPanel.add(pnlAppo, "card4");
 
         pnlInventory.setBackground(new java.awt.Color(220, 220, 220));
+        pnlInventory.setMaximumSize(new java.awt.Dimension(1030, 671));
+        pnlInventory.setMinimumSize(new java.awt.Dimension(1030, 671));
+        pnlInventory.setPreferredSize(new java.awt.Dimension(1030, 671));
 
         inventMain.setBackground(new java.awt.Color(255, 255, 255));
         inventMain.setLayout(new java.awt.BorderLayout());
@@ -1386,7 +1391,7 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel6.setLayout(new java.awt.CardLayout());
 
-        acce.setBackground(new java.awt.Color(255, 204, 255));
+        acce.setBackground(new java.awt.Color(255, 255, 255));
 
         lblName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblName.setText("Catagory");
@@ -1563,7 +1568,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(txtFinalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(invenAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(acceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1768,7 +1773,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(btnBill5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(btnBill4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBill3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(btnBill3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
         );
 
@@ -1780,8 +1785,6 @@ public class Dash extends javax.swing.JFrame {
 
         right.setBackground(new java.awt.Color(222, 238, 255));
         right.setLayout(new java.awt.CardLayout());
-
-        Accessories.setBackground(new java.awt.Color(167, 199, 231));
 
         txtSearch2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSearch2.addActionListener(this::txtSearch2ActionPerformed);
@@ -1829,33 +1832,46 @@ public class Dash extends javax.swing.JFrame {
         jLabel51.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel51.setText("Accessories - Table");
 
+        accesChart.setForeground(new java.awt.Color(102, 102, 255));
+        accesChart.setText("Charts");
+        accesChart.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 255), 1, true));
+        accesChart.addActionListener(this::accesChartActionPerformed);
+
         javax.swing.GroupLayout AccessoriesLayout = new javax.swing.GroupLayout(Accessories);
         Accessories.setLayout(AccessoriesLayout);
         AccessoriesLayout.setHorizontalGroup(
             AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccessoriesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel51)
+                .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(AccessoriesLayout.createSequentialGroup()
-                        .addComponent(btnSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AccessoriesLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AccessoriesLayout.createSequentialGroup()
+                                .addComponent(btnSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(accesChart, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel51))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         AccessoriesLayout.setVerticalGroup(
             AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AccessoriesLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AccessoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(accesChart, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel51)
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         right.add(Accessories, "card3");
@@ -1927,7 +1943,7 @@ public class Dash extends javax.swing.JFrame {
         SpairLayout.setVerticalGroup(
             SpairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SpairLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(SpairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSearch3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2134,7 +2150,7 @@ public class Dash extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             String vehicleNo = txtLisen.getText().trim();
-            
+
             if (vehicleNo.isEmpty() || txtCustName.getText().trim().isEmpty() || txtNumber.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please enter Vehicle No, Owner's Name and Phone Number!");
                 return;
@@ -2148,16 +2164,16 @@ public class Dash extends javax.swing.JFrame {
                 readingValue = "0";
             }
             db.con.setAutoCommit(false);
-            
+
             Vehical exVehical = checkVehical(vehicleNo);
             String currentCusId = "";
-            
+
             if (exVehical != null) {
                 currentCusId = exVehical.getCusId();
                 System.out.println("Existing vehicle found. Linking to Customer ID: " + currentCusId);
             } else {
                 String currentCusId2 = "CUS-" + (System.currentTimeMillis() % 100000);
-                
+
                 String sql = "INSERT INTO customer (cus_id, name, nic, phone, city, town) VALUES (?, ?, ?, ?, ?, ?)";
                 pst = db.con.prepareStatement(sql);
                 pst.setString(1, currentCusId2);
@@ -2168,7 +2184,7 @@ public class Dash extends javax.swing.JFrame {
                 pst.setString(6, txtTown.getText().trim());
                 pst.executeUpdate();
                 pst.close();
-                
+
                 String sqlVehInsert = "INSERT INTO vehical_table (vehical_no, make, brand, model, fuel,reading, color, make_year, cus_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 pst = db.con.prepareStatement(sqlVehInsert);
                 pst.setString(1, vehicleNo);
@@ -2183,7 +2199,7 @@ public class Dash extends javax.swing.JFrame {
                 pst.executeUpdate();
                 pst.close();
             }
-            
+
             java.util.Date selectDate = appoDate.getDate();
             java.sql.Date AppoDate = new java.sql.Date(selectDate.getTime());
             String AppoTime = appoTime.getText().trim();
@@ -2192,7 +2208,7 @@ public class Dash extends javax.swing.JFrame {
             int randomNumber = (int) (Math.random() * 9000) + 1000;
             String appoID = "APP-" + randomNumber;
             appo.setText("Appointment ID: " + appoID + ")");
-            
+
             String sqlAppo = "INSERT INTO appointment (appo_id, vehical_no, date, time, status ,uName) VALUES (?, ?, ?, ?, 'Pending',?)";
             pst = db.con.prepareStatement(sqlAppo);
             pst.setString(1, appoID); // Random ID
@@ -2200,13 +2216,13 @@ public class Dash extends javax.swing.JFrame {
             pst.setDate(3, AppoDate);
             pst.setString(4, AppoTime);
             pst.setString(5, user1.getName());
-            
+
             pst.executeUpdate();
             pst.close();
-            
+
             db.con.commit();
             clean();
-            
+
         } catch (SQLException ex) {
             try {
                 db.con.rollback();
@@ -2224,13 +2240,13 @@ public class Dash extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String vehicleNo = txtSearch.getText().trim();
-        
+
         if (vehicleNo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a License Plate number to search!");
         }
-        
+
         Vehical vehical = checkVehical(vehicleNo);
-        
+
         if (vehical != null) {
             desableEditable();
             try {
@@ -2238,13 +2254,13 @@ public class Dash extends javax.swing.JFrame {
                 txtBrand.setText(vehical.getBrand());
                 txtModel.setText(vehical.getModel());
                 txtColor.setText(vehical.getColor());
-                
+
                 cmbMake.setSelectedItem(vehical.getMake());
                 cmbFuel.setSelectedItem(vehical.getFuel());
                 txtReading.setText(vehical.getReading());
                 try {
                     String yearStr = vehical.getYear();
-                    
+
                     if (yearStr != null && !yearStr.trim().isEmpty()) {
                         if (yearStr.contains("-")) {
                             yearStr = yearStr.substring(0, 4);
@@ -2256,13 +2272,13 @@ public class Dash extends javax.swing.JFrame {
                 } catch (Exception e) {
                     YearChooser.setYear(2026);
                 }
-                
+
                 String customerId = vehical.getCusId();
-                
+
                 pst = db.con.prepareStatement("SELECT * FROM customer WHERE cus_id = ?");
                 pst.setString(1, customerId);
                 rs = pst.executeQuery();
-                
+
                 if (rs.next()) {
                     txtCustName.setText(rs.getString("name"));
                     txtNic.setText(rs.getString("nic"));
@@ -2270,9 +2286,9 @@ public class Dash extends javax.swing.JFrame {
                     txtCity.setText(rs.getString("city"));
                     txtTown.setText(rs.getString("town"));
                 }
-                
+
                 txtSearch.setText("");
-                
+
                 JOptionPane.showMessageDialog(this, "Welcome Back! Vehicle & Owner details loaded.");
             } catch (SQLException ex) {
                 System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -2303,21 +2319,21 @@ public class Dash extends javax.swing.JFrame {
 
     private void txtSearch2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyReleased
         String searchKey = txtSearch2.getText();
-        
+
         try {
             String sql = "SELECT catagory, brand, details, qty, unit_price FROM inventory WHERE catagory LIKE ? OR brand LIKE ? OR details LIKE ?";
-            
+
             pst = db.con.prepareStatement(sql);
-            
+
             pst.setString(1, "%" + searchKey + "%");
             pst.setString(2, "%" + searchKey + "%");
             pst.setString(3, "%" + searchKey + "%");
-            
+
             rs = pst.executeQuery();
-            
+
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) table1.getModel();
             model.setRowCount(0);
-            
+
             while (rs.next()) {
                 Object[] row = {
                     rs.getString("catagory"),
@@ -2328,10 +2344,10 @@ public class Dash extends javax.swing.JFrame {
                 };
                 model.addRow(row);
             }
-            
+
             rs.close();
             pst.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2340,16 +2356,16 @@ public class Dash extends javax.swing.JFrame {
     private void cmbNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNameActionPerformed
         if (cmbName.getSelectedIndex() > 0) {
             String selectedType = cmbName.getSelectedItem().toString();
-            
+
             try {
                 pst = db.con.prepareStatement("SELECT DISTINCT brand FROM inventory WHERE catagory=? ");
                 pst.setString(1, selectedType);
                 rs = pst.executeQuery();
-                
+
                 cmbBrand.removeAllItems();
                 cmbBrand.addItem("- Select Item -");
                 while (rs.next()) {
-                    
+
                     cmbBrand.addItem(rs.getString("brand"));
                 }
                 rs.close();
@@ -2365,27 +2381,27 @@ public class Dash extends javax.swing.JFrame {
 
     private void cmbBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBrandActionPerformed
         if (cmbBrand.getSelectedItem() != null && cmbBrand.getSelectedIndex() > 0) {
-            
+
             String selectedType = cmbName.getSelectedItem().toString();
             String selectedBrand = cmbBrand.getSelectedItem().toString();
-            
+
             try {
                 String sql = "SELECT details FROM inventory WHERE catagory = ? AND brand = ?";
                 pst = db.con.prepareStatement(sql);
                 pst.setString(1, selectedType);
                 pst.setString(2, selectedBrand);
                 rs = pst.executeQuery();
-                
+
                 cmbDetails.removeAllItems();
                 cmbDetails.addItem("- Select Item -");
-                
+
                 while (rs.next()) {
                     cmbDetails.addItem(rs.getString("details"));
                 }
-                
+
                 rs.close();
                 pst.close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2399,27 +2415,27 @@ public class Dash extends javax.swing.JFrame {
 
     private void cmbDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDetailsActionPerformed
         if (cmbDetails.getSelectedItem() != null && cmbDetails.getSelectedIndex() > 0) {
-            
+
             String selectedType = cmbName.getSelectedItem().toString();
             String selectedBrand = cmbBrand.getSelectedItem().toString();
             String selectedDetails = cmbDetails.getSelectedItem().toString();
-            
+
             try {
                 String sql = "SELECT unit_price FROM inventory WHERE catagory = ? AND brand = ? AND details = ?";
                 pst = db.con.prepareStatement(sql);
                 pst.setString(1, selectedType);
                 pst.setString(2, selectedBrand);
                 pst.setString(3, selectedDetails);
-                
+
                 rs = pst.executeQuery();
-                
+
                 if (rs.next()) {
                     txtPrice.setText(rs.getString("unit_price"));
                 }
-                
+
                 rs.close();
                 pst.close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2436,38 +2452,38 @@ public class Dash extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select a option", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
             if (txtQtuInvent.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please Enter Quantity!", "Qry Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
             String itemName = cmbBrand.getSelectedItem().toString() + " - " + cmbDetails.getSelectedItem().toString();
             int qty = Integer.parseInt(txtQtuInvent.getText().trim());
             double finalPrice = Double.parseDouble(txtFinalPrice.getText().trim());
-            
+
             DefaultTableModel model = (javax.swing.table.DefaultTableModel) table2.getModel();
             model.addRow(new Object[]{itemName, qty, finalPrice});
-            
+
             double grandTotal = 0;
             for (int i = 0; i < model.getRowCount(); i++) {
                 grandTotal += Double.parseDouble(model.getValueAt(i, 2).toString());
             }
             jTextField8.setText(String.format("%.2f", grandTotal));
-            
+
             cmbName.setSelectedIndex(0);
-            
+
             if (cmbBrand.getItemCount() > 0) {
                 cmbBrand.setSelectedIndex(0);
             }
             if (cmbDetails.getItemCount() > 0) {
                 cmbDetails.setSelectedIndex(0);
             }
-            
+
             txtPrice.setText("");
             txtQtuInvent.setText("");
             txtFinalPrice.setText("");
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please Enter a Number!", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
@@ -2505,7 +2521,7 @@ public class Dash extends javax.swing.JFrame {
 
     private void conbTableSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conbTableSelectActionPerformed
         String selected = conbTableSelect.getSelectedItem().toString();
-        
+
         if (selected.equals("Accessories")) {
             Accessories.setVisible(true);
             acce.setVisible(true);
@@ -2527,23 +2543,23 @@ public class Dash extends javax.swing.JFrame {
                 pst = db.con.prepareStatement(sql);
                 pst.setString(1, search + "%");
                 rs = pst.executeQuery();
-                
+
                 listModel.clear();
-                
+
                 while (rs.next()) {
                     listModel.addElement(rs.getString("name") + " - 0" + rs.getInt("phone"));
                 }
-                
+
                 if (listModel.getSize() > 0) {
                     popupMenu.show(txtCustName, 0, txtCustName.getHeight());
                     txtCustName.requestFocus();
                 } else {
                     popupMenu.setVisible(false);
                 }
-                
+
                 rs.close();
                 pst.close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -2555,7 +2571,7 @@ public class Dash extends javax.swing.JFrame {
 
     private void appoTimeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_appoTimeFocusLost
         String timeStr = appoTime.getText().trim();
-        
+
         if (!timeStr.isEmpty()) {
             try {
                 if (timeStr.length() == 1 || timeStr.length() == 2) {
@@ -2587,21 +2603,21 @@ public class Dash extends javax.swing.JFrame {
         if (currentQty.isEmpty()) {
             currentQty = "1";
         }
-        
+
         String input = JOptionPane.showInputDialog(this, "Please Enter Quantity :", currentQty);
-        
+
         if (input != null && !input.trim().isEmpty()) {
             try {
                 int qty = Integer.parseInt(input.trim());
-                
+
                 if (qty > 0) {
                     txtQtuInvent.setText(String.valueOf(qty));
-                    
+
                     String priceStr = txtPrice.getText().trim();
                     if (!priceStr.isEmpty()) {
                         double price = Double.parseDouble(priceStr);
                         double lastPrice = qty * price;
-                        txtFinalPrice.setText(String.format("%.2f", lastPrice));                        
+                        txtFinalPrice.setText(String.format("%.2f", lastPrice));
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Please Enter number > 0!", "Error", JOptionPane.WARNING_MESSAGE);
@@ -2613,9 +2629,9 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtuInventMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         int k = JOptionPane.showConfirmDialog(this, "Are you sure?", "CONFIRM", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        
+
         if (k == JOptionPane.YES_OPTION) {
             this.dispose();
             LoginForm log = new LoginForm();
@@ -2677,6 +2693,12 @@ public class Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_invenAdd1ActionPerformed
 
+    private void accesChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accesChartActionPerformed
+        String name = "accesChart";
+        Charts chart = new Charts(name);
+        chart.setVisible(true);     
+    }//GEN-LAST:event_accesChartActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2689,7 +2711,7 @@ public class Dash extends javax.swing.JFrame {
             ex.printStackTrace();
             System.err.println("Failed to initialize LaF");
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Dash(null).setVisible(true);
@@ -2704,6 +2726,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel Spair;
     private com.toedter.calendar.JYearChooser YearChooser;
     private javax.swing.JPanel acce;
+    private javax.swing.JButton accesChart;
     private javax.swing.JLabel appo;
     private javax.swing.JPanel appoAll;
     private com.toedter.calendar.JDateChooser appoDate;
@@ -2905,19 +2928,21 @@ public class Dash extends javax.swing.JFrame {
         btnDelete.setForeground(Color.WHITE);
 //        btnDelete.putClientProperty("JButton.buttonType", "roundRect");
         btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+
         btnDetails.setBackground(new Color(108, 117, 125)); // Grey
         btnDetails.setForeground(Color.WHITE);
 //        btnClear.putClientProperty("JButton.buttonType", "roundRect");
         btnDetails.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
-    
+
     private void customiseTable(JTable table) {
         // 1. Header
         table.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-        table.getTableHeader().setBackground(new Color(43, 76, 126));
+        table.getTableHeader().setBackground(new Color(4, 102, 200));
         table.getTableHeader().setForeground(Color.WHITE);
         table.getTableHeader().setPreferredSize(new Dimension(0, 30));
+        
+        
         table.getTableHeader().setBorder(BorderFactory.createEmptyBorder());
 
         // 2. Table
@@ -2942,66 +2967,66 @@ public class Dash extends javax.swing.JFrame {
         // 6. Body
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        
+
         for (int i = 0; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
+
     private void customizeSearchBar(JTextField txtSerch, JButton btnSearch) {
         txtSerch.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtSerch.putClientProperty("JTextField.placeholderText", "Search ");
         txtSerch.putClientProperty("JTextField.showClearButton", true);
         txtSerch.putClientProperty("Component.arc", 15);
-        
+
         btnSearch.setPreferredSize(new Dimension(100, 35));
         btnSearch.setBackground(new Color(33, 37, 41));
         btnSearch.setForeground(Color.WHITE);
     }
-    
+
     private void cards(JPanel card1, JPanel card2, JPanel card3, JPanel card4) {
         card1.putClientProperty("JComponent.roundRect", true);
         card2.putClientProperty("JComponent.roundRect", true);
         card3.putClientProperty("JComponent.roundRect", true);
         card4.putClientProperty("JComponent.roundRect", true);
-        
+
     }
-    
+
     private void loadImage() {
         java.net.URL imgURL = getClass().getResource("/Images/car.jpg");
-        
+
         if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
             Image img = icon.getImage();
-            
+
             Image scaledImg = img.getScaledInstance(320, 545, Image.SCALE_SMOOTH);
             lblImage.setIcon(new ImageIcon(scaledImg));
         }
     }
-    
+
     private void loadDigitalFont() {
         try {
             InputStream is = getClass().getResourceAsStream("/file/Inter_18pt-SemiBold.ttf");
             Font digitalFont = Font.createFont(Font.TRUETYPE_FONT, is);
-            
+
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(digitalFont);
-            
+
             lblDateTime.setFont(digitalFont.deriveFont(Font.PLAIN, 20f));
             lblDateTime1.setFont(digitalFont.deriveFont(Font.PLAIN, 15f));
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             lblDateTime.setFont(new Font("Consolas", Font.BOLD, 24));
         }
     }
-    
+
     private Vehical checkVehical(String vehicleNo) {
         try {
             pst = db.con.prepareStatement("SELECT * FROM vehical_table INNER JOIN customer ON vehical_table.cus_id = customer.cus_id WHERE vehical_no = ?");
             pst.setString(1, vehicleNo);
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 return new Vehical(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6),
@@ -3009,13 +3034,13 @@ public class Dash extends javax.swing.JFrame {
             } else {
                 clean();
             }
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return null;
     }
-    
+
     private void clean() {
         txtCustName.setText("");
         txtNic.setText("");
@@ -3035,7 +3060,7 @@ public class Dash extends javax.swing.JFrame {
         txtLisen.setText(txtSearch.getText());
         appo.setText("");
     }
-    
+
     private void desableEditable() {
         txtCustName.setEditable(false);
         txtNic.setEditable(false);
@@ -3050,12 +3075,12 @@ public class Dash extends javax.swing.JFrame {
         cmbFuel.setEditable(false);
         YearChooser.setEnabled(false);
     }
-    
+
     public void loadBayStatus() {
         try {
             Color freeColor = Color.WHITE;
             Color busyColor = Color.decode("#a2d2ff");
-            
+
             java.util.HashMap<String, javax.swing.JPanel> bayPanels = new java.util.HashMap<>();
             bayPanels.put("BAY-01", bay1);
             bayPanels.put("BAY-02", bay2);
@@ -3063,14 +3088,14 @@ public class Dash extends javax.swing.JFrame {
             bayPanels.put("BAY-04", bay4);
             bayPanels.put("BAY-05", bay5);
             bayPanels.put("BAY-06", bay6);
-            
+
             bay1.setBackground(freeColor);
             bay2.setBackground(freeColor);
             bay3.setBackground(freeColor);
             bay4.setBackground(freeColor);
             bay5.setBackground(freeColor);
             bay6.setBackground(freeColor);
-            
+
             jLabel41.setText("Available");
             jLabel35.setText("");
             jLabel42.setText("Available");
@@ -3083,18 +3108,18 @@ public class Dash extends javax.swing.JFrame {
             jLabel39.setText("");
             jLabel46.setText("Available");
             jLabel40.setText("");
-            
+
             pst = db.con.prepareStatement("SELECT bay_id, vehicle_no FROM job_table WHERE status = 'Ongoing'");
             rs = pst.executeQuery();
-            
+
             while (rs.next()) {
                 String bayId = rs.getString("bay_id");
                 String vehical = rs.getString("vehicle_no");
-                
+
                 if (bayId != null && bayPanels.containsKey(bayId)) {
                     javax.swing.JPanel busyPanel = bayPanels.get(bayId);
                     busyPanel.setBackground(busyColor);
-                    
+
                     if (bayId.equals("BAY-01")) {
                         jLabel35.setText(vehical);
                         jLabel41.setText("Busy");
@@ -3116,67 +3141,67 @@ public class Dash extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
+
     }
-    
+
     public void loadTechnicianCards() {
         techMain.removeAll();
-        
+
         techMain.setLayout(new java.awt.GridLayout(0, 4, 20, 20));
-        
+
         PreparedStatement pstTech = null;
         ResultSet rsTech = null;
-        
+
         try {
             String sql = "SELECT * FROM technician";
             pstTech = db.con.prepareStatement(sql);
             rsTech = pstTech.executeQuery();
-            
+
             while (rsTech.next()) {
                 String id = rsTech.getString("tech_id");
                 String name = rsTech.getString("name");
                 String phone = rsTech.getString("phone");
                 String spec = rsTech.getString("specialty");
                 String status = rsTech.getString("status");
-                
+
                 javax.swing.JPanel card = new javax.swing.JPanel();
                 card.setLayout(new javax.swing.BoxLayout(card, javax.swing.BoxLayout.Y_AXIS));
                 card.setBackground(Color.WHITE);
                 card.setPreferredSize(new java.awt.Dimension(200, 140));
-                
+
                 card.setBorder(javax.swing.BorderFactory.createCompoundBorder(
                         javax.swing.BorderFactory.createLineBorder(new Color(220, 224, 230), 1, true),
                         javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12)
                 ));
-                
+
                 javax.swing.JLabel lblId = new javax.swing.JLabel(id);
                 lblId.setFont(new Font("Segoe UI", Font.BOLD, 13));
                 lblId.setForeground(new Color(0, 51, 153));
                 lblId.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
-                
+
                 javax.swing.JLabel lblName = new javax.swing.JLabel(name);
                 lblName.setFont(new Font("Segoe UI", Font.BOLD, 14));
                 lblName.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
-                
+
                 javax.swing.JLabel lblPhone = new javax.swing.JLabel("📞 " + phone);
                 lblPhone.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                 lblPhone.setForeground(Color.GRAY);
                 lblPhone.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
-                
+
                 javax.swing.JLabel lblSpec = new javax.swing.JLabel(spec);
                 lblSpec.setFont(new Font("Segoe UI", Font.PLAIN, 11));
                 lblSpec.setForeground(Color.DARK_GRAY);
                 lblSpec.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
-                
+
                 javax.swing.JLabel lblStatus = new javax.swing.JLabel("  " + status + "  ");
                 lblStatus.setFont(new Font("Segoe UI", Font.BOLD, 11));
                 lblStatus.setAlignmentX(javax.swing.JPanel.CENTER_ALIGNMENT);
                 lblStatus.setOpaque(true);
-                
+
                 if (status.equalsIgnoreCase("Available")) {
                     lblStatus.setBackground(new Color(232, 245, 233));
                     lblStatus.setForeground(new Color(46, 125, 50));
@@ -3184,7 +3209,7 @@ public class Dash extends javax.swing.JFrame {
                     lblStatus.setBackground(new Color(255, 235, 235));
                     lblStatus.setForeground(new Color(211, 47, 47));
                 }
-                
+
                 card.add(lblId);
                 card.add(javax.swing.Box.createVerticalStrut(4));
                 card.add(lblName);
@@ -3194,13 +3219,13 @@ public class Dash extends javax.swing.JFrame {
                 card.add(lblSpec);
                 card.add(javax.swing.Box.createVerticalStrut(8));
                 card.add(lblStatus);
-                
+
                 techMain.add(card);
             }
-            
+
             techMain.revalidate();
             techMain.repaint();
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -3214,23 +3239,23 @@ public class Dash extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-        
+
     }
-    
+
     public void loadOverviewCounts() {
         PreparedStatement pstCount;
         ResultSet rsCount;
-        
+
         try {
             pst = db.con.prepareStatement("SELECT COUNT(*) AS today_count FROM appointment WHERE date = CURDATE()");
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 lblAppoNo.setText(String.valueOf(rs.getInt("today_count")));
             }
             pst.close();
             rs.close();
-            
+
             String sqlTotalAppo = "SELECT COUNT(*) AS total_count FROM appointment";
             pstCount = db.con.prepareStatement(sqlTotalAppo);
             rsCount = pstCount.executeQuery();
@@ -3239,7 +3264,7 @@ public class Dash extends javax.swing.JFrame {
             }
             rsCount.close();
             pstCount.close();
-            
+
             String sqlTechCount = "SELECT COUNT(*) AS tech_count FROM technician";
             pstCount = db.con.prepareStatement(sqlTechCount);
             rsCount = pstCount.executeQuery();
@@ -3248,32 +3273,32 @@ public class Dash extends javax.swing.JFrame {
             }
             rsCount.close();
             pstCount.close();
-            
+
             String sqlServicesCount = "SELECT COUNT(*) AS service_count FROM job_table";
             pstCount = db.con.prepareStatement(sqlServicesCount);
             rsCount = pstCount.executeQuery();
             if (rsCount.next()) {
                 lblTotSer.setText(String.valueOf(rsCount.getInt("service_count")));
             }
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
+
     }
-    
+
     public void loadOngoingJobsTable() {
         int c;
         try {
             pst = db.con.prepareStatement("SELECT job_id, vehicle_no, bay_id, tech_id,status FROM job_table WHERE status = 'Ongoing'");
             rs = pst.executeQuery();
-            
+
             ResultSetMetaData rd = rs.getMetaData();
             c = rd.getColumnCount();
-            
+
             DefaultTableModel dtm = (DefaultTableModel) table.getModel();
             dtm.setRowCount(0);
-            
+
             while (rs.next()) {
                 Vector v3 = new Vector();
                 for (int a = 1; a <= c; a++) {
@@ -3285,24 +3310,24 @@ public class Dash extends javax.swing.JFrame {
                 }
                 dtm.addRow(v3);
             }
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-    
+
     public void loadInventoryTable() {
         int c;
         try {
             pst = db.con.prepareStatement("SELECT catagory, brand, details, qty, unit_price FROM inventory");
             rs = pst.executeQuery();
-            
+
             ResultSetMetaData rd = rs.getMetaData();
             c = rd.getColumnCount();
-            
+
             DefaultTableModel dtm = (DefaultTableModel) table1.getModel();
             dtm.setRowCount(0);
-            
+
             while (rs.next()) {
                 Vector v4 = new Vector();
                 for (int a = 1; a <= c; a++) {
@@ -3314,51 +3339,49 @@ public class Dash extends javax.swing.JFrame {
                 }
                 dtm.addRow(v4);
             }
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-    
+
     private void loadInventoryItemNames() {
         try {
             pst = db.con.prepareStatement("SELECT DISTINCT catagory FROM inventory");
             rs = pst.executeQuery();
             cmbName.removeAllItems();
             cmbName.addItem("- Select Item -");
-            
+
             while (rs.next()) {
                 cmbName.addItem(rs.getString("catagory"));
             }
             rs.close();
             pst.close();
-            
+
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-        
     }
-    
     private void loadBrand() {
         
     }
-    
+
     private void setupAutocomplete() {
         popupMenu = new JPopupMenu();
         popupMenu.setBorder(BorderFactory.createLineBorder(new java.awt.Color(200, 200, 200), 1));
-        
+
         listModel = new DefaultListModel<>();
         suggestionList = new JList<>(listModel);
-        
+
         suggestionList.setCellRenderer(new javax.swing.DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                
+
                 list.setFixedCellHeight(35);
-                
+
                 label.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                
+
                 if (value != null) {
                     String[] parts = value.toString().split(" - ");
                     if (parts.length == 2) {
@@ -3371,16 +3394,16 @@ public class Dash extends javax.swing.JFrame {
                 } else {
                     label.setBackground(java.awt.Color.WHITE);
                 }
-                
+
                 return label;
             }
         });
-        
+
         JScrollPane scrollPane = new javax.swing.JScrollPane(suggestionList);
         scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         scrollPane.setPreferredSize(new java.awt.Dimension(371, 100));
         popupMenu.add(scrollPane);
-        
+
         suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 1) {
@@ -3390,16 +3413,16 @@ public class Dash extends javax.swing.JFrame {
                             String[] parts = selectedValue.split(" - ");
                             String nameOnly = parts[0];
                             String phoneOnly = parts[1];
-                            
+
                             txtCustName.setText(nameOnly);
                             popupMenu.setVisible(false);
-                            
+
                             int dbPhone = Integer.parseInt(phoneOnly);
                             String sql = "SELECT cus_id, nic, phone, city, town FROM customer WHERE name = ? AND phone = ?";
                             PreparedStatement pstLocal = db.con.prepareStatement(sql);
                             pstLocal.setString(1, nameOnly);
                             pstLocal.setInt(2, dbPhone);
-                            
+
                             ResultSet rsLocal = pstLocal.executeQuery();
                             String customerId = "";
                             if (rsLocal.next()) {
@@ -3411,13 +3434,13 @@ public class Dash extends javax.swing.JFrame {
                             }
                             rsLocal.close();
                             pstLocal.close();
-                            
+
                             if (!customerId.isEmpty()) {
                                 String sqlVehList = "SELECT vehical_no FROM vehical_table WHERE cus_id = ?";
                                 PreparedStatement pstVehList = db.con.prepareStatement(sqlVehList);
                                 pstVehList.setString(1, customerId);
                                 ResultSet rsVehList = pstVehList.executeQuery();
-                                
+
                                 ArrayList<String> vList = new ArrayList<>();
                                 vList.add("Add New Vehical");
                                 while (rsVehList.next()) {
@@ -3425,9 +3448,9 @@ public class Dash extends javax.swing.JFrame {
                                 }
                                 rsVehList.close();
                                 pstVehList.close();
-                                
+
                                 String selectedVehNo = "";
-                                
+
                                 if (vList.size() > 0) {
                                     String[] vehArray = vList.toArray(new String[0]);
                                     selectedVehNo = (String) JOptionPane.showInputDialog(
@@ -3441,7 +3464,7 @@ public class Dash extends javax.swing.JFrame {
                                     );
                                 }
                                 if (selectedVehNo != null && !selectedVehNo.isEmpty()) {
-                                    
+
                                     if (selectedVehNo.equals("Add New Vehicle")) {
                                         txtLisen.setText("");
                                         cmbMake.setSelectedIndex(0);
@@ -3452,13 +3475,13 @@ public class Dash extends javax.swing.JFrame {
                                         txtColor.setText("");
                                         YearChooser.setYear(2026);
                                         txtLisen.requestFocus();
-                                        
+
                                     } else {
                                         String sqlGetVeh = "SELECT * FROM vehical_table WHERE vehical_no = ?";
                                         PreparedStatement pstGetVeh = db.con.prepareStatement(sqlGetVeh);
                                         pstGetVeh.setString(1, selectedVehNo);
                                         ResultSet rsGetVeh = pstGetVeh.executeQuery();
-                                        
+
                                         if (rsGetVeh.next()) {
                                             txtLisen.setText(rsGetVeh.getString("vehical_no"));
                                             cmbMake.setSelectedItem(rsGetVeh.getString("make"));
@@ -3467,7 +3490,7 @@ public class Dash extends javax.swing.JFrame {
                                             cmbFuel.setSelectedItem(rsGetVeh.getString("fuel"));
                                             txtReading.setText(rsGetVeh.getString("reading"));
                                             txtColor.setText(rsGetVeh.getString("color"));
-                                            
+
                                             try {
                                                 String yearStr = rsGetVeh.getString("make_year");
                                                 if (yearStr != null && !yearStr.trim().isEmpty()) {
@@ -3485,23 +3508,20 @@ public class Dash extends javax.swing.JFrame {
                         } catch (SQLException ex) {
                             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                         }
-                        
+
                     }
                 }
             }
         });
     }
-
     private void loadLogo() {
-       java.net.URL imgURL = getClass().getResource("/Images/pLogo.png");
-       if (imgURL != null) {
+        java.net.URL imgURL = getClass().getResource("/Images/pLogo.png");
+        if (imgURL != null) {
             ImageIcon icon = new ImageIcon(imgURL);
             Image img = icon.getImage();
-            
+
             Image scaledImg = img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH);
             lblLogo.setIcon(new ImageIcon(scaledImg));
         }
-       
     }
-    
 }
