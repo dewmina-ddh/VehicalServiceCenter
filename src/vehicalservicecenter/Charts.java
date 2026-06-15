@@ -37,6 +37,9 @@ public class Charts extends javax.swing.JFrame {
         pnlChart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 555));
+        setMinimumSize(new java.awt.Dimension(800, 60));
+        setPreferredSize(new java.awt.Dimension(800, 555));
         setResizable(false);
 
         head.setBackground(new java.awt.Color(27, 42, 71));
@@ -48,7 +51,7 @@ public class Charts extends javax.swing.JFrame {
         head.setLayout(headLayout);
         headLayout.setHorizontalGroup(
             headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1045, Short.MAX_VALUE)
         );
         headLayout.setVerticalGroup(
             headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -58,16 +61,17 @@ public class Charts extends javax.swing.JFrame {
         getContentPane().add(head, java.awt.BorderLayout.PAGE_START);
 
         body.setBackground(new java.awt.Color(255, 255, 255));
+        body.setPreferredSize(new java.awt.Dimension(800, 495));
 
         javax.swing.GroupLayout pnlChartLayout = new javax.swing.GroupLayout(pnlChart);
         pnlChart.setLayout(pnlChartLayout);
         pnlChartLayout.setHorizontalGroup(
             pnlChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGap(0, 802, Short.MAX_VALUE)
         );
         pnlChartLayout.setVerticalGroup(
             pnlChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+            .addGap(0, 435, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
@@ -75,16 +79,16 @@ public class Charts extends javax.swing.JFrame {
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(46, 46, 46)
                 .addComponent(pnlChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(25, 25, 25)
                 .addComponent(pnlChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         getContentPane().add(body, java.awt.BorderLayout.CENTER);
