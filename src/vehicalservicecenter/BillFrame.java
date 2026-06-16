@@ -3,6 +3,8 @@ package vehicalservicecenter;
 import java.awt.CardLayout;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class BillFrame extends javax.swing.JFrame {
 
@@ -55,7 +57,7 @@ public class BillFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cmbDiscont = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        txtTotal1 = new javax.swing.JTextField();
+        txtTotalA = new javax.swing.JTextField();
         txtPayAmount = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtNet = new javax.swing.JTextField();
@@ -124,6 +126,12 @@ public class BillFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Total Amount");
 
+        txtTotalA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTotalAMouseClicked(evt);
+            }
+        });
+
         jLabel9.setText("Pay Amount");
 
         jLabel10.setText("Net Amount");
@@ -176,7 +184,7 @@ public class BillFrame extends javax.swing.JFrame {
                     .addGroup(ServiceBillLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTotal1))
+                        .addComponent(txtTotalA))
                     .addGroup(ServiceBillLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -235,7 +243,7 @@ public class BillFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTotalA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,6 +295,7 @@ public class BillFrame extends javax.swing.JFrame {
 
     private void cmbVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVehiclesActionPerformed
         fetchAndGenerateServiceBill();
+        txtPayAmount.requestFocus();
     }//GEN-LAST:event_cmbVehiclesActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -305,10 +314,20 @@ public class BillFrame extends javax.swing.JFrame {
         txtOwner.setText("");
         txtTech.setText("");
         txtTotal.setText("");
-        txtTotal1.setText("");
+        txtTotalA.setText("");
         txtPayAmount.setText("");
         txtNet.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtTotalAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTotalAMouseClicked
+        double amount = (Integer.parseInt(JOptionPane.showInputDialog(null,"Please Enter Amount!", JOptionPane.QUESTION_MESSAGE))) ;
+        double totalP = Integer.parseInt(txtTotalA.getText());
+        
+        if(totalP > amount){
+            double net = totalP - amount ;
+            txtNet.setText(String.valueOf(net));
+        }
+    }//GEN-LAST:event_txtTotalAMouseClicked
 
     /**
      * @param args the command line arguments
@@ -364,7 +383,7 @@ public class BillFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPayAmount;
     private javax.swing.JTextField txtTech;
     private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtTotal1;
+    private javax.swing.JTextField txtTotalA;
     private javax.swing.JTextField txtVNo;
     // End of variables declaration//GEN-END:variables
 
@@ -389,10 +408,11 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     private void fetchAndGenerateServiceBill() {
+        
         if (cmbVehicles.getSelectedIndex() <= 0) {
             billShow.setText("");
             txtVNo.setText(""); txtOwner.setText(""); txtTech.setText("");
-            txtTotal.setText(""); txtTotal1.setText(""); txtPayAmount.setText(""); txtNet.setText("");
+            txtTotal.setText(""); txtTotalA.setText(""); txtPayAmount.setText(""); txtNet.setText("");
             return;
         }
 
@@ -400,7 +420,7 @@ public class BillFrame extends javax.swing.JFrame {
         String cusName = "General Customer";
         String techName = "Unknown";
         double totalAmount = 0.0;
-        java.util.ArrayList<Object[]> serviceList = new java.util.ArrayList<>();
+        ArrayList<Object[]> serviceList = new ArrayList<>();
 
         try {
             String infoSql = "SELECT c.name AS cus_name, t.name AS tech_name, jt.job_id FROM job_table jt "
@@ -441,7 +461,7 @@ public class BillFrame extends javax.swing.JFrame {
             rs.close(); pst.close();
 
             txtTotal.setText(String.format("%.2f", totalAmount));
-            txtTotal1.setText(String.format("%.2f", totalAmount));
+            txtTotalA.setText(String.format("%.2f", totalAmount));
 
             this.billData = new BillStatement(cusName, totalAmount, serviceList);
 
@@ -522,7 +542,7 @@ public class BillFrame extends javax.swing.JFrame {
             }
 
             double netTotal = total - discount;
-            txtTotal1.setText(String.format("%.2f", netTotal));
+            txtTotalA.setText(String.format("%.2f", netTotal));
 
             String payStr = txtPayAmount.getText().trim();
             double paid = 0;
@@ -563,7 +583,7 @@ public class BillFrame extends javax.swing.JFrame {
             int disc = (discStr.matches("\\d+")) ? Integer.parseInt(discStr) : 0;
 
             pst.setInt(4, disc);
-            pst.setInt(5, (int) Double.parseDouble(txtTotal1.getText()));
+            pst.setInt(5, (int) Double.parseDouble(txtTotalA.getText()));
             pst.setString(6, paymentMethod);
             pst.executeUpdate();
             pst.close();
