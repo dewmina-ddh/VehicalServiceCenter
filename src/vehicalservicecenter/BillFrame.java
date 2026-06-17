@@ -139,6 +139,8 @@ public class BillFrame extends javax.swing.JFrame {
         ServiceBill.setMinimumSize(new java.awt.Dimension(920, 540));
         ServiceBill.setPreferredSize(new java.awt.Dimension(920, 540));
 
+        billShow.setEditable(false);
+        billShow.setBackground(new java.awt.Color(255, 255, 255));
         billShow.setColumns(20);
         billShow.setRows(5);
         billShow.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
