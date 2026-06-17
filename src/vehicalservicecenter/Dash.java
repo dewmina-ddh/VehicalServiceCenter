@@ -2150,7 +2150,7 @@ public class Dash extends javax.swing.JFrame {
             }
 
             BillStatement myBillData = new BillStatement(cusName, total, tableData);
-            BillFrame billWindow = new BillFrame(billType ,myBillData);
+            BillFrame billWindow = new BillFrame(billType ,myBillData, this);
             billWindow.setVisible(true);
 
         } catch (Exception e) {
@@ -2683,7 +2683,7 @@ public class Dash extends javax.swing.JFrame {
         ArrayList<Object[]> emptyList = new ArrayList<>();
         BillStatement myBillData = new BillStatement("General Customer", 0.0, emptyList);
         String billType = "ServiceBill";
-        BillFrame bill = new BillFrame(billType, myBillData);
+        BillFrame bill = new BillFrame(billType, myBillData, this);
         bill.setVisible(true);
 
     }//GEN-LAST:event_btnServiceBillActionPerformed
@@ -2751,7 +2751,7 @@ public class Dash extends javax.swing.JFrame {
             }
 
             BillStatement myBillData = new BillStatement(cusName, total, tableData);
-            BillFrame billWindow = new BillFrame(billType ,myBillData);
+            BillFrame billWindow = new BillFrame(billType ,myBillData, this);
             billWindow.setVisible(true);
 
         } catch (Exception e) {
