@@ -24,6 +24,8 @@ public class BillFrame extends javax.swing.JFrame {
         loadOngoinService();
         this.dash = aThis;
         this.type = billType;
+        
+        billShow.setMargin(new java.awt.Insets(15, 50, 15, 15));
 
         inventorybill.remove(ServiceBill);
         billPnael.add(ServiceBill, "card3");
@@ -34,6 +36,7 @@ public class BillFrame extends javax.swing.JFrame {
             cl.show(billPnael, "card3");
         } else if ("accBill".equals(billType)) {
             cl.show(billPnael, "card2");
+            loadInventoryBillData();
         }
         billPnael.revalidate();
         billPnael.repaint();
@@ -47,6 +50,26 @@ public class BillFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         billPnael = new javax.swing.JPanel();
+        inventorybill = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        billShow1 = new javax.swing.JTextArea();
+        jLabel16 = new javax.swing.JLabel();
+        txtTotal1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        cmbDiscont1 = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        txtTotalA1 = new javax.swing.JTextField();
+        txtPayAmount1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txtNet1 = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        btnPrint1 = new javax.swing.JButton();
+        btnClear2 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        btnClear3 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        InventoryBillTable = new javax.swing.JTable();
         ServiceBill = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         billShow = new javax.swing.JTextArea();
@@ -73,34 +96,15 @@ public class BillFrame extends javax.swing.JFrame {
         txtOwner = new javax.swing.JLabel();
         txtTech = new javax.swing.JLabel();
         btnClear1 = new javax.swing.JButton();
-        inventorybill = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        billShow1 = new javax.swing.JTextArea();
-        jLabel16 = new javax.swing.JLabel();
-        txtTotal1 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        cmbDiscont1 = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        txtTotalA1 = new javax.swing.JTextField();
-        txtPayAmount1 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txtNet1 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        btnPrint1 = new javax.swing.JButton();
-        btnClear2 = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        btnClear3 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tableAcc = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(800, 590));
+        setMinimumSize(new java.awt.Dimension(800, 580));
+        setPreferredSize(new java.awt.Dimension(800, 590));
 
-        main.setMaximumSize(new java.awt.Dimension(800, 600));
-        main.setMinimumSize(new java.awt.Dimension(800, 600));
-        main.setPreferredSize(new java.awt.Dimension(800, 600));
+        main.setMaximumSize(new java.awt.Dimension(800, 590));
+        main.setMinimumSize(new java.awt.Dimension(800, 590));
+        main.setPreferredSize(new java.awt.Dimension(800, 590));
         main.setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(27, 42, 71));
@@ -134,10 +138,175 @@ public class BillFrame extends javax.swing.JFrame {
         billPnael.setPreferredSize(new java.awt.Dimension(800, 540));
         billPnael.setLayout(new java.awt.CardLayout());
 
+        inventorybill.setBackground(new java.awt.Color(255, 255, 255));
+        inventorybill.setMaximumSize(new java.awt.Dimension(800, 540));
+        inventorybill.setMinimumSize(new java.awt.Dimension(800, 540));
+        inventorybill.setPreferredSize(new java.awt.Dimension(800, 540));
+
+        billShow1.setColumns(20);
+        billShow1.setRows(5);
+        billShow1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
+        jScrollPane2.setViewportView(billShow1);
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel16.setText("Total Amount");
+
+        txtTotal1.setForeground(new java.awt.Color(0, 153, 204));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel17.setText("Discount");
+
+        cmbDiscont1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "50", "100", "500", "1000" }));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel18.setText("Total Amount");
+
+        txtTotalA1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTotalA1MouseClicked(evt);
+            }
+        });
+
+        txtPayAmount1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPayAmount1FocusGained(evt);
+            }
+        });
+        txtPayAmount1.addActionListener(this::txtPayAmount1ActionPerformed);
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel19.setText("Pay Amount");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel20.setText("Net Amount");
+
+        btnPrint1.setText("Print Bill");
+        btnPrint1.addActionListener(this::btnPrint1ActionPerformed);
+
+        btnClear2.setText("Clear");
+        btnClear2.addActionListener(this::btnClear2ActionPerformed);
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setText("Bill ");
+
+        jButton2.setText("Calculate");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
+        btnClear3.setText("Clear");
+        btnClear3.addActionListener(this::btnClear3ActionPerformed);
+
+        InventoryBillTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item", "Qty", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(InventoryBillTable);
+        if (InventoryBillTable.getColumnModel().getColumnCount() > 0) {
+            InventoryBillTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            InventoryBillTable.getColumnModel().getColumn(1).setPreferredWidth(30);
+        }
+
+        javax.swing.GroupLayout inventorybillLayout = new javax.swing.GroupLayout(inventorybill);
+        inventorybill.setLayout(inventorybillLayout);
+        inventorybillLayout.setHorizontalGroup(
+            inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventorybillLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inventorybillLayout.createSequentialGroup()
+                        .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPrint1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(inventorybillLayout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(inventorybillLayout.createSequentialGroup()
+                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPayAmount1)
+                            .addComponent(txtTotalA1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(inventorybillLayout.createSequentialGroup()
+                                .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtNet1)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(142, 142, 142))
+        );
+        inventorybillLayout.setVerticalGroup(
+            inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventorybillLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(inventorybillLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inventorybillLayout.createSequentialGroup()
+                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTotalA1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPayAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(inventorybillLayout.createSequentialGroup()
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNet1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(7, 7, 7)
+                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPrint1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inventorybillLayout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 73, Short.MAX_VALUE))
+        );
+
+        billPnael.add(inventorybill, "card2");
+
         ServiceBill.setBackground(new java.awt.Color(255, 255, 255));
-        ServiceBill.setMaximumSize(new java.awt.Dimension(920, 540));
-        ServiceBill.setMinimumSize(new java.awt.Dimension(920, 540));
-        ServiceBill.setPreferredSize(new java.awt.Dimension(920, 540));
+        ServiceBill.setMaximumSize(new java.awt.Dimension(800, 540));
+        ServiceBill.setMinimumSize(new java.awt.Dimension(800, 540));
+        ServiceBill.setPreferredSize(new java.awt.Dimension(800, 540));
 
         billShow.setEditable(false);
         billShow.setBackground(new java.awt.Color(255, 255, 255));
@@ -272,7 +441,7 @@ public class BillFrame extends javax.swing.JFrame {
             ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ServiceBillLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ServiceBillLayout.createSequentialGroup()
                         .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +462,7 @@ public class BillFrame extends javax.swing.JFrame {
                         .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(13, 13, 13)
                         .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ServiceBillLayout.createSequentialGroup()
                                 .addGroup(ServiceBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -318,181 +487,15 @@ public class BillFrame extends javax.swing.JFrame {
                             .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ServiceBillLayout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 73, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         billPnael.add(ServiceBill, "card3");
-
-        inventorybill.setBackground(new java.awt.Color(255, 255, 255));
-
-        billShow1.setColumns(20);
-        billShow1.setRows(5);
-        billShow1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
-        jScrollPane2.setViewportView(billShow1);
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel16.setText("Total Amount");
-
-        txtTotal1.setForeground(new java.awt.Color(0, 153, 204));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel17.setText("Discount");
-
-        cmbDiscont1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "50", "100", "500", "1000" }));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel18.setText("Total Amount");
-
-        txtTotalA1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTotalA1MouseClicked(evt);
-            }
-        });
-
-        txtPayAmount1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPayAmount1FocusGained(evt);
-            }
-        });
-        txtPayAmount1.addActionListener(this::txtPayAmount1ActionPerformed);
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel19.setText("Pay Amount");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel20.setText("Net Amount");
-
-        btnPrint1.setText("Print Bill");
-        btnPrint1.addActionListener(this::btnPrint1ActionPerformed);
-
-        btnClear2.setText("Clear");
-        btnClear2.addActionListener(this::btnClear2ActionPerformed);
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setText("Bill ");
-
-        jButton2.setText("Calculate");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-
-        btnClear3.setText("Clear");
-        btnClear3.addActionListener(this::btnClear3ActionPerformed);
-
-        tableAcc.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Item", "Qty", "Price"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(tableAcc);
-        if (tableAcc.getColumnModel().getColumnCount() > 0) {
-            tableAcc.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tableAcc.getColumnModel().getColumn(1).setPreferredWidth(30);
-        }
-
-        javax.swing.GroupLayout inventorybillLayout = new javax.swing.GroupLayout(inventorybill);
-        inventorybill.setLayout(inventorybillLayout);
-        inventorybillLayout.setHorizontalGroup(
-            inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventorybillLayout.createSequentialGroup()
-                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inventorybillLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inventorybillLayout.createSequentialGroup()
-                                .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnPrint1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(inventorybillLayout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(inventorybillLayout.createSequentialGroup()
-                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPayAmount1)
-                                    .addComponent(txtTotalA1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(inventorybillLayout.createSequentialGroup()
-                                        .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtNet1)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inventorybillLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(142, 142, 142))
-        );
-        inventorybillLayout.setVerticalGroup(
-            inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventorybillLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(inventorybillLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(inventorybillLayout.createSequentialGroup()
-                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTotalA1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPayAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(inventorybillLayout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNet1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(7, 7, 7)
-                        .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(inventorybillLayout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 73, Short.MAX_VALUE))
-        );
-
-        billPnael.add(inventorybill, "card2");
 
         main.add(billPnael, java.awt.BorderLayout.CENTER);
 
@@ -630,6 +633,7 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable InventoryBillTable;
     private javax.swing.JPanel ServiceBill;
     private javax.swing.JPanel billPnael;
     private javax.swing.JTextArea billShow;
@@ -668,7 +672,6 @@ public class BillFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel main;
-    private javax.swing.JTable tableAcc;
     private javax.swing.JTextField txtNet;
     private javax.swing.JTextField txtNet1;
     private javax.swing.JLabel txtOwner;
@@ -778,19 +781,19 @@ public class BillFrame extends javax.swing.JFrame {
         SimpleDateFormat sdfDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfTime = new java.text.SimpleDateFormat("hh:mm a");
 
-        bill.append("          YOUR GARAGE NAME\n");
-        bill.append("       No 123, Main Street, City\n");
-        bill.append("          Tel: 071 234 5678\n");
-        bill.append("--------------------------------------\n");
-        bill.append("           SERVICE INVOICE\n");
-        bill.append("Vehicle: ").append(cmbVehicles.getSelectedItem().toString()).append("\n");
-        bill.append("--------------------------------------\n");
-        bill.append("Date : ").append(sdfDate.format(new java.util.Date())).append("   Time: ").append(sdfTime.format(new java.util.Date())).append("\n");
-        bill.append("Cust : ").append(billData.getCustomerName()).append("\n");
-        bill.append("Tech : ").append(txtTech.getText()).append("\n");
-        bill.append("--------------------------------------\n");
-        bill.append(String.format("%-25s %10s\n", "SERVICE DESCRIPTION", "AMOUNT"));
-        bill.append("--------------------------------------\n");
+        bill.append("                   SALFORD\n");
+        bill.append("           No 123, Main Street, City\n");
+        bill.append("               Tel: 071 234 5678\n");
+        bill.append("    ---------------------------------------\n");
+        bill.append("                SERVICE INVOICE\n");
+        bill.append("    ---------------------------------------\n");
+        bill.append("      Date : ").append(sdfDate.format(new java.util.Date())).append("    Time: ").append(sdfTime.format(new java.util.Date())).append("\n");
+        bill.append("      Vehicle: ").append(cmbVehicles.getSelectedItem().toString()).append("\n");
+        bill.append("      Cust : ").append(billData.getCustomerName()).append("\n");
+        bill.append("      Tech : ").append(txtTech.getText()).append("\n");
+        bill.append("    ----------------------------------------\n");
+        bill.append(String.format("      %-25s %10s\n", "SERVICE DESCRIPTION", "AMOUNT"));
+        bill.append("    ----------------------------------------\n");
 
         for (Object[] row : billData.getItemsList()) {
             String itemName = row[0].toString();
@@ -798,19 +801,19 @@ public class BillFrame extends javax.swing.JFrame {
             if (itemName.length() > 24) {
                 itemName = itemName.substring(0, 22) + "..";
             }
-            bill.append(String.format("%-25s %,10.2f\n", itemName, price));
+            bill.append(String.format("      %-25s %,10.2f\n", itemName, price));
         }
 
-        bill.append("--------------------------------------\n");
-        bill.append(String.format("%-25s %,10.2f\n", "TOTAL AMOUNT:", total));
-        bill.append(String.format("%-25s %,10.2f\n", "DISCOUNT:", discount));
-        bill.append(String.format("%-25s %,10.2f\n", "NET AMOUNT:", netTotal));
-        bill.append("--------------------------------------\n");
-        bill.append(String.format("%-25s %10s\n", "PAYMENT METHOD:", paymentMethod));
-        bill.append(String.format("%-25s %,10.2f\n", "PAID AMOUNT:", paid));
-        bill.append(String.format("%-25s %,10.2f\n", "BALANCE:", balance));
-        bill.append("--------------------------------------\n");
-        bill.append("\n         Thank You, Come Again!\n\n\n");
+        bill.append("    ----------------------------------------\n");
+        bill.append(String.format("      %-25s %,10.2f\n", "TOTAL AMOUNT:", total));
+        bill.append(String.format("      %-25s %,10.2f\n", "DISCOUNT:", discount));
+        bill.append(String.format("      %-25s %,10.2f\n", "NET AMOUNT:", netTotal));
+        bill.append("    ----------------------------------------\n");
+        bill.append(String.format("      %-25s %10s\n", "PAYMENT METHOD:", paymentMethod));
+        bill.append(String.format("      %-25s %,10.2f\n", "PAID AMOUNT:", paid));
+        bill.append(String.format("      %-25s %,10.2f\n", "BALANCE:", balance));
+        bill.append("    ----------------------------------------\n");
+        bill.append("\n              Thank You, Come Again!\n\n\n");
 
         billShow.setText(bill.toString());
     }
@@ -918,5 +921,9 @@ public class BillFrame extends javax.swing.JFrame {
         txtTotalA.setText("");
         txtPayAmount.setText("");
         txtNet.setText("");
+    }
+
+    private void loadInventoryBillData() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
