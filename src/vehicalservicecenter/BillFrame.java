@@ -24,12 +24,13 @@ public class BillFrame extends javax.swing.JFrame {
 
     public BillFrame(String billType, BillStatement myBillData, Dash aThis) {
         initComponents();
-        loadOngoinService();
+        
         this.dash = aThis;
         this.type = billType;
+        
+        loadOngoinService();
 
         billShow.setMargin(new java.awt.Insets(15, 50, 15, 15));
-
         inventorybill.remove(ServiceBill);
         billPnael.add(ServiceBill, "card3");
 
@@ -46,7 +47,7 @@ public class BillFrame extends javax.swing.JFrame {
         billPnael.revalidate();
         billPnael.repaint();
         
-        
+        userName = dash.getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -859,14 +860,16 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     private void printAndSaveInvoice() {
-        userName = dash.getName();
+        
         try {
             if (billShow.getText().isEmpty() || currentJobId.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "No bill to print!");
                 return;
             }
 
-            String updateInvSql = "UPDATE invoice SET total_amount = ?, discount = ?, net_amount = ?, pay_amount =?, payment_method=?, balance =?, payment_status = 'Paid', cust_name =?, bill_type=?, recoded_user=? WHERE job_id = ?";
+            String updateInvSql = "UPDATE invoice SET total_amount = ?, "
+                    + "discount = ?, net_amount = ?, pay_amount =?, payment_method=?, "
+                    + "balance =?, payment_status = 'Paid', cust_name =?, bill_type=?, recoded_user=? WHERE job_id = ?";
 
             pst = db.con.prepareStatement(updateInvSql);
             pst.setInt(1, (int) Double.parseDouble(txtTotal.getText()));
