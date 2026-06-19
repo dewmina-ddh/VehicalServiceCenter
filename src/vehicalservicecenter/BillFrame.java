@@ -18,13 +18,16 @@ public class BillFrame extends javax.swing.JFrame {
     BillStatement billData;
     String paymentMethod = "Cash";
     String currentJobId = "";
+    String cusName = "General Customer";
+    String bType = "";
+    String userName ="";
 
     public BillFrame(String billType, BillStatement myBillData, Dash aThis) {
         initComponents();
         loadOngoinService();
         this.dash = aThis;
         this.type = billType;
-        
+
         billShow.setMargin(new java.awt.Insets(15, 50, 15, 15));
 
         inventorybill.remove(ServiceBill);
@@ -34,12 +37,16 @@ public class BillFrame extends javax.swing.JFrame {
 
         if ("ServiceBill".equals(billType)) {
             cl.show(billPnael, "card3");
+            bType = "Service Bill";
         } else if ("accBill".equals(billType)) {
             cl.show(billPnael, "card2");
+            bType = "Item Bill";
             loadInventoryBillData();
         }
         billPnael.revalidate();
         billPnael.repaint();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -712,7 +719,6 @@ public class BillFrame extends javax.swing.JFrame {
         }
 
         String vehicleNo = cmbVehicles.getSelectedItem().toString();
-        String cusName = "General Customer";
         String techName = "Unknown";
         double totalAmount = 0.0;
         ArrayList<Object[]> serviceList = new ArrayList<>();
@@ -837,7 +843,7 @@ public class BillFrame extends javax.swing.JFrame {
             String[] options = {"Cash", "Card"};
             int choice = javax.swing.JOptionPane.showOptionDialog(this, "Select Payment Method:",
                     "Payment Type", javax.swing.JOptionPane.DEFAULT_OPTION,
-                    javax.swing.JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
             if (choice == 0) {
                 paymentMethod = "Cash";
@@ -853,23 +859,29 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     private void printAndSaveInvoice() {
+        userName = dash.getName();
         try {
             if (billShow.getText().isEmpty() || currentJobId.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "No bill to print!");
                 return;
             }
 
-            String updateInvSql = "UPDATE invoice SET total_amount = ?, discount = ?, net_amount = ?, payment_status = 'Paid', date = CURTIME() WHERE job_id = ?";
+            String updateInvSql = "UPDATE invoice SET total_amount = ?, discount = ?, net_amount = ?, pay_amount =?, payment_method=?, balance =?, payment_status = 'Paid', cust_name =?, bill_type=?, recoded_user=? WHERE job_id = ?";
 
             pst = db.con.prepareStatement(updateInvSql);
             pst.setInt(1, (int) Double.parseDouble(txtTotal.getText()));
-
             String discStr = cmbDiscont.getSelectedItem().toString();
             int disc = (discStr.matches("\\d+")) ? Integer.parseInt(discStr) : 0;
             pst.setInt(2, disc);
 
             pst.setInt(3, (int) Double.parseDouble(txtTotalA.getText()));
-            pst.setString(4, currentJobId);
+            pst.setInt(4, (int) Double.parseDouble(txtPayAmount.getText()));
+            pst.setString(5, paymentMethod);
+            pst.setInt(6, (int) Double.parseDouble(txtNet.getText()));
+            pst.setString(7, cusName);
+            pst.setString(8, bType);
+            pst.setString(9, userName);
+            pst.setString(10, currentJobId);
             pst.executeUpdate();
             pst.close();
 
