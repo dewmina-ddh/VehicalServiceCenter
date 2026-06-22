@@ -39,7 +39,6 @@ public class Dash extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
     Customer cust;
-    
 
     javax.swing.JPopupMenu popupMenu = new javax.swing.JPopupMenu();
     javax.swing.DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
@@ -75,7 +74,7 @@ public class Dash extends javax.swing.JFrame {
 
         lblUser.setText(user1.getName());
         lblTopic.setText("DASHBOARD");
-        
+
     }
 
     private void setTime() {
@@ -1319,12 +1318,13 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(appoAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34))
         );
 
@@ -2125,38 +2125,33 @@ public class Dash extends javax.swing.JFrame {
     private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
         String billType = "accBill";
         try {
-            DefaultTableModel model = (DefaultTableModel)tableAcc.getModel();
+            DefaultTableModel model = (DefaultTableModel) tableAcc.getModel();
 
             if (model.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(this, "Please Select Items!", "Empty Table", JOptionPane.WARNING_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Please add items to the list first!");
                 return;
             }
+            java.util.ArrayList<Object[]> serviceList = new java.util.ArrayList<>();
+            double totalAmount = 0.0;
 
-            ArrayList<Object[]> tableData = new ArrayList<>();
             for (int i = 0; i < model.getRowCount(); i++) {
-                Object[] row = new Object[3];
-                row[0] = model.getValueAt(i, 0); // Item Name
-                row[1] = model.getValueAt(i, 1); // Qty
-                row[2] = model.getValueAt(i, 2); // Price
-                tableData.add(row);
+                String itemName = model.getValueAt(i, 0).toString(); //  Item Name
+                String qty = model.getValueAt(i, 1).toString();      //Qty
+                double price = Double.parseDouble(model.getValueAt(i, 2).toString()); //Price
+
+                serviceList.add(new Object[]{itemName, qty, price});
+
+                totalAmount += price;
             }
 
-            String cusName = txtCustName.getText().trim();
-            if (cusName.isEmpty()) {
-                cusName = "General Customer";
-            }
-            
-            double total = 0.0;
-            if (!jTextField9.getText().trim().isEmpty()) {
-                total = Double.parseDouble(jTextField9.getText().trim());
-            }
+            BillStatement myBillData = new BillStatement("General Customer", totalAmount, serviceList);
 
-            BillStatement myBillData = new BillStatement(cusName, total, tableData);
-            BillFrame billWindow = new BillFrame(billType ,myBillData, this);
-            billWindow.setVisible(true);
+            BillFrame bill = new BillFrame(billType, myBillData, this);
+            bill.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error transferring data: " + e.getMessage());
         }
     }//GEN-LAST:event_btnBillActionPerformed
 
@@ -2686,7 +2681,7 @@ public class Dash extends javax.swing.JFrame {
         ArrayList<Object[]> emptyList = new ArrayList<>();
         BillStatement myBillData = new BillStatement("General Customer", 0.0, emptyList);
         String billType = "ServiceBill";
-        BillFrame bill = new BillFrame(billType, myBillData, this );
+        BillFrame bill = new BillFrame(billType, myBillData, this);
         bill.setVisible(true);
 
     }//GEN-LAST:event_btnServiceBillActionPerformed
@@ -2724,10 +2719,10 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void btnBillSpairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillSpairActionPerformed
-        
+
         String billType = "accBill";
         try {
-            DefaultTableModel model = (DefaultTableModel)tableSpair.getModel();
+            DefaultTableModel model = (DefaultTableModel) tableSpair.getModel();
 
             if (model.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(this, "Please Select Items!", "Empty Table", JOptionPane.WARNING_MESSAGE);
@@ -2747,14 +2742,14 @@ public class Dash extends javax.swing.JFrame {
             if (cusName.isEmpty()) {
                 cusName = "General Customer";
             }
-            
+
             double total = 0.0;
             if (!jTextField9.getText().trim().isEmpty()) {
                 total = Double.parseDouble(jTextField9.getText().trim());
             }
 
             BillStatement myBillData = new BillStatement(cusName, total, tableData);
-            BillFrame billWindow = new BillFrame(billType ,myBillData, this);
+            BillFrame billWindow = new BillFrame(billType, myBillData, this);
             billWindow.setVisible(true);
 
         } catch (Exception e) {

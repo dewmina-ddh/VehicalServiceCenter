@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class BillFrame extends javax.swing.JFrame {
 
@@ -20,16 +21,13 @@ public class BillFrame extends javax.swing.JFrame {
     String currentJobId = "";
     String cusName = "General Customer";
     String bType = "";
-    String userName ="";
+    String userName = "";
 
     public BillFrame(String billType, BillStatement myBillData, Dash aThis) {
         initComponents();
-        
         this.dash = aThis;
         this.type = billType;
         
-        loadOngoinService();
-
         billShow.setMargin(new java.awt.Insets(15, 50, 15, 15));
         inventorybill.remove(ServiceBill);
         billPnael.add(ServiceBill, "card3");
@@ -39,15 +37,18 @@ public class BillFrame extends javax.swing.JFrame {
         if ("ServiceBill".equals(billType)) {
             cl.show(billPnael, "card3");
             bType = "Service Bill";
+            loadOngoinService();
         } else if ("accBill".equals(billType)) {
             cl.show(billPnael, "card2");
             bType = "Item Bill";
             loadInventoryBillData();
+
         }
         billPnael.revalidate();
         billPnael.repaint();
-        
+
         userName = dash.getName();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -74,7 +75,7 @@ public class BillFrame extends javax.swing.JFrame {
         btnPrint1 = new javax.swing.JButton();
         btnClear2 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnCal2 = new javax.swing.JButton();
         btnClear3 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         InventoryBillTable = new javax.swing.JTable();
@@ -106,9 +107,7 @@ public class BillFrame extends javax.swing.JFrame {
         btnClear1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 590));
         setMinimumSize(new java.awt.Dimension(800, 580));
-        setPreferredSize(new java.awt.Dimension(800, 590));
 
         main.setMaximumSize(new java.awt.Dimension(800, 590));
         main.setMinimumSize(new java.awt.Dimension(800, 590));
@@ -197,8 +196,8 @@ public class BillFrame extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel21.setText("Bill ");
 
-        jButton2.setText("Calculate");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnCal2.setText("Calculate");
+        btnCal2.addActionListener(this::btnCal2ActionPerformed);
 
         btnClear3.setText("Clear");
         btnClear3.addActionListener(this::btnClear3ActionPerformed);
@@ -255,7 +254,7 @@ public class BillFrame extends javax.swing.JFrame {
                             .addGroup(inventorybillLayout.createSequentialGroup()
                                 .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCal2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtNet1)))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -281,7 +280,7 @@ public class BillFrame extends javax.swing.JFrame {
                             .addGroup(inventorybillLayout.createSequentialGroup()
                                 .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cmbDiscont1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnCal2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtTotalA1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -607,9 +606,35 @@ public class BillFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClear2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnCal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal2ActionPerformed
+        try {
+            if (txtTotal1.getText().isEmpty()) return;
+
+            double total = Double.parseDouble(txtTotal1.getText());
+            double discount = 0;
+
+            String discStr = cmbDiscont1.getSelectedItem().toString();
+            if (discStr.matches("\\d+")) {
+                discount = Double.parseDouble(discStr);
+            }
+
+            double netTotal = total - discount;
+            txtTotalA1.setText(String.format("%.2f", netTotal));
+
+            String[] options = {"Cash", "Card"};
+            int choice = javax.swing.JOptionPane.showOptionDialog(this, "Select Payment Method:",
+                    "Payment Type", javax.swing.JOptionPane.DEFAULT_OPTION,
+                    javax.swing.JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (choice == 0) paymentMethod = "Cash";
+            else if (choice == 1) paymentMethod = "Card";
+
+            txtPayAmount1.requestFocus();
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error in Calculation!");
+        }
+    }//GEN-LAST:event_btnCal2ActionPerformed
 
     private void btnClear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear3ActionPerformed
         // TODO add your handling code here:
@@ -646,6 +671,7 @@ public class BillFrame extends javax.swing.JFrame {
     private javax.swing.JPanel billPnael;
     private javax.swing.JTextArea billShow;
     private javax.swing.JTextArea billShow1;
+    private javax.swing.JButton btnCal2;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnClear2;
@@ -657,7 +683,6 @@ public class BillFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbVehicles;
     private javax.swing.JPanel inventorybill;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -860,7 +885,7 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     private void printAndSaveInvoice() {
-        
+
         try {
             if (billShow.getText().isEmpty() || currentJobId.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "No bill to print!");
@@ -939,6 +964,28 @@ public class BillFrame extends javax.swing.JFrame {
     }
 
     private void loadInventoryBillData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (billData == null) {
+            return;
+        }
+
+        try {
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) InventoryBillTable.getModel();
+            model.setRowCount(0);
+
+            for (Object[] row : billData.getItemsList()) {
+                model.addRow(new Object[]{row[0].toString(), row[1].toString(), Double.parseDouble(row[2].toString())});
+            }
+            double totalAmount = billData.getTotalAmount();
+            txtTotal1.setText(String.format("%.2f", totalAmount));
+
+            txtTotalA1.setText("");
+            txtPayAmount1.setText("");
+            txtNet1.setText("");
+            billShow1.setText("");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

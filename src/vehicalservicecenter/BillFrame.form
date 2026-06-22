@@ -175,7 +175,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="cmbDiscont1" min="-2" pref="115" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton2" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="btnCal2" min="-2" pref="79" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="txtNet1" alignment="0" max="32767" attributes="0"/>
@@ -209,7 +209,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="cmbDiscont1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                              <Component id="jButton2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="btnCal2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="txtTotalA1" min="-2" pref="28" max="-2" attributes="0"/>
@@ -371,12 +371,12 @@
                     <Property name="text" type="java.lang.String" value="Bill "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnCal2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Calculate"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCal2ActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnClear3">
