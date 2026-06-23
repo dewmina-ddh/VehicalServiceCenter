@@ -1041,17 +1041,17 @@ public class BillFrame extends javax.swing.JFrame {
             java.text.SimpleDateFormat sdfDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
             java.text.SimpleDateFormat sdfTime = new java.text.SimpleDateFormat("hh:mm a");
 
-            bill1.append("               SALFORD\n");
+            bill1.append("                  SALFORD\n");
             bill1.append("          No 123, Main Street, City\n");
             bill1.append("             Tel: 071 234 5678\n");
-            bill1.append("    ---------------------------------------\n");
+            bill1.append("    ----------------------------------------\n");
             bill1.append("               INVENTORY INVOICE\n");
-            bill1.append("    ---------------------------------------\n");
+            bill1.append("    ----------------------------------------\n");
             bill1.append("      Date : ").append(sdfDate.format(new java.util.Date())).append("    Time: ").append(sdfTime.format(new java.util.Date())).append("\n");
             bill1.append("      Cust : ").append(billData.getCustomerName()).append("\n");
-            bill1.append("    ----------------------------------------\n");
+            bill1.append("    -----------------------------------------\n");
             bill1.append(String.format("      %-18s %4s %13s\n", "ITEM DESCRIPTION", "QTY", "AMOUNT"));
-            bill1.append("    ----------------------------------------\n");
+            bill1.append("    -----------------------------------------\n");
 
             for (Object[] row : billData.getItemsList()) {
                 String itemName = row[0].toString();
