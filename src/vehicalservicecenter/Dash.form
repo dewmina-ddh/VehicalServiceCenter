@@ -723,7 +723,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder roundedCorners="true" thickness="3">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -767,7 +767,7 @@
                                   <Font name="Segoe UI Semibold" size="24" style="0"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="cc" green="66" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                               </Properties>
@@ -781,7 +781,7 @@
                                   <Font name="Segoe UI" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="cc" green="66" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Technicians"/>
@@ -890,7 +890,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder thickness="2">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -934,7 +934,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 01"/>
@@ -945,7 +945,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel41">
@@ -954,10 +958,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -970,7 +974,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder thickness="2">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -1011,10 +1015,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel30">
@@ -1023,7 +1027,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 02"/>
@@ -1034,7 +1038,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1047,7 +1055,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder thickness="2">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -1088,7 +1096,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 03"/>
@@ -1099,7 +1107,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel43">
@@ -1108,10 +1120,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1124,7 +1136,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder thickness="2">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -1165,7 +1177,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 04"/>
@@ -1176,7 +1188,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel44">
@@ -1185,10 +1201,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1201,7 +1217,7 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder thickness="2">
-                                  <Color PropertyName="color" blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                 </LineBorder>
                               </Border>
                             </Property>
@@ -1242,7 +1258,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 05"/>
@@ -1253,7 +1269,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel45">
@@ -1262,10 +1282,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1319,7 +1339,7 @@
                                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="BAY - 06"/>
@@ -1330,7 +1350,11 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
+                                </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="XXX-0000"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel46">
@@ -1339,10 +1363,10 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="66" red="0" type="rgb"/>
+                                  <Color blue="66" green="33" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="222"/>
+                                <Property name="text" type="java.lang.String" value="............."/>
                               </Properties>
                             </Component>
                           </SubComponents>

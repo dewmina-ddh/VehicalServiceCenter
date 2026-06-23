@@ -1,11 +1,14 @@
 package vehicalservicecenter;
 
 import java.awt.CardLayout;
+import java.awt.print.PrinterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 public class BillFrame extends javax.swing.JFrame {
@@ -624,7 +627,7 @@ public class BillFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPayAmount1ActionPerformed
 
     private void btnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrint1ActionPerformed
-        // TODO add your handling code here:
+        printInventoryInvoice(billShow1);
     }//GEN-LAST:event_btnPrint1ActionPerformed
 
     private void btnClear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear2ActionPerformed
@@ -1079,6 +1082,40 @@ public class BillFrame extends javax.swing.JFrame {
 
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Invalid Paid Amount!");
+        }
+    }
+
+    private void printInventoryInvoice(JTextArea billShow1) {
+        if (billShow1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Invoice is empty! Please generate a bill before printing.",
+                    "Print Error",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            MessageFormat footer = new MessageFormat("Page {0, number, integer} - Thank you for your business!");
+
+            boolean complete = billShow1.print(null, footer, true, null, null, true);
+
+            if (complete) {
+                JOptionPane.showMessageDialog(null,
+                        "Invoice printed successfully!",
+                        "Print Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Printing was cancelled by the user.",
+                        "Print Cancelled",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Printing failed: " + e.getMessage(),
+                    "Print Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 

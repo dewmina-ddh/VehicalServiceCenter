@@ -542,17 +542,17 @@ public class Dash extends javax.swing.JFrame {
         cards.add(card2);
 
         card3.setBackground(new java.awt.Color(255, 255, 255));
-        card3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 3, true));
+        card3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 204), 3, true));
         card3.setPreferredSize(new java.awt.Dimension(30, 100));
 
         lblTech.setBackground(new java.awt.Color(255, 255, 255));
         lblTech.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        lblTech.setForeground(new java.awt.Color(0, 51, 204));
+        lblTech.setForeground(new java.awt.Color(0, 102, 204));
         lblTech.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel48.setBackground(new java.awt.Color(255, 255, 255));
         jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel48.setForeground(new java.awt.Color(0, 102, 204));
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel48.setText("Technicians");
 
@@ -621,21 +621,23 @@ public class Dash extends javax.swing.JFrame {
         bays.setLayout(new java.awt.GridLayout(1, 6, 10, 0));
 
         bay1.setBackground(new java.awt.Color(255, 255, 255));
-        bay1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        bay1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
         bay1.setPreferredSize(new java.awt.Dimension(20, 80));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BAY - 01");
 
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel35.setForeground(new java.awt.Color(0, 51, 102));
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("XXX-0000");
 
         jLabel41.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel41.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel41.setForeground(new java.awt.Color(0, 51, 102));
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel41.setText("222");
+        jLabel41.setText(".............");
 
         javax.swing.GroupLayout bay1Layout = new javax.swing.GroupLayout(bay1);
         bay1.setLayout(bay1Layout);
@@ -664,20 +666,22 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay1);
 
         bay2.setBackground(new java.awt.Color(255, 255, 255));
-        bay2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        bay2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
 
         jLabel42.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel42.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel42.setForeground(new java.awt.Color(0, 51, 102));
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel42.setText("222");
+        jLabel42.setText(".............");
 
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel30.setForeground(new java.awt.Color(0, 51, 102));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("BAY - 02");
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel36.setForeground(new java.awt.Color(0, 51, 102));
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("XXX-0000");
 
         javax.swing.GroupLayout bay2Layout = new javax.swing.GroupLayout(bay2);
         bay2.setLayout(bay2Layout);
@@ -706,20 +710,22 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay2);
 
         bay3.setBackground(new java.awt.Color(255, 255, 255));
-        bay3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        bay3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
 
         jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel31.setForeground(new java.awt.Color(0, 51, 102));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("BAY - 03");
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel37.setForeground(new java.awt.Color(0, 51, 102));
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("XXX-0000");
 
         jLabel43.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel43.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel43.setForeground(new java.awt.Color(0, 51, 102));
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setText("222");
+        jLabel43.setText(".............");
 
         javax.swing.GroupLayout bay3Layout = new javax.swing.GroupLayout(bay3);
         bay3.setLayout(bay3Layout);
@@ -748,20 +754,22 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay3);
 
         bay4.setBackground(new java.awt.Color(255, 255, 255));
-        bay4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        bay4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
 
         jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel32.setForeground(new java.awt.Color(0, 51, 102));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("BAY - 04");
 
         jLabel38.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel38.setForeground(new java.awt.Color(0, 51, 102));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("XXX-0000");
 
         jLabel44.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel44.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel44.setForeground(new java.awt.Color(0, 51, 102));
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel44.setText("222");
+        jLabel44.setText(".............");
 
         javax.swing.GroupLayout bay4Layout = new javax.swing.GroupLayout(bay4);
         bay4.setLayout(bay4Layout);
@@ -790,20 +798,22 @@ public class Dash extends javax.swing.JFrame {
         bays.add(bay4);
 
         bay5.setBackground(new java.awt.Color(255, 255, 255));
-        bay5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        bay5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
 
         jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel33.setForeground(new java.awt.Color(0, 51, 102));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("BAY - 05");
 
         jLabel39.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel39.setForeground(new java.awt.Color(0, 51, 102));
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("XXX-0000");
 
         jLabel45.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel45.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel45.setForeground(new java.awt.Color(0, 51, 102));
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setText("222");
+        jLabel45.setText(".............");
 
         javax.swing.GroupLayout bay5Layout = new javax.swing.GroupLayout(bay5);
         bay5.setLayout(bay5Layout);
@@ -835,17 +845,19 @@ public class Dash extends javax.swing.JFrame {
         bay6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204), 2));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel34.setForeground(new java.awt.Color(0, 51, 102));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("BAY - 06");
 
         jLabel40.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel40.setForeground(new java.awt.Color(0, 51, 102));
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("XXX-0000");
 
         jLabel46.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel46.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel46.setForeground(new java.awt.Color(0, 51, 102));
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText("222");
+        jLabel46.setText(".............");
 
         javax.swing.GroupLayout bay6Layout = new javax.swing.GroupLayout(bay6);
         bay6.setLayout(bay6Layout);
