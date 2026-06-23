@@ -27,7 +27,8 @@ public class BillFrame extends javax.swing.JFrame {
         initComponents();
         this.dash = aThis;
         this.type = billType;
-        
+        this.billData = myBillData;
+
         billShow.setMargin(new java.awt.Insets(15, 50, 15, 15));
         inventorybill.remove(ServiceBill);
         billPnael.add(ServiceBill, "card3");
@@ -76,7 +77,7 @@ public class BillFrame extends javax.swing.JFrame {
         btnClear2 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         btnCal2 = new javax.swing.JButton();
-        btnClear3 = new javax.swing.JButton();
+        btnCancle = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         InventoryBillTable = new javax.swing.JTable();
         ServiceBill = new javax.swing.JPanel();
@@ -150,6 +151,8 @@ public class BillFrame extends javax.swing.JFrame {
         inventorybill.setMinimumSize(new java.awt.Dimension(800, 540));
         inventorybill.setPreferredSize(new java.awt.Dimension(800, 540));
 
+        billShow1.setEditable(false);
+        billShow1.setBackground(new java.awt.Color(255, 255, 255));
         billShow1.setColumns(20);
         billShow1.setRows(5);
         billShow1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
@@ -184,6 +187,8 @@ public class BillFrame extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel19.setText("Pay Amount");
 
+        txtNet1.setForeground(new java.awt.Color(255, 102, 102));
+
         jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel20.setText("Net Amount");
 
@@ -199,8 +204,8 @@ public class BillFrame extends javax.swing.JFrame {
         btnCal2.setText("Calculate");
         btnCal2.addActionListener(this::btnCal2ActionPerformed);
 
-        btnClear3.setText("Clear");
-        btnClear3.addActionListener(this::btnClear3ActionPerformed);
+        btnCancle.setText("Clear");
+        btnCancle.addActionListener(this::btnCancleActionPerformed);
 
         InventoryBillTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,7 +239,7 @@ public class BillFrame extends javax.swing.JFrame {
                     .addGroup(inventorybillLayout.createSequentialGroup()
                         .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnPrint1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventorybillLayout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +302,7 @@ public class BillFrame extends javax.swing.JFrame {
                                     .addComponent(txtNet1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(7, 7, 7)
                         .addGroup(inventorybillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPrint1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,6 +373,8 @@ public class BillFrame extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel9.setText("Pay Amount");
+
+        txtNet.setForeground(new java.awt.Color(255, 102, 102));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel10.setText("Net Amount");
@@ -595,7 +602,25 @@ public class BillFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPayAmount1FocusGained
 
     private void txtPayAmount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPayAmount1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (txtPayAmount1.getText().trim().isEmpty()) {
+                return;
+            }
+            double netTotal = Double.parseDouble(txtTotalA1.getText());
+            double paid = Double.parseDouble(txtPayAmount1.getText().trim());
+
+            double balance = paid - netTotal;
+            txtNet1.setText(String.format("%.2f", balance));
+
+            double total = Double.parseDouble(txtTotal1.getText());
+            String discStr = cmbDiscont1.getSelectedItem().toString();
+            double discount = (discStr.matches("\\d+")) ? Double.parseDouble(discStr) : 0;
+
+            generateAReceipt(total, discount, netTotal, paid, balance);
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Invalid Paid Amount!");
+        }
     }//GEN-LAST:event_txtPayAmount1ActionPerformed
 
     private void btnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrint1ActionPerformed
@@ -608,7 +633,9 @@ public class BillFrame extends javax.swing.JFrame {
 
     private void btnCal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal2ActionPerformed
         try {
-            if (txtTotal1.getText().isEmpty()) return;
+            if (txtTotal1.getText().isEmpty()) {
+                return;
+            }
 
             double total = Double.parseDouble(txtTotal1.getText());
             double discount = 0;
@@ -622,23 +649,26 @@ public class BillFrame extends javax.swing.JFrame {
             txtTotalA1.setText(String.format("%.2f", netTotal));
 
             String[] options = {"Cash", "Card"};
-            int choice = javax.swing.JOptionPane.showOptionDialog(this, "Select Payment Method:",
-                    "Payment Type", javax.swing.JOptionPane.DEFAULT_OPTION,
-                    javax.swing.JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            int choice = JOptionPane.showOptionDialog(this, "Select Payment Method:",
+                    "Payment Type", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-            if (choice == 0) paymentMethod = "Cash";
-            else if (choice == 1) paymentMethod = "Card";
+            if (choice == 0) {
+                paymentMethod = "Cash";
+            } else if (choice == 1) {
+                paymentMethod = "Card";
+            }
 
             txtPayAmount1.requestFocus();
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error in Calculation!");
+            JOptionPane.showMessageDialog(this, "Error in Calculation!");
         }
     }//GEN-LAST:event_btnCal2ActionPerformed
 
-    private void btnClear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClear3ActionPerformed
+    private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -672,10 +702,10 @@ public class BillFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea billShow;
     private javax.swing.JTextArea billShow1;
     private javax.swing.JButton btnCal2;
+    private javax.swing.JButton btnCancle;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnClear2;
-    private javax.swing.JButton btnClear3;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnPrint1;
     private javax.swing.JComboBox<String> cmbDiscont;
@@ -985,6 +1015,70 @@ public class BillFrame extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void generateAReceipt(double total, double discount, double netTotal, double paid, double balance) {
+        try {
+            if (txtPayAmount1.getText().trim().isEmpty()) {
+                return;
+            }
+
+            double netTotal1 = Double.parseDouble(txtTotalA1.getText());
+            double paid1 = Double.parseDouble(txtPayAmount1.getText().trim());
+
+            // ඉතුරු සල්ලි (Balance) එක හදනවා
+            double balance1 = paid1 - netTotal1;
+            txtNet1.setText(String.format("%.2f", balance1));
+
+            double total1 = Double.parseDouble(txtTotal1.getText());
+            String discStr1 = cmbDiscont1.getSelectedItem().toString();
+            double discount1 = (discStr1.matches("\\d+")) ? Double.parseDouble(discStr1) : 0;
+
+            StringBuilder bill1 = new StringBuilder();
+            billShow1.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
+
+            java.text.SimpleDateFormat sdfDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            java.text.SimpleDateFormat sdfTime = new java.text.SimpleDateFormat("hh:mm a");
+
+            bill1.append("               SALFORD\n");
+            bill1.append("          No 123, Main Street, City\n");
+            bill1.append("             Tel: 071 234 5678\n");
+            bill1.append("    ---------------------------------------\n");
+            bill1.append("               INVENTORY INVOICE\n");
+            bill1.append("    ---------------------------------------\n");
+            bill1.append("      Date : ").append(sdfDate.format(new java.util.Date())).append("    Time: ").append(sdfTime.format(new java.util.Date())).append("\n");
+            bill1.append("      Cust : ").append(billData.getCustomerName()).append("\n");
+            bill1.append("    ----------------------------------------\n");
+            bill1.append(String.format("      %-18s %4s %13s\n", "ITEM DESCRIPTION", "QTY", "AMOUNT"));
+            bill1.append("    ----------------------------------------\n");
+
+            for (Object[] row : billData.getItemsList()) {
+                String itemName = row[0].toString();
+                String qty = row[1].toString();
+                double price = Double.parseDouble(row[2].toString());
+
+                if (itemName.length() > 17) {
+                    itemName = itemName.substring(0, 15) + "..";
+                }
+                bill1.append(String.format("      %-18s %4s %,13.2f\n", itemName, qty, price));
+            }
+
+            bill1.append("    ----------------------------------------\n");
+            bill1.append(String.format("      %-23s %,13.2f\n", "TOTAL AMOUNT:", total1));
+            bill1.append(String.format("      %-23s %,13.2f\n", "DISCOUNT:", discount1));
+            bill1.append(String.format("      %-23s %,13.2f\n", "NET AMOUNT:", netTotal1));
+            bill1.append("    ----------------------------------------\n");
+            bill1.append(String.format("      %-23s %13s\n", "PAYMENT METHOD:", paymentMethod));
+            bill1.append(String.format("      %-23s %,13.2f\n", "PAID AMOUNT:", paid1));
+            bill1.append(String.format("      %-23s %,13.2f\n", "BALANCE:", balance1));
+            bill1.append("    ----------------------------------------\n");
+            bill1.append("\n               Thank You, Come Again!\n\n\n");
+
+            billShow1.setText(bill1.toString());
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Invalid Paid Amount!");
         }
     }
 

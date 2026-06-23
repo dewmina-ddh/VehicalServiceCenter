@@ -2131,7 +2131,7 @@ public class Dash extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Please add items to the list first!");
                 return;
             }
-            java.util.ArrayList<Object[]> serviceList = new java.util.ArrayList<>();
+            ArrayList<Object[]> serviceList = new ArrayList<>();
             double totalAmount = 0.0;
 
             for (int i = 0; i < model.getRowCount(); i++) {
