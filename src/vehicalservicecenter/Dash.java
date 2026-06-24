@@ -42,7 +42,7 @@ public class Dash extends javax.swing.JFrame {
 
     Color setColor1 = new Color(25, 37, 61);
     Color setColor2 = new Color(27, 42, 71);
-    
+
     JPopupMenu popupMenu = new javax.swing.JPopupMenu();
     DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
     JList<String> suggestionList = new javax.swing.JList<>(listModel);
@@ -64,6 +64,7 @@ public class Dash extends javax.swing.JFrame {
         setupAutocomplete();
         loadInventoryItemNames();
         loadBrand();
+        loadInvoiceTable(invoiceTable);
 
         this.user1 = user;
 
@@ -292,9 +293,8 @@ public class Dash extends javax.swing.JFrame {
         pnlHistory = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table5 = new javax.swing.JTable();
+        invoiceTable = new javax.swing.JTable();
         txtSearch5 = new javax.swing.JTextField();
-        btnSearch5 = new javax.swing.JButton();
         pnlTech = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         techMain = new javax.swing.JPanel();
@@ -2037,45 +2037,57 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        table5.setModel(new javax.swing.table.DefaultTableModel(
+        invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Invoice", "JobID", "Discount", "Total", "Pay Amount", "Method", "Balance", "Customer", "Bill Type", "User"
             }
-        ));
-        jScrollPane1.setViewportView(table5);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
 
-        btnSearch5.setText("Search");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(invoiceTable);
+        if (invoiceTable.getColumnModel().getColumnCount() > 0) {
+            invoiceTable.getColumnModel().getColumn(0).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(1).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(2).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(3).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(4).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(5).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(6).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(7).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(8).setResizable(false);
+            invoiceTable.getColumnModel().getColumn(9).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSearch5)
-                    .addComponent(btnSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(18, 18, 18)
+                .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlHistoryLayout = new javax.swing.GroupLayout(pnlHistory);
@@ -2156,8 +2168,8 @@ public class Dash extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card2");
         lblTopic.setText("APPOINTMENT");
-        customizeSearchBar(txtSearch, btnSearch);
-        
+        customizeSearchBar(txtSearch);
+
         btnDash.setBackground(setColor2);
         btnAppo.setBackground(setColor1);
         btnInven.setBackground(setColor2);
@@ -2169,7 +2181,7 @@ public class Dash extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card4");
         lblTopic.setText("TECHNICIANS");
-        
+
         btnDash.setBackground(setColor2);
         btnAppo.setBackground(setColor2);
         btnInven.setBackground(setColor2);
@@ -2233,8 +2245,8 @@ public class Dash extends javax.swing.JFrame {
         lblTopic.setText("INVENTORY");
         customiseTable(table1);
         customiseTable(tableAcc);
-        customizeSearchBar(txtSearch2, btnSearch2);
-        
+        customizeSearchBar(txtSearch2);
+
         btnDash.setBackground(setColor2);
         btnAppo.setBackground(setColor2);
         btnInven.setBackground(setColor1);
@@ -2246,9 +2258,9 @@ public class Dash extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card5");
         lblTopic.setText("JobCARD");
-        customiseTable(table5);
-        customizeSearchBar(txtSearch5, btnSearch5);
-        
+        customiseTable(invoiceTable);
+        customizeSearchBar(txtSearch5);
+
         btnDash.setBackground(setColor2);
         btnAppo.setBackground(setColor2);
         btnInven.setBackground(setColor2);
@@ -2259,7 +2271,7 @@ public class Dash extends javax.swing.JFrame {
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         Register reg = new Register(this);
         reg.setVisible(true);
-        
+
         btnDash.setBackground(setColor2);
         btnAppo.setBackground(setColor2);
         btnInven.setBackground(setColor2);
@@ -2914,7 +2926,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch2;
     private javax.swing.JButton btnSearch3;
-    private javax.swing.JButton btnSearch5;
     private javax.swing.JButton btnServiceBill;
     private javax.swing.JButton btnTech;
     private javax.swing.JButton btnUpdate;
@@ -2938,6 +2949,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton invenAdd1;
     private javax.swing.JButton invenAddAcc;
     private javax.swing.JPanel inventMain;
+    private javax.swing.JTable invoiceTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3045,7 +3057,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTable table;
     private javax.swing.JTable table1;
     private javax.swing.JTable table3;
-    private javax.swing.JTable table5;
     private javax.swing.JTable tableAcc;
     private javax.swing.JTable tableSpair;
     private javax.swing.JPanel techMain;
@@ -3133,7 +3144,7 @@ public class Dash extends javax.swing.JFrame {
         }
     }
 
-    private void customizeSearchBar(JTextField txtSerch, JButton btnSearch) {
+    private void customizeSearchBar(JTextField txtSerch) {
         txtSerch.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtSerch.putClientProperty("JTextField.placeholderText", "Search ");
         txtSerch.putClientProperty("JTextField.showClearButton", true);
@@ -3684,6 +3695,67 @@ public class Dash extends javax.swing.JFrame {
 
             Image scaledImg = img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH);
             lblLogo.setIcon(new ImageIcon(scaledImg));
+        }
+    }
+
+    private void loadInvoiceTable(JTable invoiceTable) {
+        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
+
+        model.setRowCount(0);
+        pst = null;
+        rs = null;
+
+        String sql = "SELECT inv_id, job_id, discount, total_amount, pay_amount, payment_method, balance, cust_name, bill_type, recoded_user "
+                + "FROM invoice WHERE inv_id LIKE ? OR cust_name LIKE ? ORDER BY recorded_at DESC";
+
+        try {
+            pst = db.con.prepareStatement(sql);
+
+//            pst.setString(1, "%" + searchQuery + "%");
+//            pst.setString(2, "%" + searchQuery + "%");
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                String invId = rs.getString("inv_id");
+                String jobId = rs.getString("job_id");
+                int discount = rs.getInt("discount");
+                int total = rs.getInt("total_amount");
+                int payAmount = rs.getInt("pay_amount");
+                String method = rs.getString("payment_method");
+                int balance = rs.getInt("balance");
+                String customer = rs.getString("cust_name");
+                String billType = rs.getString("bill_type");
+                String user = rs.getString("recoded_user");
+
+                Object[] rowData = {
+                    invId, // 1. Invoice
+                    jobId, // 2. JobID
+                    discount, // 3. Discount
+                    total, // 4. Total
+                    payAmount, // 5. Pay Amount
+                    method, // 6. Method
+                    balance, // 7. Balance
+                    customer, // 8. Customer
+                    billType, // 9. Bill Type
+                    user // 10. User
+                };
+                model.addRow(rowData);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error loading invoice data: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
