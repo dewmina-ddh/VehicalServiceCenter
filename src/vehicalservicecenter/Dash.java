@@ -40,9 +40,12 @@ public class Dash extends javax.swing.JFrame {
     ResultSet rs;
     Customer cust;
 
-    javax.swing.JPopupMenu popupMenu = new javax.swing.JPopupMenu();
-    javax.swing.DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
-    javax.swing.JList<String> suggestionList = new javax.swing.JList<>(listModel);
+    Color setColor1 = new Color(25, 37, 61);
+    Color setColor2 = new Color(27, 42, 71);
+    
+    JPopupMenu popupMenu = new javax.swing.JPopupMenu();
+    DefaultListModel<String> listModel = new javax.swing.DefaultListModel<>();
+    JList<String> suggestionList = new javax.swing.JList<>(listModel);
 
     public Dash(User user) {
         initComponents();
@@ -71,9 +74,22 @@ public class Dash extends javax.swing.JFrame {
         CardPanel.add(pnlHistory, "card5");
 
         UIManager.put("TextComponent.arc", 15);
-
-        lblUser.setText(user1.getName());
         lblTopic.setText("DASHBOARD");
+
+        if (user.getRole().equalsIgnoreCase("admin")) {
+            btnAdminC.setVisible(true);
+            lblUser.setText(user1.getName());
+            lblAdmin.setText("ADMIN");
+        } else if (user.getRole().equalsIgnoreCase("user")) {
+            btnAdminC.setVisible(false);
+            lblUser.setText(user1.getName());
+        }
+
+        btnDash.setBackground(setColor1);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor2);
 
     }
 
@@ -101,7 +117,8 @@ public class Dash extends javax.swing.JFrame {
         btnInven = new javax.swing.JButton();
         btnReg = new javax.swing.JButton();
         btnTech = new javax.swing.JButton();
-        btnJob = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
+        btnAdminC = new javax.swing.JButton();
         logOut = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         main = new javax.swing.JPanel();
@@ -162,6 +179,7 @@ public class Dash extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         btnServiceBill = new javax.swing.JButton();
+        lblAdmin = new javax.swing.JLabel();
         pnlAppo = new javax.swing.JPanel();
         appoAll = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -314,7 +332,7 @@ public class Dash extends javax.swing.JFrame {
         buttons.setLayout(new java.awt.GridLayout(8, 1));
 
         btnDash.setBackground(new java.awt.Color(27, 42, 71));
-        btnDash.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnDash.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnDash.setForeground(new java.awt.Color(255, 255, 255));
         btnDash.setText("DASHBOARD [F1]");
         btnDash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -324,7 +342,7 @@ public class Dash extends javax.swing.JFrame {
         buttons.add(btnDash);
 
         btnAppo.setBackground(new java.awt.Color(27, 42, 71));
-        btnAppo.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnAppo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAppo.setForeground(new java.awt.Color(255, 255, 255));
         btnAppo.setText("APPOINTMENT");
         btnAppo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -334,7 +352,7 @@ public class Dash extends javax.swing.JFrame {
         buttons.add(btnAppo);
 
         btnInven.setBackground(new java.awt.Color(27, 42, 71));
-        btnInven.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnInven.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnInven.setForeground(new java.awt.Color(255, 255, 255));
         btnInven.setText("INVENTORY");
         btnInven.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -344,7 +362,7 @@ public class Dash extends javax.swing.JFrame {
         buttons.add(btnInven);
 
         btnReg.setBackground(new java.awt.Color(27, 42, 71));
-        btnReg.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnReg.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnReg.setForeground(new java.awt.Color(255, 255, 255));
         btnReg.setText("SET JOB CARD");
         btnReg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -354,7 +372,7 @@ public class Dash extends javax.swing.JFrame {
         buttons.add(btnReg);
 
         btnTech.setBackground(new java.awt.Color(27, 42, 71));
-        btnTech.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        btnTech.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnTech.setForeground(new java.awt.Color(255, 255, 255));
         btnTech.setText("TECHNICIANS");
         btnTech.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -363,15 +381,23 @@ public class Dash extends javax.swing.JFrame {
         btnTech.addActionListener(this::btnTechActionPerformed);
         buttons.add(btnTech);
 
-        btnJob.setBackground(new java.awt.Color(27, 42, 71));
-        btnJob.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        btnJob.setForeground(new java.awt.Color(255, 255, 255));
-        btnJob.setText("SERVICE HISTORY");
-        btnJob.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
-        btnJob.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnJob.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        btnJob.addActionListener(this::btnJobActionPerformed);
-        buttons.add(btnJob);
+        btnHistory.setBackground(new java.awt.Color(27, 42, 71));
+        btnHistory.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistory.setText("SERVICE HISTORY");
+        btnHistory.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
+        btnHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistory.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        buttons.add(btnHistory);
+
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
+        btnAdminC.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnAdminC.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdminC.setText("ADMIN CREDENTIALS");
+        btnAdminC.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
+        btnAdminC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        buttons.add(btnAdminC);
 
         sidebar.add(buttons, java.awt.BorderLayout.CENTER);
 
@@ -380,7 +406,7 @@ public class Dash extends javax.swing.JFrame {
         logOut.setLayout(new java.awt.GridLayout(1, 1));
 
         jButton2.setBackground(new java.awt.Color(27, 42, 71));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
         jButton2.setText("LOG OUT");
         jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
@@ -402,9 +428,10 @@ public class Dash extends javax.swing.JFrame {
         lblTopic.setText("APPOINTMENT");
 
         lblUser.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(102, 0, 255));
 
-        lblUser1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblUser1.setText("User :-");
+        lblUser1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        lblUser1.setText("USER :-");
 
         lblDateTime.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDateTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -419,15 +446,16 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(HeaderLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(lblTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(431, 431, 431)
-                .addComponent(lblUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(461, 461, 461)
                 .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDateTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(HeaderLayout.createSequentialGroup()
+                        .addComponent(lblUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,17 +463,16 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HeaderLayout.createSequentialGroup()
-                        .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(2, 2, 2))
-                    .addComponent(lblUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(HeaderLayout.createSequentialGroup()
-                        .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUser1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDateTime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(lblDateTime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTopic, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addGroup(HeaderLayout.createSequentialGroup()
-                        .addComponent(lblTopic, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         main.add(Header, java.awt.BorderLayout.PAGE_START);
@@ -937,6 +964,10 @@ public class Dash extends javax.swing.JFrame {
         btnServiceBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
         btnServiceBill.addActionListener(this::btnServiceBillActionPerformed);
 
+        lblAdmin.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblAdmin.setForeground(new java.awt.Color(0, 153, 255));
+        lblAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -956,16 +987,21 @@ public class Dash extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnServiceBill, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel16)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel18))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(lblAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2121,12 +2157,24 @@ public class Dash extends javax.swing.JFrame {
         cl.show(CardPanel, "card2");
         lblTopic.setText("APPOINTMENT");
         customizeSearchBar(txtSearch, btnSearch);
+        
+        btnDash.setBackground(setColor2);
+        btnAppo.setBackground(setColor1);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor2);
     }//GEN-LAST:event_btnAppoActionPerformed
 
     private void btnTechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTechActionPerformed
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card4");
         lblTopic.setText("TECHNICIANS");
+        
+        btnDash.setBackground(setColor2);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor1);
 
     }//GEN-LAST:event_btnTechActionPerformed
 
@@ -2172,6 +2220,11 @@ public class Dash extends javax.swing.JFrame {
         cl.show(CardPanel, "card1");
         lblTopic.setText("DASHBOARD");
 
+        btnDash.setBackground(setColor1);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor2);
     }//GEN-LAST:event_btnDashActionPerformed
 
     private void btnInvenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvenActionPerformed
@@ -2181,19 +2234,37 @@ public class Dash extends javax.swing.JFrame {
         customiseTable(table1);
         customiseTable(tableAcc);
         customizeSearchBar(txtSearch2, btnSearch2);
+        
+        btnDash.setBackground(setColor2);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor1);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor2);
     }//GEN-LAST:event_btnInvenActionPerformed
 
-    private void btnJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobActionPerformed
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
         CardLayout cl = (CardLayout) CardPanel.getLayout();
         cl.show(CardPanel, "card5");
         lblTopic.setText("JobCARD");
         customiseTable(table5);
         customizeSearchBar(txtSearch5, btnSearch5);
-    }//GEN-LAST:event_btnJobActionPerformed
+        
+        btnDash.setBackground(setColor2);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor1);
+        btnTech.setBackground(setColor2);
+    }//GEN-LAST:event_btnHistoryActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         Register reg = new Register(this);
         reg.setVisible(true);
+        
+        btnDash.setBackground(setColor2);
+        btnAppo.setBackground(setColor2);
+        btnInven.setBackground(setColor2);
+        btnHistory.setBackground(setColor2);
+        btnTech.setBackground(setColor2);
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -2826,6 +2897,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel bay5;
     private javax.swing.JPanel bay6;
     private javax.swing.JPanel bays;
+    private javax.swing.JButton btnAdminC;
     private javax.swing.JButton btnAppo;
     private javax.swing.JButton btnBill;
     private javax.swing.JButton btnBill4;
@@ -2834,8 +2906,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnCancle;
     private javax.swing.JButton btnDash;
     private javax.swing.JButton btnDetails;
+    private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnInven;
-    private javax.swing.JButton btnJob;
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSave;
@@ -2943,6 +3015,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblAdmin;
     private javax.swing.JLabel lblAppoNo;
     private javax.swing.JLabel lblAppoNo1;
     private javax.swing.JLabel lblDateTime;

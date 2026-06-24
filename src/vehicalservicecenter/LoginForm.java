@@ -238,16 +238,20 @@ public class LoginForm extends javax.swing.JFrame {
         if (isUser != null) {
             System.out.println("User Role is: " + isUser.getRole());
 
-            if (isUser.getRole().equalsIgnoreCase("admin")) {
+            Dash dash = new Dash(isUser);
+            dash.setVisible(true);
+            this.dispose();
 
-                Admin ad = new Admin(isUser);
-                ad.setVisible(true);
-                this.dispose();
-            } else if (isUser.getRole().equals("user")) {
-                Dash dsh = new Dash(isUser);
-                dsh.setVisible(true);
-                this.dispose();
-            }
+//            if (isUser.getRole().equalsIgnoreCase("admin")) {
+//
+//                Admin ad = new Admin(isUser);
+//                ad.setVisible(true);
+//                this.dispose();
+//            } else if (isUser.getRole().equals("user")) {
+//                Dash dsh = new Dash(isUser);
+//                dsh.setVisible(true);
+//                this.dispose();
+//            }
 //            JOptionPane.showMessageDialog(null, "Logging ");
         } else {
             JOptionPane.showMessageDialog(null, "Logging Failed ");
