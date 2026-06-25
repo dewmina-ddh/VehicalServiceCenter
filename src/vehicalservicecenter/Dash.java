@@ -64,7 +64,7 @@ public class Dash extends javax.swing.JFrame {
         setupAutocomplete();
         loadInventoryItemNames();
         loadBrand();
-        loadInvoiceTable(invoiceTable);
+        loadInvoiceTable(invoiceTable, "");
 
         this.user1 = user;
 
@@ -298,6 +298,12 @@ public class Dash extends javax.swing.JFrame {
         pnlTech = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         techMain = new javax.swing.JPanel();
+        pnlAdmin = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -397,6 +403,7 @@ public class Dash extends javax.swing.JFrame {
         btnAdminC.setText("ADMIN CREDENTIALS");
         btnAdminC.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
         btnAdminC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAdminC.addActionListener(this::btnAdminCActionPerformed);
         buttons.add(btnAdminC);
 
         sidebar.add(buttons, java.awt.BorderLayout.CENTER);
@@ -2067,18 +2074,26 @@ public class Dash extends javax.swing.JFrame {
             invoiceTable.getColumnModel().getColumn(9).setResizable(false);
         }
 
+        txtSearch5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearch5KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2086,8 +2101,8 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtSearch5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(305, 305, 305))
         );
 
         javax.swing.GroupLayout pnlHistoryLayout = new javax.swing.GroupLayout(pnlHistory);
@@ -2151,6 +2166,87 @@ public class Dash extends javax.swing.JFrame {
         );
 
         CardPanel.add(pnlTech, "card2");
+
+        pnlAdmin.setBackground(new java.awt.Color(220, 220, 220));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1006, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 612, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab1", jPanel5);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1006, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 612, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1006, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 612, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab3", jPanel8);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
+        pnlAdmin.setLayout(pnlAdminLayout);
+        pnlAdminLayout.setHorizontalGroup(
+            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlAdminLayout.setVerticalGroup(
+            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        CardPanel.add(pnlAdmin, "card7");
 
         main.add(CardPanel, java.awt.BorderLayout.CENTER);
 
@@ -2870,6 +2966,14 @@ public class Dash extends javax.swing.JFrame {
         chart.setVisible(true);
     }//GEN-LAST:event_accesChartActionPerformed
 
+    private void txtSearch5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch5KeyReleased
+        loadInvoiceTable(invoiceTable, txtSearch5.getText().trim());
+    }//GEN-LAST:event_txtSearch5KeyReleased
+
+    private void btnAdminCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCActionPerformed
+       String comfirmPass = JOptionPane.showInputDialog(this, btnSave)
+    }//GEN-LAST:event_btnAdminCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3010,9 +3114,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3025,6 +3133,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblAdmin;
@@ -3045,6 +3154,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel logOut;
     private javax.swing.JPanel logo;
     private javax.swing.JPanel main;
+    private javax.swing.JPanel pnlAdmin;
     private javax.swing.JPanel pnlAppo;
     private javax.swing.JPanel pnlDash;
     private javax.swing.JPanel pnlHistory;
@@ -3698,49 +3808,45 @@ public class Dash extends javax.swing.JFrame {
         }
     }
 
-    private void loadInvoiceTable(JTable invoiceTable) {
-        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
-
-        model.setRowCount(0);
-        pst = null;
-        rs = null;
-
-        String sql = "SELECT inv_id, job_id, discount, total_amount, pay_amount, payment_method, balance, cust_name, bill_type, recoded_user "
-                + "FROM invoice WHERE inv_id LIKE ? OR cust_name LIKE ? ORDER BY recorded_at DESC";
-
+    private void loadInvoiceTable(JTable invoiceTable, String searchQuery) {
+        int c;
         try {
-            pst = db.con.prepareStatement(sql);
-
-//            pst.setString(1, "%" + searchQuery + "%");
-//            pst.setString(2, "%" + searchQuery + "%");
+            String sql;
+            // Check if the search query is empty
+            if (searchQuery == null || searchQuery.trim().isEmpty()) {
+                sql = "SELECT inv_id, job_id, discount, total_amount, pay_amount, payment_method, balance, cust_name, bill_type, recoded_user "
+                        + "FROM invoice ORDER BY recorded_at DESC";
+                pst = db.con.prepareStatement(sql);
+            } else {
+                sql = "SELECT inv_id, job_id, discount, total_amount, pay_amount, payment_method, balance, cust_name, bill_type, recoded_user "
+                        + "FROM invoice WHERE inv_id LIKE ? OR cust_name LIKE ? ORDER BY recorded_at DESC";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, "%" + searchQuery + "%");
+                pst.setString(2, "%" + searchQuery + "%");
+            }
 
             rs = pst.executeQuery();
 
-            while (rs.next()) {
-                String invId = rs.getString("inv_id");
-                String jobId = rs.getString("job_id");
-                int discount = rs.getInt("discount");
-                int total = rs.getInt("total_amount");
-                int payAmount = rs.getInt("pay_amount");
-                String method = rs.getString("payment_method");
-                int balance = rs.getInt("balance");
-                String customer = rs.getString("cust_name");
-                String billType = rs.getString("bill_type");
-                String user = rs.getString("recoded_user");
+            ResultSetMetaData rd = rs.getMetaData();
+            c = rd.getColumnCount();
 
-                Object[] rowData = {
-                    invId, // 1. Invoice
-                    jobId, // 2. JobID
-                    discount, // 3. Discount
-                    total, // 4. Total
-                    payAmount, // 5. Pay Amount
-                    method, // 6. Method
-                    balance, // 7. Balance
-                    customer, // 8. Customer
-                    billType, // 9. Bill Type
-                    user // 10. User
-                };
-                model.addRow(rowData);
+            DefaultTableModel dtm = (DefaultTableModel) invoiceTable.getModel();
+            dtm.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v3 = new Vector();
+                v3.add(rs.getString("inv_id"));
+                v3.add(rs.getString("job_id"));
+                v3.add(rs.getString("discount"));
+                v3.add(rs.getString("total_amount"));
+                v3.add(rs.getString("pay_amount"));
+                v3.add(rs.getString("payment_method"));
+                v3.add(rs.getString("balance"));
+                v3.add(rs.getString("cust_name"));
+                v3.add(rs.getString("bill_type"));
+                v3.add(rs.getString("recoded_user"));
+
+                dtm.addRow(v3);
             }
 
         } catch (SQLException e) {
