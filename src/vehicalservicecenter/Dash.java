@@ -62,26 +62,42 @@ public class Dash extends javax.swing.JFrame {
         loadOngoingJobsTable();
         loadInventoryTable();
         setupAutocomplete();
-        loadInventoryItemNames();
+        loadAccessoriesInventory();
+        registerGlobalShortcuts();
         loadBrand();
         loadUserTable();
         loadInvoiceTable(invoiceTable, "");
+
+        styleAdminTables(jTable1); // User Table
+        styleAdminTables(jTable4); // Technician Table
+        styleAdminTables(jTable5); // Services Table
+        styleAdminTables(jTable6);
+        styleAdminTables(jTable7); // Service Report Table
 
         // Standardize ComboBox models to correct spelling and status categories
         combRole1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy"}));
         combRole2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy", "Maintenance"}));
         combRole3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy", "Maintenance"}));
 
-        // Register action listeners for the Clear buttons
+        // Register action listeners for the Clear buttons and Report Print button
         UClear.addActionListener(this::UClearActionPerformed);
         UClear1.addActionListener(this::UClear1ActionPerformed);
         UClear2.addActionListener(this::UClear2ActionPerformed);
         UClear3.addActionListener(this::UClear3ActionPerformed);
+        btnPrintPDF.addActionListener(this::btnPrintPDFActionPerformed);
+
+        // Register PropertyChangeListeners for date choosers
+        jDateChooser1.addPropertyChangeListener("date", evt -> loadServiceReportTable());
+        jDateChooser2.addPropertyChangeListener("date", evt -> loadServiceReportTable());
 
         // Load administration tables
         loadTechnicianTable();
         loadServicesTable();
         loadBaysTable();
+        initInventoryManageCRUD();
+        loadSparePartsAdminTable();
+        loadAccessoriesTable();
+        loadServiceReportTable();
 
         // Pre-populate input fields with generated IDs
         clearUserFields();
@@ -2296,14 +2312,19 @@ public class Dash extends javax.swing.JFrame {
         jPanel12.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         jPanel12.setPreferredSize(new java.awt.Dimension(300, 612));
 
+        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel21.setText("Name");
 
+        jLabel59.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel59.setText("User Name");
 
+        jLabel60.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel60.setText("Email");
 
+        jLabel61.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel61.setText("NIC");
 
+        jLabel62.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel62.setText("Role");
 
         combRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
@@ -2319,6 +2340,7 @@ public class Dash extends javax.swing.JFrame {
 
         UClear.setText("Clear");
 
+        jLabel63.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel63.setText("Phone");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -2405,17 +2427,11 @@ public class Dash extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -2431,10 +2447,13 @@ public class Dash extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         jPanel15.setPreferredSize(new java.awt.Dimension(300, 612));
 
+        jLabel64.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel64.setText("Name");
 
+        jLabel67.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel67.setText("NIC");
 
+        jLabel68.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel68.setText("Status");
 
         combRole1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy" }));
@@ -2450,14 +2469,17 @@ public class Dash extends javax.swing.JFrame {
 
         UClear1.setText("Clear");
 
+        jLabel69.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel69.setText("Phone");
 
+        jLabel70.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel70.setText("Spesiality");
 
         txtSpeality.setColumns(20);
         txtSpeality.setRows(5);
         jScrollPane9.setViewportView(txtSpeality);
 
+        jLabel65.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel65.setText("ID");
 
         txtName2.setEditable(false);
@@ -2575,10 +2597,13 @@ public class Dash extends javax.swing.JFrame {
         jPanel19.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         jPanel19.setPreferredSize(new java.awt.Dimension(300, 612));
 
+        jLabel66.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel66.setText("Service Name");
 
+        jLabel71.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel71.setText("Price");
 
+        jLabel72.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel72.setText("Status");
 
         combRole2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy", "Maintains" }));
@@ -2598,6 +2623,7 @@ public class Dash extends javax.swing.JFrame {
         txtSpeality1.setRows(5);
         jScrollPane11.setViewportView(txtSpeality1);
 
+        jLabel75.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel75.setText("Service ID");
 
         txtName4.setEditable(false);
@@ -2727,8 +2753,8 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel16Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2744,6 +2770,8 @@ public class Dash extends javax.swing.JFrame {
         );
 
         jPanel9.add(jPanel16, java.awt.BorderLayout.LINE_START);
+
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel77.setText("Accessories");
 
@@ -2767,11 +2795,12 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane8))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(371, Short.MAX_VALUE))))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2780,7 +2809,7 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         jPanel9.add(jPanel20, java.awt.BorderLayout.CENTER);
@@ -2796,8 +2825,10 @@ public class Dash extends javax.swing.JFrame {
         jPanel22.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         jPanel22.setPreferredSize(new java.awt.Dimension(300, 612));
 
+        jLabel78.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel78.setText("Bay Name");
 
+        jLabel80.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel80.setText("Status");
 
         combRole3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy", "Maintains" }));
@@ -2813,6 +2844,7 @@ public class Dash extends javax.swing.JFrame {
 
         UClear3.setText("Clear");
 
+        jLabel81.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel81.setText("Bay ID");
 
         txtName6.setEditable(false);
@@ -2907,19 +2939,35 @@ public class Dash extends javax.swing.JFrame {
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Invoice ID", "Job ID", "Customer Name", "Total Amount", "Paid", "Balance", "Date"
             }
-        ));
-        jScrollPane15.setViewportView(jTable7);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane15.setViewportView(jTable7);
+        if (jTable7.getColumnModel().getColumnCount() > 0) {
+            jTable7.getColumnModel().getColumn(0).setResizable(false);
+            jTable7.getColumnModel().getColumn(1).setResizable(false);
+            jTable7.getColumnModel().getColumn(2).setResizable(false);
+            jTable7.getColumnModel().getColumn(3).setResizable(false);
+            jTable7.getColumnModel().getColumn(4).setResizable(false);
+            jTable7.getColumnModel().getColumn(5).setResizable(false);
+            jTable7.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        jLabel79.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel79.setText("FROM");
 
+        jLabel82.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel82.setText("To");
 
         btnPrintPDF.setText("Print PDF");
@@ -2938,13 +2986,9 @@ public class Dash extends javax.swing.JFrame {
                             .addComponent(jLabel79))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addComponent(jLabel82)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(470, 470, 470)
+                            .addComponent(jLabel82)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPrintPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -2961,7 +3005,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPrintPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3055,27 +3099,86 @@ public class Dash extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Please add items to the list first!");
                 return;
             }
+
+            // Start DB Transaction
+            db.con.setAutoCommit(false);
+
             ArrayList<Object[]> serviceList = new ArrayList<>();
             double totalAmount = 0.0;
 
             for (int i = 0; i < model.getRowCount(); i++) {
-                String itemName = model.getValueAt(i, 0).toString(); //  Item Name
-                String qty = model.getValueAt(i, 1).toString();      //Qty
-                double price = Double.parseDouble(model.getValueAt(i, 2).toString()); //Price
+                String itemName = model.getValueAt(i, 0).toString(); // Item Name: brand + " - " + details
+                int qtyToDeduct = Integer.parseInt(model.getValueAt(i, 1).toString()); // Qty
+                double price = Double.parseDouble(model.getValueAt(i, 2).toString()); // Price
 
-                serviceList.add(new Object[]{itemName, qty, price});
+                // Parse brand and details
+                String[] nameParts = itemName.split(" - ", 2);
+                if (nameParts.length < 2) {
+                    throw new Exception("Invalid item name format in table: " + itemName);
+                }
+                String brand = nameParts[0].trim();
+                String details = nameParts[1].trim();
 
+                // 1. Verify current stock in DB first to avoid race conditions
+                int currentQty = 0;
+                String selectSql = "SELECT qty FROM inventory WHERE brand = ? AND details = ? FOR UPDATE";
+                pst = db.con.prepareStatement(selectSql);
+                pst.setString(1, brand);
+                pst.setString(2, details);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    currentQty = rs.getInt("qty");
+                } else {
+                    throw new Exception("Item not found in inventory: " + itemName);
+                }
+                rs.close();
+                pst.close();
+
+                if (currentQty < qtyToDeduct) {
+                    throw new Exception("Insufficient stock for " + itemName + ". Available: " + currentQty + ", Requested: " + qtyToDeduct);
+                }
+
+                // 2. Perform UPDATE subtraction
+                String updateSql = "UPDATE inventory SET qty = qty - ? WHERE brand = ? AND details = ?";
+                pst = db.con.prepareStatement(updateSql);
+                pst.setInt(1, qtyToDeduct);
+                pst.setString(2, brand);
+                pst.setString(3, details);
+                
+                int updatedRows = pst.executeUpdate();
+                pst.close();
+
+                if (updatedRows == 0) {
+                    throw new Exception("Failed to update inventory for " + itemName);
+                }
+
+                serviceList.add(new Object[]{itemName, String.valueOf(qtyToDeduct), price});
                 totalAmount += price;
             }
 
-            BillStatement myBillData = new BillStatement("General Customer", totalAmount, serviceList);
+            // Commit Transaction
+            db.con.commit();
+            db.con.setAutoCommit(true);
 
+            // Open Bill Frame
+            BillStatement myBillData = new BillStatement("General Customer", totalAmount, serviceList);
             BillFrame bill = new BillFrame(billType, myBillData, this);
             bill.setVisible(true);
 
+            // Clear UI elements and Table
+            model.setRowCount(0);
+            jTextField8.setText("");
+            loadInventoryTable();
+
         } catch (Exception e) {
+            try {
+                db.con.rollback();
+                db.con.setAutoCommit(true);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Error transferring data: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, "Transaction failed and rolled back: " + e.getMessage(), "Billing Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBillActionPerformed
 
@@ -3436,21 +3539,61 @@ public class Dash extends javax.swing.JFrame {
     private void invenAddAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invenAddAccActionPerformed
         try {
             if (cmbName.getSelectedIndex() <= 0 || cmbDetails.getSelectedIndex() <= 0) {
-                JOptionPane.showMessageDialog(this, "Please select a option", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please select an option", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (txtQtuInvent.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please Enter Quantity!", "Qry Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please Enter Quantity!", "Qty Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            String itemName = cmbBrand.getSelectedItem().toString() + " - " + cmbDetails.getSelectedItem().toString();
-            int qty = Integer.parseInt(txtQtuInvent.getText().trim());
+            String category = cmbName.getSelectedItem().toString();
+            String brand = cmbBrand.getSelectedItem().toString();
+            String details = cmbDetails.getSelectedItem().toString();
+            String itemName = brand + " - " + details;
+            int qtyToAdd = Integer.parseInt(txtQtuInvent.getText().trim());
+
+            if (qtyToAdd <= 0) {
+                JOptionPane.showMessageDialog(this, "Please Enter quantity > 0!", "Qty Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // 1. Fetch current database stock
+            int dbQty = 0;
+            String stockSql = "SELECT qty FROM inventory WHERE catagory = ? AND brand = ? AND details = ?";
+            pst = db.con.prepareStatement(stockSql);
+            pst.setString(1, category);
+            pst.setString(2, brand);
+            pst.setString(3, details);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                dbQty = rs.getInt("qty");
+            }
+            rs.close();
+            pst.close();
+
+            // 2. Sum up quantity already in tableAcc
+            DefaultTableModel model = (DefaultTableModel) tableAcc.getModel();
+            int alreadyAddedQty = 0;
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (model.getValueAt(i, 0).toString().equals(itemName)) {
+                    alreadyAddedQty += Integer.parseInt(model.getValueAt(i, 1).toString());
+                }
+            }
+
+            // 3. Validation
+            if (alreadyAddedQty + qtyToAdd > dbQty) {
+                JOptionPane.showMessageDialog(this, 
+                    "Requested quantity (" + qtyToAdd + ") + already added (" + alreadyAddedQty + ") exceeds available stock (" + dbQty + ")!", 
+                    "Stock Validation Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             double finalPrice = Double.parseDouble(txtFinalPrice.getText().trim());
 
-            DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableAcc.getModel();
-            model.addRow(new Object[]{itemName, qty, finalPrice});
+            model.addRow(new Object[]{itemName, qtyToAdd, finalPrice});
 
             double grandTotal = 0;
             for (int i = 0; i < model.getRowCount(); i++) {
@@ -3499,7 +3642,39 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearch3KeyPressed
 
     private void txtSearch3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch3KeyReleased
-        // TODO add your handling code here:
+        String searchKey = txtSearch3.getText().trim();
+
+        try {
+            String sql = "SELECT part_name, brand, details, qty, unit_price FROM spare_parts WHERE part_name LIKE ? OR brand LIKE ? OR details LIKE ?";
+
+            pst = db.con.prepareStatement(sql);
+
+            pst.setString(1, "%" + searchKey + "%");
+            pst.setString(2, "%" + searchKey + "%");
+            pst.setString(3, "%" + searchKey + "%");
+
+            rs = pst.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) table3.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("part_name"),
+                    rs.getString("brand"),
+                    rs.getString("details"),
+                    rs.getString("qty"),
+                    rs.getString("unit_price")
+                };
+                model.addRow(row);
+            }
+
+            rs.close();
+            pst.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_txtSearch3KeyReleased
 
     private void btnSearch3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch3ActionPerformed
@@ -3519,6 +3694,7 @@ public class Dash extends javax.swing.JFrame {
             acce.setVisible(false);
             spair.setVisible(true);
             Spair.setVisible(true);
+            loadSparePartsItemNames();
         }
     }//GEN-LAST:event_conbTableSelectActionPerformed
 
@@ -3641,19 +3817,111 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void cmbName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbName1ActionPerformed
-        // TODO add your handling code here:
+        if (cmbName1.getSelectedItem() != null && cmbName1.getSelectedIndex() > 0) {
+            String selectedName = cmbName1.getSelectedItem().toString();
+
+            try {
+                pst = db.con.prepareStatement("SELECT DISTINCT brand FROM spare_parts WHERE part_name = ?");
+                pst.setString(1, selectedName);
+                rs = pst.executeQuery();
+
+                cmbBrand1.removeAllItems();
+                cmbBrand1.addItem("- Select Brand -");
+                while (rs.next()) {
+                    cmbBrand1.addItem(rs.getString("brand"));
+                }
+                rs.close();
+                pst.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        } else {
+            cmbBrand1.removeAllItems();
+            cmbBrand1.addItem("- Select Brand -");
+        }
     }//GEN-LAST:event_cmbName1ActionPerformed
 
     private void cmbBrand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBrand1ActionPerformed
-        // TODO add your handling code here:
+        if (cmbBrand1.getSelectedItem() != null && cmbBrand1.getSelectedIndex() > 0) {
+            String selectedName = cmbName1.getSelectedItem().toString();
+            String selectedBrand = cmbBrand1.getSelectedItem().toString();
+
+            try {
+                pst = db.con.prepareStatement("SELECT DISTINCT details FROM spare_parts WHERE part_name = ? AND brand = ?");
+                pst.setString(1, selectedName);
+                pst.setString(2, selectedBrand);
+                rs = pst.executeQuery();
+
+                cmbDetails1.removeAllItems();
+                cmbDetails1.addItem("- Select Details -");
+                while (rs.next()) {
+                    cmbDetails1.addItem(rs.getString("details"));
+                }
+                rs.close();
+                pst.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        } else {
+            cmbDetails1.removeAllItems();
+            cmbDetails1.addItem("- Select Details -");
+        }
     }//GEN-LAST:event_cmbBrand1ActionPerformed
 
     private void cmbDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDetails1ActionPerformed
-        // TODO add your handling code here:
+        if (cmbDetails1.getSelectedItem() != null && cmbDetails1.getSelectedIndex() > 0) {
+            String selectedName = cmbName1.getSelectedItem().toString();
+            String selectedBrand = cmbBrand1.getSelectedItem().toString();
+            String selectedDetails = cmbDetails1.getSelectedItem().toString();
+
+            try {
+                pst = db.con.prepareStatement("SELECT unit_price FROM spare_parts WHERE part_name = ? AND brand = ? AND details = ?");
+                pst.setString(1, selectedName);
+                pst.setString(2, selectedBrand);
+                pst.setString(3, selectedDetails);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    txtPrice1.setText(rs.getString("unit_price"));
+                }
+                rs.close();
+                pst.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        } else {
+            txtPrice1.setText("");
+        }
     }//GEN-LAST:event_cmbDetails1ActionPerformed
 
     private void txtQtuInvent1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQtuInvent1MouseClicked
-        // TODO add your handling code here:
+        String currentQty = txtQtuInvent1.getText().trim();
+        if (currentQty.isEmpty()) {
+            currentQty = "1";
+        }
+
+        String input = JOptionPane.showInputDialog(this, "Please Enter Quantity :", currentQty);
+
+        if (input != null && !input.trim().isEmpty()) {
+            try {
+                int qty = Integer.parseInt(input.trim());
+
+                if (qty > 0) {
+                    txtQtuInvent1.setText(String.valueOf(qty));
+
+                    String priceStr = txtPrice1.getText().trim();
+                    if (!priceStr.isEmpty()) {
+                        double price = Double.parseDouble(priceStr);
+                        double lastPrice = qty * price;
+                        txtFinalPrice1.setText(String.format("%.2f", lastPrice));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Please Enter number > 0!", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_txtQtuInvent1MouseClicked
 
     private void txtQtuInvent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtuInvent1ActionPerformed
@@ -3669,8 +3937,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void btnBillSpairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillSpairActionPerformed
-
-        String billType = "accBill";
+        String billType = "spairBill";
         try {
             DefaultTableModel model = (DefaultTableModel) tableSpair.getModel();
 
@@ -3679,31 +3946,93 @@ public class Dash extends javax.swing.JFrame {
                 return;
             }
 
+            // Start DB Transaction
+            db.con.setAutoCommit(false);
+
             ArrayList<Object[]> tableData = new ArrayList<>();
+            double total = 0.0;
+
             for (int i = 0; i < model.getRowCount(); i++) {
-                Object[] row = new Object[3];
-                row[0] = model.getValueAt(i, 0); // Item Name
-                row[1] = model.getValueAt(i, 1); // Qty
-                row[2] = model.getValueAt(i, 2); // Price
-                tableData.add(row);
+                String itemName = model.getValueAt(i, 0).toString(); // Item Name: name + " - " + brand + " - " + details
+                int qtyToDeduct = Integer.parseInt(model.getValueAt(i, 1).toString()); // Qty
+                double price = Double.parseDouble(model.getValueAt(i, 2).toString()); // Price
+
+                // Parse name, brand, details
+                String[] nameParts = itemName.split(" - ", 3);
+                if (nameParts.length < 3) {
+                    throw new Exception("Invalid item name format in table: " + itemName);
+                }
+                String partName = nameParts[0].trim();
+                String brand = nameParts[1].trim();
+                String details = nameParts[2].trim();
+
+                // 1. Verify current stock in DB first to avoid race conditions
+                int currentQty = 0;
+                String selectSql = "SELECT qty FROM spare_parts WHERE part_name = ? AND brand = ? AND details = ? FOR UPDATE";
+                pst = db.con.prepareStatement(selectSql);
+                pst.setString(1, partName);
+                pst.setString(2, brand);
+                pst.setString(3, details);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    currentQty = rs.getInt("qty");
+                } else {
+                    throw new Exception("Spare part not found: " + itemName);
+                }
+                rs.close();
+                pst.close();
+
+                if (currentQty < qtyToDeduct) {
+                    throw new Exception("Insufficient stock for " + itemName + ". Available: " + currentQty + ", Requested: " + qtyToDeduct);
+                }
+
+                // 2. Perform UPDATE subtraction
+                String updateSql = "UPDATE spare_parts SET qty = qty - ? WHERE part_name = ? AND brand = ? AND details = ?";
+                pst = db.con.prepareStatement(updateSql);
+                pst.setInt(1, qtyToDeduct);
+                pst.setString(2, partName);
+                pst.setString(3, brand);
+                pst.setString(4, details);
+                
+                int updatedRows = pst.executeUpdate();
+                pst.close();
+
+                if (updatedRows == 0) {
+                    throw new Exception("Failed to update spare parts stock for " + itemName);
+                }
+
+                tableData.add(new Object[]{itemName, String.valueOf(qtyToDeduct), price});
+                total += price;
             }
+
+            // Commit Transaction
+            db.con.commit();
+            db.con.setAutoCommit(true);
 
             String cusName = txtCustName.getText().trim();
             if (cusName.isEmpty()) {
                 cusName = "General Customer";
             }
 
-            double total = 0.0;
-            if (!jTextField9.getText().trim().isEmpty()) {
-                total = Double.parseDouble(jTextField9.getText().trim());
-            }
-
+            // Open Bill Frame
             BillStatement myBillData = new BillStatement(cusName, total, tableData);
             BillFrame billWindow = new BillFrame(billType, myBillData, this);
             billWindow.setVisible(true);
 
+            // Clear UI elements and Table
+            model.setRowCount(0);
+            jTextField9.setText("");
+            loadSparePartsAdminTable();
+
         } catch (Exception e) {
+            try {
+                db.con.rollback();
+                db.con.setAutoCommit(true);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Transaction failed and rolled back: " + e.getMessage(), "Billing Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBillSpairActionPerformed
 
@@ -3716,7 +4045,88 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBill5ActionPerformed
 
     private void invenAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invenAdd1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (cmbName1.getSelectedIndex() <= 0 || cmbDetails1.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Please select an option", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (txtQtuInvent1.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Quantity!", "Qty Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String partName = cmbName1.getSelectedItem().toString();
+            String brand = cmbBrand1.getSelectedItem().toString();
+            String details = cmbDetails1.getSelectedItem().toString();
+            String itemName = partName + " - " + brand + " - " + details;
+            int qtyToAdd = Integer.parseInt(txtQtuInvent1.getText().trim());
+
+            if (qtyToAdd <= 0) {
+                JOptionPane.showMessageDialog(this, "Please Enter quantity > 0!", "Qty Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // 1. Fetch current database stock
+            int dbQty = 0;
+            String stockSql = "SELECT qty FROM spare_parts WHERE part_name = ? AND brand = ? AND details = ?";
+            pst = db.con.prepareStatement(stockSql);
+            pst.setString(1, partName);
+            pst.setString(2, brand);
+            pst.setString(3, details);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                dbQty = rs.getInt("qty");
+            }
+            rs.close();
+            pst.close();
+
+            // 2. Sum up quantity already in tableSpair
+            DefaultTableModel model = (DefaultTableModel) tableSpair.getModel();
+            int alreadyAddedQty = 0;
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (model.getValueAt(i, 0).toString().equals(itemName)) {
+                    alreadyAddedQty += Integer.parseInt(model.getValueAt(i, 1).toString());
+                }
+            }
+
+            // 3. Validation
+            if (alreadyAddedQty + qtyToAdd > dbQty) {
+                JOptionPane.showMessageDialog(this, 
+                    "Requested quantity (" + qtyToAdd + ") + already added (" + alreadyAddedQty + ") exceeds available stock (" + dbQty + ")!", 
+                    "Stock Validation Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            double finalPrice = Double.parseDouble(txtFinalPrice1.getText().trim());
+
+            model.addRow(new Object[]{itemName, qtyToAdd, finalPrice});
+
+            double grandTotal = 0;
+            for (int i = 0; i < model.getRowCount(); i++) {
+                grandTotal += Double.parseDouble(model.getValueAt(i, 2).toString());
+            }
+            jTextField9.setText(String.format("%.2f", grandTotal));
+
+            cmbName1.setSelectedIndex(0);
+
+            if (cmbBrand1.getItemCount() > 0) {
+                cmbBrand1.setSelectedIndex(0);
+            }
+            if (cmbDetails1.getItemCount() > 0) {
+                cmbDetails1.setSelectedIndex(0);
+            }
+
+            txtPrice1.setText("");
+            txtQtuInvent1.setText("");
+            txtFinalPrice1.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Number!", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_invenAdd1ActionPerformed
 
     private void accesChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accesChartActionPerformed
@@ -3752,7 +4162,7 @@ public class Dash extends javax.swing.JFrame {
                         cl.show(CardPanel, "card7");
 
                         lblTopic.setText("ADMIN PANEL");
-                        
+
                         btnAdminC.setBackground(setColor1);
                         btnDash.setBackground(setColor2);
                         btnAppo.setBackground(setColor2);
@@ -3764,6 +4174,8 @@ public class Dash extends javax.swing.JFrame {
                         loadTechnicianTable();
                         loadServicesTable();
                         loadBaysTable();
+                        loadSparePartsAdminTable();
+                        loadAccessoriesTable();
 
                         clearUserFields();
                         clearTechnicianFields();
@@ -3883,7 +4295,7 @@ public class Dash extends javax.swing.JFrame {
             pst.setString(4, nic);
             pst.setString(5, phone);
             pst.setString(6, nic);
-            pst.setString(8, role);
+            pst.setString(7, role);
 
             int result = pst.executeUpdate();
             if (result > 0) {
@@ -5208,35 +5620,36 @@ public class Dash extends javax.swing.JFrame {
     }
 
     public void loadInventoryTable() {
-        int c;
         try {
             pst = db.con.prepareStatement("SELECT catagory, brand, details, qty, unit_price FROM inventory");
             rs = pst.executeQuery();
-
-            ResultSetMetaData rd = rs.getMetaData();
-            c = rd.getColumnCount();
 
             DefaultTableModel dtm = (DefaultTableModel) table1.getModel();
             dtm.setRowCount(0);
 
             while (rs.next()) {
-                Vector v4 = new Vector();
-                for (int a = 1; a <= c; a++) {
-                    v4.add(rs.getString("catagory"));
-                    v4.add(rs.getString("brand"));
-                    v4.add(rs.getString("details"));
-                    v4.add(rs.getString("qty"));
-                    v4.add(rs.getString("unit_price"));
-                }
-                dtm.addRow(v4);
+                dtm.addRow(new Object[]{
+                    rs.getString("catagory"),
+                    rs.getString("brand"),
+                    rs.getString("details"),
+                    rs.getString("qty"),
+                    rs.getString("unit_price")
+                });
             }
+            rs.close();
+            pst.close();
+
+            // Register LowStockRenderer on table1 (index 3 is Qty)
+            LowStockRenderer renderer = new LowStockRenderer(3);
+            table1.setDefaultRenderer(Object.class, renderer);
+            table1.setDefaultRenderer(String.class, renderer);
 
         } catch (SQLException ex) {
-            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 
-    private void loadInventoryItemNames() {
+    private void loadAccessoriesInventory() {
         try {
             pst = db.con.prepareStatement("SELECT DISTINCT catagory FROM inventory");
             rs = pst.executeQuery();
@@ -5250,8 +5663,39 @@ public class Dash extends javax.swing.JFrame {
             pst.close();
 
         } catch (SQLException ex) {
-            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            JOptionPane.showMessageDialog(this, "Error loading accessories inventory: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void registerGlobalShortcuts() {
+        java.awt.KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new java.awt.KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(java.awt.event.KeyEvent e) {
+                if (e.getID() == java.awt.event.KeyEvent.KEY_PRESSED) {
+                    switch (e.getKeyCode()) {
+                        case java.awt.event.KeyEvent.VK_F1:
+                            btnDash.doClick();
+                            return true;
+                        case java.awt.event.KeyEvent.VK_F2:
+                            btnAppo.doClick();
+                            return true;
+                        case java.awt.event.KeyEvent.VK_F3:
+                            btnInven.doClick();
+                            return true;
+                        case java.awt.event.KeyEvent.VK_F4:
+                            btnReg.doClick();
+                            return true;
+                        case java.awt.event.KeyEvent.VK_F5:
+                            btnTech.doClick();
+                            return true;
+                        case java.awt.event.KeyEvent.VK_F6:
+                            btnHistory.doClick();
+                            return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void loadBrand() {
@@ -5767,4 +6211,947 @@ public class Dash extends javax.swing.JFrame {
         combRole3.setSelectedIndex(0);
         jTable6.clearSelection();
     }
+
+    private void styleAdminTables(JTable table) {
+        if (table != null) {
+            // 1. Table Header එක Royal Blue (#0466c8)
+            table.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
+            table.getTableHeader().setBackground(Color.decode("#000000")); // 🌟 Header Background
+            table.getTableHeader().setForeground(Color.WHITE);
+            table.getTableHeader().setPreferredSize(new Dimension(0, 35)); // Header
+            table.getTableHeader().setBorder(BorderFactory.createEmptyBorder());
+
+            // 2. Table Rows & Selection Styling
+            table.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            table.setRowHeight(38);
+            table.setSelectionBackground(new Color(230, 242, 255)); 
+            table.setSelectionForeground(Color.decode("#0466c8"));
+
+            // Grid Lines
+            table.setShowGrid(false);
+            table.setIntercellSpacing(new Dimension(0, 0));
+
+            // 3.(Center Alignment for Rows)
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+            table.setDefaultRenderer(Object.class, centerRenderer);
+            table.setDefaultRenderer(String.class, centerRenderer);
+            table.setDefaultRenderer(Integer.class, centerRenderer);
+            table.setDefaultRenderer(Double.class, centerRenderer);
+
+            // 4. Scroll Pane 
+            if (table.getParent() != null && table.getParent().getParent() instanceof JScrollPane) {
+                JScrollPane scrollPane = (JScrollPane) table.getParent().getParent();
+                scrollPane.setBorder(BorderFactory.createEmptyBorder());
+                scrollPane.getViewport().setBackground(Color.WHITE);
+            }
+        }
+    }
+
+    public void loadServiceReportTable() {
+        java.util.Date fromDate = jDateChooser1.getDate();
+        java.util.Date toDate = jDateChooser2.getDate();
+
+        try {
+            String sql;
+            if (fromDate == null || toDate == null) {
+                sql = "SELECT inv_id, job_id, cust_name, total_amount, pay_amount, balance, DATE(recorded_at) as date_only FROM invoice ORDER BY recorded_at ASC";
+                pst = db.con.prepareStatement(sql);
+            } else {
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                String fromStr = sdf.format(fromDate);
+                String toStr = sdf.format(toDate);
+                sql = "SELECT inv_id, job_id, cust_name, total_amount, pay_amount, balance, DATE(recorded_at) as date_only FROM invoice WHERE DATE(recorded_at) BETWEEN ? AND ? ORDER BY recorded_at ASC";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, fromStr);
+                pst.setString(2, toStr);
+            }
+            rs = pst.executeQuery();
+
+            DefaultTableModel dtm = new DefaultTableModel(
+                new Object[][] {},
+                new String[] { "Invoice ID", "Job ID", "Customer Name", "Total Amount", "Paid", "Balance", "Date" }
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable7.setModel(dtm);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("inv_id"));
+                v.add(rs.getString("job_id"));
+                v.add(rs.getString("cust_name"));
+                v.add(rs.getString("total_amount"));
+                v.add(rs.getString("pay_amount"));
+                v.add(rs.getString("balance"));
+                v.add(rs.getString("date_only"));
+
+                dtm.addRow(v);
+            }
+
+            styleAdminTables(jTable7);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading service reports: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void btnPrintPDFActionPerformed(java.awt.event.ActionEvent evt) {
+        int rowCount = jTable7.getRowCount();
+        if (rowCount == 0) {
+            JOptionPane.showMessageDialog(this, "The Service Report table is empty! Please select dates with data first.", "Print Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        java.util.Date fromDate = jDateChooser1.getDate();
+        java.util.Date toDate = jDateChooser2.getDate();
+
+        String desktopPath = System.getProperty("user.home") + "/Desktop/";
+        String filename;
+        String subtitleText;
+
+        if (fromDate == null || toDate == null) {
+            filename = desktopPath + "Service_Report_All.pdf";
+            subtitleText = "All Service Revenue Report";
+        } else {
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String fromStr = sdf.format(fromDate);
+            String toStr = sdf.format(toDate);
+            filename = desktopPath + "Service_Report_" + fromStr + "_to_" + toStr + ".pdf";
+            subtitleText = "Service Revenue Report (" + fromStr + " to " + toStr + ")";
+        }
+
+        com.itextpdf.text.Document document = new com.itextpdf.text.Document(com.itextpdf.text.PageSize.A4, 36, 36, 54, 54);
+
+        try {
+            com.itextpdf.text.pdf.PdfWriter.getInstance(document, new java.io.FileOutputStream(filename));
+            document.open();
+
+            // Set up Fonts
+            com.itextpdf.text.Font titleFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 20, com.itextpdf.text.Font.BOLD, new com.itextpdf.text.BaseColor(4, 102, 200));
+            com.itextpdf.text.Font subtitleFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 12, com.itextpdf.text.Font.NORMAL, new com.itextpdf.text.BaseColor(100, 100, 100));
+            com.itextpdf.text.Font headerCellFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 10, com.itextpdf.text.Font.BOLD, com.itextpdf.text.BaseColor.WHITE);
+            com.itextpdf.text.Font bodyCellFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 9, com.itextpdf.text.Font.NORMAL);
+            com.itextpdf.text.Font totalFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 12, com.itextpdf.text.Font.BOLD, new com.itextpdf.text.BaseColor(4, 102, 200));
+
+            // Title
+            com.itextpdf.text.Paragraph title = new com.itextpdf.text.Paragraph("SALFORD CAR SERVICE & REPAIR", titleFont);
+            title.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Subtitle
+            com.itextpdf.text.Paragraph subtitle = new com.itextpdf.text.Paragraph(subtitleText, subtitleFont);
+            subtitle.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+            subtitle.setSpacingAfter(20);
+            document.add(subtitle);
+
+            // Create PdfPTable with 7 columns
+            com.itextpdf.text.pdf.PdfPTable pdfTable = new com.itextpdf.text.pdf.PdfPTable(7);
+            pdfTable.setWidthPercentage(100);
+            pdfTable.setSpacingBefore(10);
+            pdfTable.setSpacingAfter(10);
+            float[] columnWidths = {1.2f, 1.2f, 2.0f, 1.3f, 1.2f, 1.2f, 1.5f};
+            pdfTable.setWidths(columnWidths);
+
+            // Headers
+            String[] headers = {"Invoice ID", "Job ID", "Customer Name", "Total Amount", "Paid", "Balance", "Date"};
+            com.itextpdf.text.BaseColor headerBgColor = new com.itextpdf.text.BaseColor(4, 102, 200); // #0466c8
+
+            for (String headerText : headers) {
+                com.itextpdf.text.pdf.PdfPCell cell = new com.itextpdf.text.pdf.PdfPCell(new com.itextpdf.text.Phrase(headerText, headerCellFont));
+                cell.setBackgroundColor(headerBgColor);
+                cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+                cell.setVerticalAlignment(com.itextpdf.text.Element.ALIGN_MIDDLE);
+                cell.setPadding(8);
+                pdfTable.addCell(cell);
+            }
+
+            // Populate PDF Table Rows & Calculate Grand Total
+            double grandTotalRevenue = 0;
+            for (int i = 0; i < rowCount; i++) {
+                for (int j = 0; j < 7; j++) {
+                    Object valObj = jTable7.getValueAt(i, j);
+                    String val = (valObj != null) ? valObj.toString() : "";
+                    
+                    com.itextpdf.text.pdf.PdfPCell cell = new com.itextpdf.text.pdf.PdfPCell(new com.itextpdf.text.Phrase(val, bodyCellFont));
+                    cell.setPadding(6);
+                    cell.setHorizontalAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+                    cell.setVerticalAlignment(com.itextpdf.text.Element.ALIGN_MIDDLE);
+                    pdfTable.addCell(cell);
+                }
+
+                // Sum total_amount (column index 3)
+                try {
+                    Object totalObj = jTable7.getValueAt(i, 3);
+                    if (totalObj != null) {
+                        grandTotalRevenue += Double.parseDouble(totalObj.toString());
+                    }
+                } catch (NumberFormatException e) {
+                    // Skip or log
+                }
+            }
+
+            document.add(pdfTable);
+
+            // Add spacing
+            com.itextpdf.text.Paragraph spacing = new com.itextpdf.text.Paragraph(" ");
+            spacing.setSpacingAfter(10);
+            document.add(spacing);
+
+            // Grand Total Revenue paragraph
+            com.itextpdf.text.Paragraph totalRev = new com.itextpdf.text.Paragraph("Grand Total Revenue: LKR " + String.format("%,.2f", grandTotalRevenue), totalFont);
+            totalRev.setAlignment(com.itextpdf.text.Element.ALIGN_RIGHT);
+            document.add(totalRev);
+
+            JOptionPane.showMessageDialog(this, "Service Report PDF Printed Successfully!\nSaved to: " + filename, "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error generating PDF: " + e.getMessage(), "PDF Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            if (document != null && document.isOpen()) {
+                document.close();
+            }
+        }
+    }
+
+    // Helper Methods and Classes for Inventory & Spare Parts
+
+    /**
+     * Custom renderer to highlight low-stock items (quantity <= 5) in bold bright RED.
+     */
+    public static class LowStockRenderer extends DefaultTableCellRenderer {
+        private final int qtyColIndex;
+
+        public LowStockRenderer(int qtyColIndex) {
+            this.qtyColIndex = qtyColIndex;
+            setHorizontalAlignment(JLabel.CENTER);
+        }
+
+        @Override
+        public java.awt.Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            
+            java.awt.Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            
+            try {
+                Object qtyObj = table.getValueAt(row, qtyColIndex);
+                if (qtyObj != null) {
+                    int qty = Integer.parseInt(qtyObj.toString());
+                    if (qty <= 5) {
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font(table.getFont().getName(), Font.BOLD, table.getFont().getSize()));
+                    } else {
+                        c.setFont(new Font(table.getFont().getName(), Font.PLAIN, table.getFont().getSize()));
+                        if (isSelected) {
+                            c.setForeground(table.getSelectionForeground());
+                        } else {
+                            c.setForeground(table.getForeground());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // Ignore rendering exceptions
+            }
+            return c;
+        }
+    }
+
+    /**
+     * Populates BOTH the admin spare parts grid (jTable3) and checkout spare parts grid (table3).
+     */
+    public void loadSparePartsAdminTable() {
+        try {
+            pst = db.con.prepareStatement("SELECT part_id, part_name, brand, details, qty, unit_price FROM spare_parts");
+            rs = pst.executeQuery();
+
+            // Populate Admin Grid (jTable3)
+            DefaultTableModel adminModel = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {"Part ID", "Name", "Brand", "Details", "Qty", "Unit Price"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable3.setModel(adminModel);
+
+            // Populate Checkout Grid (table3)
+            DefaultTableModel checkoutModel = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {"Item Name", "Brand", "Details", "Qty", "Unit Price"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table3.setModel(checkoutModel);
+
+            while (rs.next()) {
+                String partId = rs.getString("part_id");
+                String partName = rs.getString("part_name");
+                String brand = rs.getString("brand");
+                String details = rs.getString("details");
+                int qty = rs.getInt("qty");
+                double unitPrice = rs.getDouble("unit_price");
+
+                adminModel.addRow(new Object[]{partId, partName, brand, details, qty, unitPrice});
+                checkoutModel.addRow(new Object[]{partName, brand, details, qty, unitPrice});
+            }
+
+            rs.close();
+            pst.close();
+
+            styleAdminTables(jTable3);
+            
+            // Set LowStockRenderer after styling to avoid overwrite
+            LowStockRenderer adminRenderer = new LowStockRenderer(4);
+            jTable3.setDefaultRenderer(Object.class, adminRenderer);
+            jTable3.setDefaultRenderer(String.class, adminRenderer);
+
+            LowStockRenderer checkoutRenderer = new LowStockRenderer(3);
+            table3.setDefaultRenderer(Object.class, checkoutRenderer);
+            table3.setDefaultRenderer(String.class, checkoutRenderer);
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Loads distinct spare part names to populate the initial combo box in Checkout.
+     */
+    public void loadSparePartsItemNames() {
+        try {
+            pst = db.con.prepareStatement("SELECT DISTINCT part_name FROM spare_parts");
+            rs = pst.executeQuery();
+
+            cmbName1.removeAllItems();
+            cmbName1.addItem("- Select Name -");
+            while (rs.next()) {
+                cmbName1.addItem(rs.getString("part_name"));
+            }
+            rs.close();
+            pst.close();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    private void addGB(JPanel p, java.awt.Component c, int x, int y, int width, int height, double weightx, double weighty) {
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.gridwidth = width;
+        gbc.gridheight = height;
+        gbc.weightx = weightx;
+        gbc.weighty = weighty;
+        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(5, 5, 5, 5);
+        p.add(c, gbc);
+    }
+
+    private void initInventoryManageCRUD() {
+        // --- 1. SPARE PARTS CRUD FORM PANEL ---
+        JPanel spFormPanel = new JPanel(new java.awt.GridBagLayout());
+        spFormPanel.setBackground(Color.WHITE);
+        spFormPanel.setBorder(BorderFactory.createTitledBorder("Manage Spare Part"));
+
+        addGB(spFormPanel, new JLabel("Part ID:"), 0, 0, 1, 1, 0.0, 0.0);
+        txtSpId = new JTextField();
+        txtSpId.setEditable(false);
+        txtSpId.setBackground(new Color(240, 240, 240));
+        addGB(spFormPanel, txtSpId, 1, 0, 1, 1, 1.0, 0.0);
+
+        addGB(spFormPanel, new JLabel("Name:"), 2, 0, 1, 1, 0.0, 0.0);
+        txtSpName = new JTextField();
+        addGB(spFormPanel, txtSpName, 3, 0, 1, 1, 1.0, 0.0);
+
+        addGB(spFormPanel, new JLabel("Brand:"), 4, 0, 1, 1, 0.0, 0.0);
+        txtSpBrand = new JTextField();
+        addGB(spFormPanel, txtSpBrand, 5, 0, 1, 1, 1.0, 0.0);
+
+        addGB(spFormPanel, new JLabel("Details:"), 0, 1, 1, 1, 0.0, 0.0);
+        txtSpDetails = new JTextField();
+        addGB(spFormPanel, txtSpDetails, 1, 1, 1, 1, 1.0, 0.0);
+
+        addGB(spFormPanel, new JLabel("Qty:"), 2, 1, 1, 1, 0.0, 0.0);
+        txtSpQty = new JTextField();
+        addGB(spFormPanel, txtSpQty, 3, 1, 1, 1, 1.0, 0.0);
+
+        addGB(spFormPanel, new JLabel("Price:"), 4, 1, 1, 1, 0.0, 0.0);
+        txtSpPrice = new JTextField();
+        addGB(spFormPanel, txtSpPrice, 5, 1, 1, 1, 1.0, 0.0);
+
+        JPanel spBtnPanel = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        spBtnPanel.setBackground(Color.WHITE);
+        btnSpAdd = new JButton("Add");
+        btnSpUpdate = new JButton("Update");
+        btnSpDelete = new JButton("Delete");
+        btnSpClear = new JButton("Clear");
+        spBtnPanel.add(btnSpAdd);
+        spBtnPanel.add(btnSpUpdate);
+        spBtnPanel.add(btnSpDelete);
+        spBtnPanel.add(btnSpClear);
+        
+        customiseButtons(btnSpAdd, btnSpUpdate, btnSpDelete);
+        btnSpClear.setBackground(new Color(108, 117, 125));
+        btnSpClear.setForeground(Color.WHITE);
+        btnSpClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        addGB(spFormPanel, spBtnPanel, 0, 2, 6, 1, 1.0, 0.0);
+
+        // Re-layout jPanel16
+        jPanel16.removeAll();
+        jPanel16.setLayout(new java.awt.BorderLayout(10, 10));
+        jPanel16.setBackground(Color.WHITE);
+        jPanel16.add(jLabel76, java.awt.BorderLayout.NORTH);
+        jPanel16.add(jScrollPane10, java.awt.BorderLayout.CENTER);
+        jPanel16.add(spFormPanel, java.awt.BorderLayout.SOUTH);
+
+        // --- 2. ACCESSORIES CRUD FORM PANEL ---
+        JPanel accFormPanel = new JPanel(new java.awt.GridBagLayout());
+        accFormPanel.setBackground(Color.WHITE);
+        accFormPanel.setBorder(BorderFactory.createTitledBorder("Manage Accessory"));
+
+        addGB(accFormPanel, new JLabel("Item ID:"), 0, 0, 1, 1, 0.0, 0.0);
+        txtAccId = new JTextField();
+        txtAccId.setEditable(false);
+        txtAccId.setBackground(new Color(240, 240, 240));
+        addGB(accFormPanel, txtAccId, 1, 0, 1, 1, 1.0, 0.0);
+
+        addGB(accFormPanel, new JLabel("Category:"), 2, 0, 1, 1, 0.0, 0.0);
+        txtAccCategory = new JTextField();
+        addGB(accFormPanel, txtAccCategory, 3, 0, 1, 1, 1.0, 0.0);
+
+        addGB(accFormPanel, new JLabel("Brand:"), 4, 0, 1, 1, 0.0, 0.0);
+        txtAccBrand = new JTextField();
+        addGB(accFormPanel, txtAccBrand, 5, 0, 1, 1, 1.0, 0.0);
+
+        addGB(accFormPanel, new JLabel("Details:"), 0, 1, 1, 1, 0.0, 0.0);
+        txtAccDetails = new JTextField();
+        addGB(accFormPanel, txtAccDetails, 1, 1, 1, 1, 1.0, 0.0);
+
+        addGB(accFormPanel, new JLabel("Qty:"), 2, 1, 1, 1, 0.0, 0.0);
+        txtAccQty = new JTextField();
+        addGB(accFormPanel, txtAccQty, 3, 1, 1, 1, 1.0, 0.0);
+
+        addGB(accFormPanel, new JLabel("Price:"), 4, 1, 1, 1, 0.0, 0.0);
+        txtAccPrice = new JTextField();
+        addGB(accFormPanel, txtAccPrice, 5, 1, 1, 1, 1.0, 0.0);
+
+        JPanel accBtnPanel = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        accBtnPanel.setBackground(Color.WHITE);
+        btnAccAdd = new JButton("Add");
+        btnAccUpdate = new JButton("Update");
+        btnAccDelete = new JButton("Delete");
+        btnAccClear = new JButton("Clear");
+        accBtnPanel.add(btnAccAdd);
+        accBtnPanel.add(btnAccUpdate);
+        accBtnPanel.add(btnAccDelete);
+        accBtnPanel.add(btnAccClear);
+        
+        customiseButtons(btnAccAdd, btnAccUpdate, btnAccDelete);
+        btnAccClear.setBackground(new Color(108, 117, 125));
+        btnAccClear.setForeground(Color.WHITE);
+        btnAccClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        addGB(accFormPanel, accBtnPanel, 0, 2, 6, 1, 1.0, 0.0);
+
+        // Re-layout jPanel20
+        jPanel20.removeAll();
+        jPanel20.setLayout(new java.awt.BorderLayout(10, 10));
+        jPanel20.setBackground(Color.WHITE);
+        jPanel20.add(jLabel77, java.awt.BorderLayout.NORTH);
+        jPanel20.add(jScrollPane8, java.awt.BorderLayout.CENTER);
+        jPanel20.add(accFormPanel, java.awt.BorderLayout.SOUTH);
+
+        // --- 3. REGISTER ACTION LISTENERS & MOUSE CLICKS ---
+        btnSpAdd.addActionListener(this::btnSpAddActionPerformed);
+        btnSpUpdate.addActionListener(this::btnSpUpdateActionPerformed);
+        btnSpDelete.addActionListener(this::btnSpDeleteActionPerformed);
+        btnSpClear.addActionListener(evt -> clearSpFields());
+
+        btnAccAdd.addActionListener(this::btnAccAddActionPerformed);
+        btnAccUpdate.addActionListener(this::btnAccUpdateActionPerformed);
+        btnAccDelete.addActionListener(this::btnAccDeleteActionPerformed);
+        btnAccClear.addActionListener(evt -> clearAccFields());
+
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = jTable3.getSelectedRow();
+                if (selectedRow != -1) {
+                    txtSpId.setText(jTable3.getValueAt(selectedRow, 0).toString());
+                    txtSpName.setText(jTable3.getValueAt(selectedRow, 1).toString());
+                    txtSpBrand.setText(jTable3.getValueAt(selectedRow, 2).toString());
+                    txtSpDetails.setText(jTable3.getValueAt(selectedRow, 3).toString());
+                    txtSpQty.setText(jTable3.getValueAt(selectedRow, 4).toString());
+                    txtSpPrice.setText(jTable3.getValueAt(selectedRow, 5).toString());
+                    try {
+                        clickedSpQty = Integer.parseInt(jTable3.getValueAt(selectedRow, 4).toString());
+                    } catch (NumberFormatException e) {
+                        clickedSpQty = -1;
+                    }
+                }
+            }
+        });
+
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int selectedRow = jTable2.getSelectedRow();
+                if (selectedRow != -1) {
+                    txtAccId.setText(jTable2.getValueAt(selectedRow, 0).toString());
+                    txtAccCategory.setText(jTable2.getValueAt(selectedRow, 1).toString());
+                    txtAccBrand.setText(jTable2.getValueAt(selectedRow, 2).toString());
+                    txtAccDetails.setText(jTable2.getValueAt(selectedRow, 3).toString());
+                    txtAccQty.setText(jTable2.getValueAt(selectedRow, 4).toString());
+                    txtAccPrice.setText(jTable2.getValueAt(selectedRow, 5).toString());
+                    try {
+                        clickedAccQty = Integer.parseInt(jTable2.getValueAt(selectedRow, 4).toString());
+                    } catch (NumberFormatException e) {
+                        clickedAccQty = -1;
+                    }
+                }
+            }
+        });
+
+        jPanel9.revalidate();
+        jPanel9.repaint();
+    }
+
+    private String generateSparePartID() {
+        java.util.Random rand = new java.util.Random();
+        while (true) {
+            String id = "SP-" + (1000 + rand.nextInt(9000));
+            try {
+                pst = db.con.prepareStatement("SELECT part_id FROM spare_parts WHERE part_id = ?");
+                pst.setString(1, id);
+                rs = pst.executeQuery();
+                boolean exists = rs.next();
+                rs.close();
+                pst.close();
+                if (!exists) {
+                    return id;
+                }
+            } catch (SQLException e) {
+                return id;
+            }
+        }
+    }
+
+    // generateAccessoryID removed since inventory table item_id uses auto_increment
+
+    public void loadSparePartsTable() {
+        try {
+            pst = db.con.prepareStatement("SELECT part_id, part_name, brand, details, qty, unit_price FROM spare_parts");
+            rs = pst.executeQuery();
+
+            DefaultTableModel adminModel = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {"Part ID", "Name", "Brand", "Details", "Qty", "Unit Price"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable3.setModel(adminModel);
+
+            // Populate Checkout Grid (table3)
+            DefaultTableModel checkoutModel = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {"Item Name", "Brand", "Details", "Qty", "Unit Price"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table3.setModel(checkoutModel);
+
+            while (rs.next()) {
+                String partId = rs.getString("part_id");
+                String partName = rs.getString("part_name");
+                String brand = rs.getString("brand");
+                String details = rs.getString("details");
+                int qty = rs.getInt("qty");
+                double unitPrice = rs.getDouble("unit_price");
+
+                adminModel.addRow(new Object[]{partId, partName, brand, details, qty, unitPrice});
+                checkoutModel.addRow(new Object[]{partName, brand, details, qty, unitPrice});
+            }
+
+            rs.close();
+            pst.close();
+
+            styleAdminTables(jTable3);
+            
+            // Set LowStockRenderer
+            LowStockRenderer adminRenderer = new LowStockRenderer(4);
+            jTable3.setDefaultRenderer(Object.class, adminRenderer);
+            jTable3.setDefaultRenderer(String.class, adminRenderer);
+
+            LowStockRenderer checkoutRenderer = new LowStockRenderer(3);
+            table3.setDefaultRenderer(Object.class, checkoutRenderer);
+            table3.setDefaultRenderer(String.class, checkoutRenderer);
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    public void loadAccessoriesTable() {
+        try {
+            pst = db.con.prepareStatement("SELECT item_id, catagory, brand, details, qty, unit_price FROM inventory");
+            rs = pst.executeQuery();
+
+            DefaultTableModel adminModel = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {"Item ID", "Category", "Brand", "Details", "Qty", "Unit Price"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable2.setModel(adminModel);
+
+            while (rs.next()) {
+                String itemId = rs.getString("item_id");
+                String category = rs.getString("catagory");
+                String brand = rs.getString("brand");
+                String details = rs.getString("details");
+                int qty = rs.getInt("qty");
+                double unitPrice = rs.getDouble("unit_price");
+
+                adminModel.addRow(new Object[]{itemId, category, brand, details, qty, unitPrice});
+            }
+
+            rs.close();
+            pst.close();
+
+            styleAdminTables(jTable2);
+            
+            // Set LowStockRenderer on jTable2 (Qty index is 4)
+            LowStockRenderer adminRenderer = new LowStockRenderer(4);
+            jTable2.setDefaultRenderer(Object.class, adminRenderer);
+            jTable2.setDefaultRenderer(String.class, adminRenderer);
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    private void btnSpAddActionPerformed(java.awt.event.ActionEvent evt) {
+        String name = txtSpName.getText().trim();
+        String brand = txtSpBrand.getText().trim();
+        String details = txtSpDetails.getText().trim();
+        String qtyStr = txtSpQty.getText().trim();
+        String priceStr = txtSpPrice.getText().trim();
+
+        if (name.isEmpty() || brand.isEmpty() || details.isEmpty() || qtyStr.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int qty = Integer.parseInt(qtyStr);
+            double price = Double.parseDouble(priceStr);
+            
+            if (qty < 0 || price < 0) {
+                JOptionPane.showMessageDialog(this, "Quantity and Price must be positive numbers!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String id = generateSparePartID();
+
+            pst = db.con.prepareStatement("INSERT INTO spare_parts(part_id, part_name, brand, details, qty, unit_price) VALUES(?,?,?,?,?,?)");
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, brand);
+            pst.setString(4, details);
+            pst.setInt(5, qty);
+            pst.setDouble(6, price);
+
+            pst.executeUpdate();
+            pst.close();
+
+            JOptionPane.showMessageDialog(this, "Spare Part added successfully! ID: " + id, "Success", JOptionPane.INFORMATION_MESSAGE);
+            loadSparePartsTable();
+            clearSpFields();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer and Price must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void btnSpUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = txtSpId.getText().trim();
+        String name = txtSpName.getText().trim();
+        String brand = txtSpBrand.getText().trim();
+        String details = txtSpDetails.getText().trim();
+        String qtyStr = txtSpQty.getText().trim();
+        String priceStr = txtSpPrice.getText().trim();
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a spare part from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (name.isEmpty() || brand.isEmpty() || details.isEmpty() || qtyStr.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int qty = Integer.parseInt(qtyStr);
+            double price = Double.parseDouble(priceStr);
+
+            if (qty < 0 || price < 0) {
+                JOptionPane.showMessageDialog(this, "Quantity and Price must be positive numbers!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int qtyToAdd = (qty == clickedSpQty) ? 0 : qty;
+
+            pst = db.con.prepareStatement("UPDATE spare_parts SET part_name = ?, brand = ?, details = ?, qty = qty + ?, unit_price = ? WHERE part_id = ?");
+            pst.setString(1, name);
+            pst.setString(2, brand);
+            pst.setString(3, details);
+            pst.setInt(4, qtyToAdd);
+            pst.setDouble(5, price);
+            pst.setString(6, id);
+
+            int updated = pst.executeUpdate();
+            pst.close();
+
+            if (updated > 0) {
+                JOptionPane.showMessageDialog(this, "Spare Part updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadSparePartsTable();
+                clearSpFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Spare Part record not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer and Price must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void btnSpDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = txtSpId.getText().trim();
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a spare part from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete spare part " + id + "?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                pst = db.con.prepareStatement("DELETE FROM spare_parts WHERE part_id = ?");
+                pst.setString(1, id);
+                pst.executeUpdate();
+                pst.close();
+
+                JOptionPane.showMessageDialog(this, "Spare Part deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadSparePartsTable();
+                clearSpFields();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void clearSpFields() {
+        txtSpId.setText("");
+        txtSpName.setText("");
+        txtSpBrand.setText("");
+        txtSpDetails.setText("");
+        txtSpQty.setText("");
+        txtSpPrice.setText("");
+        clickedSpQty = -1;
+        jTable3.clearSelection();
+    }
+
+    private void btnAccAddActionPerformed(java.awt.event.ActionEvent evt) {
+        String category = txtAccCategory.getText().trim();
+        String brand = txtAccBrand.getText().trim();
+        String details = txtAccDetails.getText().trim();
+        String qtyStr = txtAccQty.getText().trim();
+        String priceStr = txtAccPrice.getText().trim();
+
+        if (category.isEmpty() || brand.isEmpty() || details.isEmpty() || qtyStr.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int qty = Integer.parseInt(qtyStr);
+            double price = Double.parseDouble(priceStr);
+
+            if (qty < 0 || price < 0) {
+                JOptionPane.showMessageDialog(this, "Quantity and Price must be positive numbers!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            pst = db.con.prepareStatement("INSERT INTO inventory(catagory, brand, details, qty, unit_price) VALUES(?,?,?,?,?)");
+            pst.setString(1, category);
+            pst.setString(2, brand);
+            pst.setString(3, details);
+            pst.setInt(4, qty);
+            pst.setDouble(5, price);
+
+            pst.executeUpdate();
+            pst.close();
+
+            JOptionPane.showMessageDialog(this, "Accessory added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            loadAccessoriesTable();
+            loadInventoryTable(); // Refresh checkout accessories table
+            clearAccFields();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer and Price must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void btnAccUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = txtAccId.getText().trim();
+        String category = txtAccCategory.getText().trim();
+        String brand = txtAccBrand.getText().trim();
+        String details = txtAccDetails.getText().trim();
+        String qtyStr = txtAccQty.getText().trim();
+        String priceStr = txtAccPrice.getText().trim();
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an accessory from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (category.isEmpty() || brand.isEmpty() || details.isEmpty() || qtyStr.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            int itemId = Integer.parseInt(id);
+            int qty = Integer.parseInt(qtyStr);
+            double price = Double.parseDouble(priceStr);
+
+            if (qty < 0 || price < 0) {
+                JOptionPane.showMessageDialog(this, "Quantity and Price must be positive numbers!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int qtyToAdd = (qty == clickedAccQty) ? 0 : qty;
+
+            pst = db.con.prepareStatement("UPDATE inventory SET catagory = ?, brand = ?, details = ?, qty = qty + ?, unit_price = ? WHERE item_id = ?");
+            pst.setString(1, category);
+            pst.setString(2, brand);
+            pst.setString(3, details);
+            pst.setInt(4, qtyToAdd);
+            pst.setDouble(5, price);
+            pst.setInt(6, itemId);
+
+            int updated = pst.executeUpdate();
+            pst.close();
+
+            if (updated > 0) {
+                JOptionPane.showMessageDialog(this, "Accessory updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadAccessoriesTable();
+                loadInventoryTable(); // Refresh checkout accessories table
+                clearAccFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Accessory record not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer and Price must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void btnAccDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = txtAccId.getText().trim();
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an accessory from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete accessory " + id + "?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                int itemId = Integer.parseInt(id);
+                pst = db.con.prepareStatement("DELETE FROM inventory WHERE item_id = ?");
+                pst.setInt(1, itemId);
+                pst.executeUpdate();
+                pst.close();
+
+                JOptionPane.showMessageDialog(this, "Accessory deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadAccessoriesTable();
+                loadInventoryTable(); // Refresh checkout accessories table
+                clearAccFields();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void clearAccFields() {
+        txtAccId.setText("");
+        txtAccCategory.setText("");
+        txtAccBrand.setText("");
+        txtAccDetails.setText("");
+        txtAccQty.setText("");
+        txtAccPrice.setText("");
+        clickedAccQty = -1;
+        jTable2.clearSelection();
+    }
+
+    // Programmatic fields for Inventory Management CRUD
+    private javax.swing.JTextField txtSpId;
+    private javax.swing.JTextField txtSpName;
+    private javax.swing.JTextField txtSpBrand;
+    private javax.swing.JTextField txtSpDetails;
+    private javax.swing.JTextField txtSpQty;
+    private javax.swing.JTextField txtSpPrice;
+    private javax.swing.JButton btnSpAdd;
+    private javax.swing.JButton btnSpUpdate;
+    private javax.swing.JButton btnSpDelete;
+    private javax.swing.JButton btnSpClear;
+
+    private javax.swing.JTextField txtAccId;
+    private javax.swing.JTextField txtAccCategory;
+    private javax.swing.JTextField txtAccBrand;
+    private javax.swing.JTextField txtAccDetails;
+    private javax.swing.JTextField txtAccQty;
+    private javax.swing.JTextField txtAccPrice;
+    private javax.swing.JButton btnAccAdd;
+    private javax.swing.JButton btnAccUpdate;
+    private javax.swing.JButton btnAccDelete;
+    private javax.swing.JButton btnAccClear;
+
+    // Track clicked quantities for additive inventory updates
+    private int clickedSpQty = -1;
+    private int clickedAccQty = -1;
 }

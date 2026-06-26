@@ -3848,11 +3848,17 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel21">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="Name"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel59">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="User Name"/>
                                   </Properties>
                                 </Component>
@@ -3860,6 +3866,9 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel60">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="Email"/>
                                   </Properties>
                                 </Component>
@@ -3867,6 +3876,9 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel61">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="NIC"/>
                                   </Properties>
                                 </Component>
@@ -3874,6 +3886,9 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel62">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="Role"/>
                                   </Properties>
                                 </Component>
@@ -3921,6 +3936,9 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel63">
                                   <Properties>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                    </Property>
                                     <Property name="text" type="java.lang.String" value="Phone"/>
                                   </Properties>
                                 </Component>
@@ -3943,20 +3961,12 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane7" pref="694" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jScrollPane7" alignment="0" pref="706" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane7" pref="600" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jScrollPane7" alignment="0" pref="612" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                               </Layout>
@@ -4174,11 +4184,17 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel64">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Name"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel67">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="NIC"/>
                                       </Properties>
                                     </Component>
@@ -4186,6 +4202,9 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel68">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Status"/>
                                       </Properties>
                                     </Component>
@@ -4233,6 +4252,9 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel69">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Phone"/>
                                       </Properties>
                                     </Component>
@@ -4240,6 +4262,9 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel70">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Spesiality"/>
                                       </Properties>
                                     </Component>
@@ -4260,6 +4285,9 @@
                                     </Container>
                                     <Component class="javax.swing.JLabel" name="jLabel65">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="ID"/>
                                       </Properties>
                                     </Component>
@@ -4479,16 +4507,25 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel66">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Service Name"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel71">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Price"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel72">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Status"/>
                                       </Properties>
                                     </Component>
@@ -4552,6 +4589,9 @@
                                     </Container>
                                     <Component class="javax.swing.JLabel" name="jLabel75">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Service ID"/>
                                       </Properties>
                                     </Component>
@@ -4686,10 +4726,10 @@
                                           <EmptySpace pref="371" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jScrollPane10" pref="491" max="32767" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jScrollPane10" min="-2" pref="483" max="-2" attributes="0"/>
+                                              <EmptySpace pref="14" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -4741,6 +4781,11 @@
                               </SubComponents>
                             </Container>
                             <Container class="javax.swing.JPanel" name="jPanel20">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                              </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                   <BorderConstraints direction="Center"/>
@@ -4750,16 +4795,18 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jScrollPane8" pref="491" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane8" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
                                                   <Component id="jLabel77" min="-2" pref="126" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  <EmptySpace pref="371" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -4770,7 +4817,7 @@
                                           <Component id="jLabel77" min="-2" pref="34" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jScrollPane8" min="-2" pref="300" max="-2" attributes="0"/>
-                                          <EmptySpace pref="254" max="32767" attributes="0"/>
+                                          <EmptySpace pref="251" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -4928,11 +4975,17 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel78">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Bay Name"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel80">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Status"/>
                                       </Properties>
                                     </Component>
@@ -4981,6 +5034,9 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel81">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Bay ID"/>
                                       </Properties>
                                     </Component>
@@ -5126,7 +5182,7 @@
                                           <Component id="btnPrintPDF" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane15" pref="519" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane15" pref="515" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5143,12 +5199,57 @@
                                 <Component class="javax.swing.JTable" name="jTable7">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                      <Table columnCount="7" rowCount="0">
+                                        <Column editable="false" title="Invoice ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Job ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Customer Name" type="java.lang.Object"/>
+                                        <Column editable="false" title="Total Amount" type="java.lang.Object"/>
+                                        <Column editable="false" title="Paid" type="java.lang.Object"/>
+                                        <Column editable="false" title="Balance" type="java.lang.Object"/>
+                                        <Column editable="false" title="Date" type="java.lang.Object"/>
                                       </Table>
+                                    </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
                                 </Component>
@@ -5160,11 +5261,17 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel79">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="FROM"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel82">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI Semibold" size="14" style="0"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="To"/>
                               </Properties>
                             </Component>

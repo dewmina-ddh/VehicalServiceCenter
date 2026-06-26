@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.print.PrinterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class BillFrame extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
     Dash dash;
+    private boolean isBillPrinted = false;
     String type;
     BillStatement billData;
     String paymentMethod = "Cash";
@@ -42,17 +44,22 @@ public class BillFrame extends javax.swing.JFrame {
             cl.show(billPnael, "card3");
             bType = "Service Bill";
             loadOngoinService();
-        } else if ("accBill".equals(billType)) {
+        } else if ("accBill".equals(billType) || "spairBill".equals(billType)) {
             cl.show(billPnael, "card2");
             bType = "Item Bill";
             loadInventoryBillData();
-
         }
         billPnael.revalidate();
         billPnael.repaint();
 
         userName = dash.getName();
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                handleCancellation();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -670,6 +677,7 @@ public class BillFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCal2ActionPerformed
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed
+        handleCancellation();
         this.dispose();
     }//GEN-LAST:event_btnCancleActionPerformed
 
@@ -1100,6 +1108,7 @@ public class BillFrame extends javax.swing.JFrame {
             boolean complete = billShow1.print(null, footer, true, null, null, true);
 
             if (complete) {
+                isBillPrinted = true;
                 JOptionPane.showMessageDialog(null,
                         "Invoice printed successfully!",
                         "Print Success",
@@ -1116,6 +1125,88 @@ public class BillFrame extends javax.swing.JFrame {
                     "Printing failed: " + e.getMessage(),
                     "Print Error",
                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void handleCancellation() {
+        if (!isBillPrinted) {
+            restoreStock();
+            isBillPrinted = true; // prevent double execute
+        }
+    }
+
+    private void restoreStock() {
+        if (billData == null || billData.getItemsList() == null) {
+            return;
+        }
+
+        try {
+            db.con.setAutoCommit(false);
+
+            for (Object[] row : billData.getItemsList()) {
+                String itemName = row[0].toString();
+                int qty = Integer.parseInt(row[1].toString());
+
+                if ("accBill".equals(type)) {
+                    // Accessories: brand + " - " + details
+                    String[] nameParts = itemName.split(" - ", 2);
+                    if (nameParts.length >= 2) {
+                        String brand = nameParts[0].trim();
+                        String details = nameParts[1].trim();
+
+                        String updateSql = "UPDATE inventory SET qty = qty + ? WHERE brand = ? AND details = ?";
+                        pst = db.con.prepareStatement(updateSql);
+                        pst.setInt(1, qty);
+                        pst.setString(2, brand);
+                        pst.setString(3, details);
+                        pst.executeUpdate();
+                        pst.close();
+                    }
+                } else if ("spairBill".equals(type)) {
+                    // Spare Parts: name + " - " + brand + " - " + details
+                    String[] nameParts = itemName.split(" - ", 3);
+                    if (nameParts.length >= 3) {
+                        String partName = nameParts[0].trim();
+                        String brand = nameParts[1].trim();
+                        String details = nameParts[2].trim();
+
+                        String updateSql = "UPDATE spare_parts SET qty = qty + ? WHERE part_name = ? AND brand = ? AND details = ?";
+                        pst = db.con.prepareStatement(updateSql);
+                        pst.setInt(1, qty);
+                        pst.setString(2, partName);
+                        pst.setString(3, brand);
+                        pst.setString(4, details);
+                        pst.executeUpdate();
+                        pst.close();
+                    }
+                }
+            }
+
+            db.con.commit();
+            db.con.setAutoCommit(true);
+
+            // Reload UI tables
+            if (dash != null) {
+                if ("accBill".equals(type)) {
+                    dash.loadInventoryTable();
+                } else if ("spairBill".equals(type)) {
+                    dash.loadSparePartsAdminTable();
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "Bill cancelled. Stock quantities have been successfully restored.", "Cancellation Summary", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+
+            try {
+                db.con.rollback();
+                db.con.setAutoCommit(true);
+
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to restore stock: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                System.getLogger(BillFrame.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
         }
     }
 
