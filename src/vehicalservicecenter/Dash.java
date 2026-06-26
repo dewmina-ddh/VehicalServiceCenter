@@ -64,7 +64,30 @@ public class Dash extends javax.swing.JFrame {
         setupAutocomplete();
         loadInventoryItemNames();
         loadBrand();
+        loadUserTable();
         loadInvoiceTable(invoiceTable, "");
+
+        // Standardize ComboBox models to correct spelling and status categories
+        combRole1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy"}));
+        combRole2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy", "Maintenance"}));
+        combRole3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Available", "Busy", "Maintenance"}));
+
+        // Register action listeners for the Clear buttons
+        UClear.addActionListener(this::UClearActionPerformed);
+        UClear1.addActionListener(this::UClear1ActionPerformed);
+        UClear2.addActionListener(this::UClear2ActionPerformed);
+        UClear3.addActionListener(this::UClear3ActionPerformed);
+
+        // Load administration tables
+        loadTechnicianTable();
+        loadServicesTable();
+        loadBaysTable();
+
+        // Pre-populate input fields with generated IDs
+        clearUserFields();
+        clearTechnicianFields();
+        clearServiceFields();
+        clearBayFields();
 
         this.user1 = user;
 
@@ -73,6 +96,7 @@ public class Dash extends javax.swing.JFrame {
         CardPanel.add(pnlInventory, "card3");
         CardPanel.add(pnlTech, "card4");
         CardPanel.add(pnlHistory, "card5");
+        CardPanel.add(pnlAdmin, "card7");
 
         UIManager.put("TextComponent.arc", 15);
         lblTopic.setText("DASHBOARD");
@@ -302,8 +326,98 @@ public class Dash extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        txtName = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        txtUname = new javax.swing.JTextField();
+        jLabel60 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        txtNIC = new javax.swing.JTextField();
+        jLabel62 = new javax.swing.JLabel();
+        combRole = new javax.swing.JComboBox<>();
+        btnUserAdd = new javax.swing.JButton();
+        btnUserUpdate = new javax.swing.JButton();
+        btnUserDel = new javax.swing.JButton();
+        UClear = new javax.swing.JButton();
+        jLabel63 = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        txtName1 = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        txtNIC1 = new javax.swing.JTextField();
+        jLabel68 = new javax.swing.JLabel();
+        combRole1 = new javax.swing.JComboBox<>();
+        btnUserAdd1 = new javax.swing.JButton();
+        btnUserUpdate1 = new javax.swing.JButton();
+        btnUserDel1 = new javax.swing.JButton();
+        UClear1 = new javax.swing.JButton();
+        jLabel69 = new javax.swing.JLabel();
+        txtPhone1 = new javax.swing.JTextField();
+        jLabel70 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        txtSpeality = new javax.swing.JTextArea();
+        jLabel65 = new javax.swing.JLabel();
+        txtName2 = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        txtName3 = new javax.swing.JTextField();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        combRole2 = new javax.swing.JComboBox<>();
+        btnUserAdd2 = new javax.swing.JButton();
+        btnUserUpdate2 = new javax.swing.JButton();
+        btnUserDel2 = new javax.swing.JButton();
+        UClear2 = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        txtSpeality1 = new javax.swing.JTextArea();
+        jLabel75 = new javax.swing.JLabel();
+        txtName4 = new javax.swing.JTextField();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel76 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel77 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        txtName5 = new javax.swing.JTextField();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        combRole3 = new javax.swing.JComboBox<>();
+        btnUserAdd3 = new javax.swing.JButton();
+        btnUserUpdate3 = new javax.swing.JButton();
+        btnUserDel3 = new javax.swing.JButton();
+        UClear3 = new javax.swing.JButton();
+        jLabel81 = new javax.swing.JLabel();
+        txtName6 = new javax.swing.JTextField();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        btnPrintPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -2171,46 +2285,687 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1006, Short.MAX_VALUE)
+        jTabbedPane1.setBackground(new java.awt.Color(0, 51, 102));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jPanel12.setBackground(new java.awt.Color(240, 240, 240));
+        jPanel12.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel12.setPreferredSize(new java.awt.Dimension(300, 612));
+
+        jLabel21.setText("Name");
+
+        jLabel59.setText("User Name");
+
+        jLabel60.setText("Email");
+
+        jLabel61.setText("NIC");
+
+        jLabel62.setText("Role");
+
+        combRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
+
+        btnUserAdd.setText("Add User");
+        btnUserAdd.addActionListener(this::btnUserAddActionPerformed);
+
+        btnUserUpdate.setText("Update User");
+        btnUserUpdate.addActionListener(this::btnUserUpdateActionPerformed);
+
+        btnUserDel.setText("Delete User");
+        btnUserDel.addActionListener(this::btnUserDelActionPerformed);
+
+        UClear.setText("Clear");
+
+        jLabel63.setText("Phone");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUserAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUserUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(btnUserDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel59, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUname, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel60, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel61, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNIC, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel61, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combRole, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnUserAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserDel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UClear, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("tab1", jPanel5);
+        jPanel5.add(jPanel12, java.awt.BorderLayout.LINE_START);
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "User Name", "Email", "NIC", "Phone", "Role"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel5.add(jPanel13, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("USER MANAGE", jPanel5);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setLayout(new java.awt.BorderLayout());
+
+        jPanel15.setBackground(new java.awt.Color(240, 240, 240));
+        jPanel15.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel15.setPreferredSize(new java.awt.Dimension(300, 612));
+
+        jLabel64.setText("Name");
+
+        jLabel67.setText("NIC");
+
+        jLabel68.setText("Status");
+
+        combRole1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy" }));
+
+        btnUserAdd1.setText("Add Technician");
+        btnUserAdd1.addActionListener(this::btnUserAdd1ActionPerformed);
+
+        btnUserUpdate1.setText("Update Technician");
+        btnUserUpdate1.addActionListener(this::btnUserUpdate1ActionPerformed);
+
+        btnUserDel1.setText("Delete Technician");
+        btnUserDel1.addActionListener(this::btnUserDel1ActionPerformed);
+
+        UClear1.setText("Clear");
+
+        jLabel69.setText("Phone");
+
+        jLabel70.setText("Spesiality");
+
+        txtSpeality.setColumns(20);
+        txtSpeality.setRows(5);
+        jScrollPane9.setViewportView(txtSpeality);
+
+        jLabel65.setText("ID");
+
+        txtName2.setEditable(false);
+        txtName2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUserAdd1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUserUpdate1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(btnUserDel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UClear1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combRole1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel67, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNIC1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPhone1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9)
+                    .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNIC1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combRole1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUserAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserDel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel14.add(jPanel15, java.awt.BorderLayout.LINE_START);
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "User Name", "Email", "NIC", "Phone", "Role"
+            }
+        ));
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(jTable4);
+
+        jPanel14.add(jScrollPane12, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1006, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 612, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel7);
+        jTabbedPane1.addTab("TECHNICIAN MANAGE", jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel18.setLayout(new java.awt.BorderLayout());
+
+        jPanel19.setBackground(new java.awt.Color(240, 240, 240));
+        jPanel19.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel19.setPreferredSize(new java.awt.Dimension(300, 612));
+
+        jLabel66.setText("Service Name");
+
+        jLabel71.setText("Price");
+
+        jLabel72.setText("Status");
+
+        combRole2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy", "Maintains" }));
+
+        btnUserAdd2.setText("Add Services");
+        btnUserAdd2.addActionListener(this::btnUserAdd2ActionPerformed);
+
+        btnUserUpdate2.setText("Update Services");
+        btnUserUpdate2.addActionListener(this::btnUserUpdate2ActionPerformed);
+
+        btnUserDel2.setText("Delete Services");
+        btnUserDel2.addActionListener(this::btnUserDel2ActionPerformed);
+
+        UClear2.setText("Clear");
+
+        txtSpeality1.setColumns(20);
+        txtSpeality1.setRows(5);
+        jScrollPane11.setViewportView(txtSpeality1);
+
+        jLabel75.setText("Service ID");
+
+        txtName4.setEditable(false);
+        txtName4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtName3)
+            .addComponent(txtName4)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addComponent(btnUserAdd2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUserUpdate2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUserDel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(UClear2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(combRole2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel71, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel75, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combRole2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142)
+                .addComponent(btnUserAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserDel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UClear2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel18.add(jPanel19, java.awt.BorderLayout.LINE_START);
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "User Name", "Email", "NIC", "Phone", "Role"
+            }
+        ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(jTable5);
+
+        jPanel18.add(jScrollPane13, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1006, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 612, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel8);
+        jTabbedPane1.addTab("SERVICES MANAGE", jPanel8);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setMinimumSize(new java.awt.Dimension(503, 612));
+        jPanel16.setPreferredSize(new java.awt.Dimension(503, 612));
+
+        jLabel76.setText("SpairParts");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(jTable3);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(371, Short.MAX_VALUE))
+            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel16Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(564, Short.MAX_VALUE))
+            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel16Layout.createSequentialGroup()
+                    .addGap(56, 56, 56)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(256, Short.MAX_VALUE)))
+        );
+
+        jPanel9.add(jPanel16, java.awt.BorderLayout.LINE_START);
+
+        jLabel77.setText("Accessories");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(jPanel20, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("INVENTORY MANAGE", jPanel9);
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setLayout(new java.awt.BorderLayout());
+
+        jPanel22.setBackground(new java.awt.Color(240, 240, 240));
+        jPanel22.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel22.setPreferredSize(new java.awt.Dimension(300, 612));
+
+        jLabel78.setText("Bay Name");
+
+        jLabel80.setText("Status");
+
+        combRole3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Awailable", "busy", "Maintains" }));
+
+        btnUserAdd3.setText("Add Services");
+        btnUserAdd3.addActionListener(this::btnUserAdd3ActionPerformed);
+
+        btnUserUpdate3.setText("Update Services");
+        btnUserUpdate3.addActionListener(this::btnUserUpdate3ActionPerformed);
+
+        btnUserDel3.setText("Delete Services");
+        btnUserDel3.addActionListener(this::btnUserDel3ActionPerformed);
+
+        UClear3.setText("Clear");
+
+        jLabel81.setText("Bay ID");
+
+        txtName6.setEditable(false);
+        txtName6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtName5)
+            .addComponent(txtName6)
+            .addComponent(btnUserAdd3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUserUpdate3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addComponent(btnUserDel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(UClear3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(combRole3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel78, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel81, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combRole3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(224, 224, 224)
+                .addComponent(btnUserAdd3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserUpdate3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUserDel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UClear3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel21.add(jPanel22, java.awt.BorderLayout.LINE_START);
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "User Name", "Email", "NIC", "Phone", "Role"
+            }
+        ));
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable6MouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(jTable6);
+
+        jPanel21.add(jScrollPane14, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1006, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 1006, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 612, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("BAYS MANAGE", jPanel11);
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane15.setViewportView(jTable7);
+
+        jLabel79.setText("FROM");
+
+        jLabel82.setText("To");
+
+        btnPrintPDF.setText("Print PDF");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane15)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel79))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addComponent(jLabel82)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(470, 470, 470)
+                        .addComponent(btnPrintPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel79, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel82, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrintPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("SERVICE REPORTS", jPanel17);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -2271,6 +3026,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBackground(setColor2);
         btnHistory.setBackground(setColor2);
         btnTech.setBackground(setColor2);
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
     }//GEN-LAST:event_btnAppoActionPerformed
 
     private void btnTechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTechActionPerformed
@@ -2283,7 +3039,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBackground(setColor2);
         btnHistory.setBackground(setColor2);
         btnTech.setBackground(setColor1);
-
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
     }//GEN-LAST:event_btnTechActionPerformed
 
     private void txtSearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch2ActionPerformed
@@ -2333,6 +3089,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBackground(setColor2);
         btnHistory.setBackground(setColor2);
         btnTech.setBackground(setColor2);
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
     }//GEN-LAST:event_btnDashActionPerformed
 
     private void btnInvenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvenActionPerformed
@@ -2348,6 +3105,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBackground(setColor1);
         btnHistory.setBackground(setColor2);
         btnTech.setBackground(setColor2);
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
     }//GEN-LAST:event_btnInvenActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
@@ -2362,6 +3120,7 @@ public class Dash extends javax.swing.JFrame {
         btnInven.setBackground(setColor2);
         btnHistory.setBackground(setColor1);
         btnTech.setBackground(setColor2);
+        btnAdminC.setBackground(new java.awt.Color(17, 24, 39));
     }//GEN-LAST:event_btnHistoryActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
@@ -2971,8 +3730,769 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearch5KeyReleased
 
     private void btnAdminCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCActionPerformed
-       String comfirmPass = JOptionPane.showInputDialog(this, btnSave)
+
+        String confirmPass = JOptionPane.showInputDialog(this, "Enter Your Password to Access Admin Panel", "Admin Verification", JOptionPane.QUESTION_MESSAGE);
+
+        if (confirmPass != null && !confirmPass.trim().isEmpty()) {
+            PreparedStatement pstCheck = null;
+            ResultSet rsCheck = null;
+
+            try {
+                String sql = "SELECT password FROM user WHERE uName = ?";
+                pstCheck = db.con.prepareStatement(sql);
+                pstCheck.setString(1, user1.getUserName());
+                rsCheck = pstCheck.executeQuery();
+
+                if (rsCheck.next()) {
+                    String dbPassword = rsCheck.getString("password");
+
+                    if (dbPassword.equals(confirmPass.trim())) {
+
+                        CardLayout cl = (CardLayout) CardPanel.getLayout();
+                        cl.show(CardPanel, "card7");
+
+                        lblTopic.setText("ADMIN PANEL");
+                        
+                        btnAdminC.setBackground(setColor1);
+                        btnDash.setBackground(setColor2);
+                        btnAppo.setBackground(setColor2);
+                        btnInven.setBackground(setColor2);
+                        btnHistory.setBackground(setColor2);
+                        btnTech.setBackground(setColor2);
+
+                        loadUserTable();
+                        loadTechnicianTable();
+                        loadServicesTable();
+                        loadBaysTable();
+
+                        clearUserFields();
+                        clearTechnicianFields();
+                        clearServiceFields();
+                        clearBayFields();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Incorrect Password! Access Denied.", "Security Alert", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Admin profile not found in database!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Database Verification Error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    if (rsCheck != null) {
+                        rsCheck.close();
+                    }
+                    if (pstCheck != null) {
+                        pstCheck.close();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+
     }//GEN-LAST:event_btnAdminCActionPerformed
+
+    private void btnUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdateActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a user from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = jTable1.getValueAt(selectedRow, 0).toString();
+        String name = txtName.getText().trim();
+        String uname = txtUname.getText().trim();
+        String email = txtEmail.getText().trim();
+        String nic = txtNIC.getText().trim();
+        String phone = txtPhone.getText().trim();
+        String role = combRole.getSelectedItem().toString();
+
+        try {
+            String sql = "UPDATE user SET name=?, uName=?, email=?, nic=?, phone=?, role=? WHERE id=?";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setString(2, uname);
+            pst.setString(3, email);
+            pst.setString(4, nic);
+            pst.setString(5, phone);
+            pst.setString(6, role);
+            pst.setString(7, id);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "User Updated Successfully!");
+                loadUserTable();
+                clearUserFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Update Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserUpdateActionPerformed
+
+    private void btnUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAddActionPerformed
+        String name = txtName.getText().trim();
+        String uname = txtUname.getText().trim();
+        String email = txtEmail.getText().trim();
+        String nic = txtNIC.getText().trim();
+        String phone = txtPhone.getText().trim();
+        String role = combRole.getSelectedItem().toString();
+
+        if (name.isEmpty() || uname.isEmpty() || email.isEmpty() || nic.isEmpty() || phone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        if (!email.matches(emailRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Email Address format!\n(e.g., example@mail.com)", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            return;
+        }
+
+        String oldNICRegex = "^[0-9]{9}[vVxX]$";
+        String newNICRegex = "^[0-9]{12}$";
+        if (!nic.matches(oldNICRegex) && !nic.matches(newNICRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Sri Lankan NIC number!\nMust be 9 digits with V/X or exactly 12 digits.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtNIC.requestFocus();
+            return;
+        }
+
+        String phoneRegex = "^0[0-9]{9}$";
+        if (!phone.matches(phoneRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Phone Number!\nMust start with 0 and contain exactly 10 digits.\n(e.g., 0771234567)", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtPhone.requestFocus();
+            return;
+        }
+
+        try {
+            String sql = "INSERT INTO user (name, uName, email, nic, phone, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setString(2, uname);
+            pst.setString(3, email);
+            pst.setString(4, nic);
+            pst.setString(5, phone);
+            pst.setString(6, nic);
+            pst.setString(8, role);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "User Registered Successfully!\nDefault Password is user's NIC: " + nic, "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadUserTable();
+                clearUserFields();
+            }
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(this, "User Name or Email already exists!", "Database Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Save Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserAddActionPerformed
+
+    private void btnUserDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDelActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a user from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = jTable1.getValueAt(selectedRow, 0).toString();
+        String uname = jTable1.getValueAt(selectedRow, 2).toString();
+
+        if (uname.equalsIgnoreCase(user1.getUserName())) {
+            JOptionPane.showMessageDialog(this, "You cannot delete your own logged-in account!", "Access Denied", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                String sql = "DELETE FROM user WHERE id=?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int result = pst.executeUpdate();
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "User Deleted Successfully!");
+                    loadUserTable();
+                    clearUserFields();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Delete Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    if (pst != null) {
+                        pst.close();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnUserDelActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+            txtName.setText(jTable1.getValueAt(selectedRow, 1).toString());
+            txtUname.setText(jTable1.getValueAt(selectedRow, 2).toString());
+            txtEmail.setText(jTable1.getValueAt(selectedRow, 3).toString());
+            txtNIC.setText(jTable1.getValueAt(selectedRow, 4).toString());
+            txtPhone.setText(jTable1.getValueAt(selectedRow, 5).toString());
+
+            String role = jTable1.getValueAt(selectedRow, 6).toString();
+            combRole.setSelectedItem(role);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnUserAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAdd1ActionPerformed
+        String id = txtName2.getText().trim();
+        String name = txtName1.getText().trim();
+        String nic = txtNIC1.getText().trim();
+        String phone = txtPhone1.getText().trim();
+        String specialty = txtSpeality.getText().trim();
+        String status = combRole1.getSelectedItem().toString();
+
+        if (name.isEmpty() || nic.isEmpty() || phone.isEmpty() || specialty.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String oldNICRegex = "^[0-9]{9}[vVxX]$";
+        String newNICRegex = "^[0-9]{12}$";
+        if (!nic.matches(oldNICRegex) && !nic.matches(newNICRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Sri Lankan NIC number!\nMust be 9 digits with V/X or exactly 12 digits.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtNIC1.requestFocus();
+            return;
+        }
+
+        String phoneRegex = "^0[0-9]{9}$";
+        if (!phone.matches(phoneRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Phone Number!\nMust start with 0 and contain exactly 10 digits.\n(e.g., 0771234567)", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtPhone1.requestFocus();
+            return;
+        }
+
+        // Check if technician ID already exists in DB
+        try {
+            String checkSql = "SELECT COUNT(*) FROM technician WHERE tech_id = ?";
+            PreparedStatement checkPst = db.con.prepareStatement(checkSql);
+            checkPst.setString(1, id);
+            ResultSet checkRs = checkPst.executeQuery();
+            if (checkRs.next() && checkRs.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(this, "Technician ID " + id + " already exists!\nPlease click Clear to generate a new ID, or Update to modify the existing record.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                checkRs.close();
+                checkPst.close();
+                return;
+            }
+            checkRs.close();
+            checkPst.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database check failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            String sql = "INSERT INTO technician (tech_id, name, nic, phone, specialty, status) VALUES (?, ?, ?, ?, ?, ?)";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, nic);
+            pst.setInt(4, Integer.parseInt(phone));
+            pst.setString(5, specialty);
+            pst.setString(6, status);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Technician Added Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadTechnicianTable();
+                loadTechnicianCards(); // Refresh cards in the UI dashboard
+                clearTechnicianFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Save Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserAdd1ActionPerformed
+
+    private void btnUserUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdate1ActionPerformed
+        int selectedRow = jTable4.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a technician from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = txtName2.getText().trim();
+        String name = txtName1.getText().trim();
+        String nic = txtNIC1.getText().trim();
+        String phone = txtPhone1.getText().trim();
+        String specialty = txtSpeality.getText().trim();
+        String status = combRole1.getSelectedItem().toString();
+
+        if (name.isEmpty() || nic.isEmpty() || phone.isEmpty() || specialty.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String oldNICRegex = "^[0-9]{9}[vVxX]$";
+        String newNICRegex = "^[0-9]{12}$";
+        if (!nic.matches(oldNICRegex) && !nic.matches(newNICRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Sri Lankan NIC number!\nMust be 9 digits with V/X or exactly 12 digits.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtNIC1.requestFocus();
+            return;
+        }
+
+        String phoneRegex = "^0[0-9]{9}$";
+        if (!phone.matches(phoneRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid Phone Number!\nMust start with 0 and contain exactly 10 digits.\n(e.g., 0771234567)", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            txtPhone1.requestFocus();
+            return;
+        }
+
+        try {
+            String sql = "UPDATE technician SET name=?, nic=?, phone=?, specialty=?, status=? WHERE tech_id=?";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setString(2, nic);
+            pst.setInt(3, Integer.parseInt(phone));
+            pst.setString(4, specialty);
+            pst.setString(5, status);
+            pst.setString(6, id);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Technician Updated Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadTechnicianTable();
+                loadTechnicianCards(); // Refresh cards in UI dashboard
+                clearTechnicianFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Update Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserUpdate1ActionPerformed
+
+    private void btnUserDel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDel1ActionPerformed
+        int selectedRow = jTable4.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a technician from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = jTable4.getValueAt(selectedRow, 0).toString();
+        String name = jTable4.getValueAt(selectedRow, 1).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete technician: " + name + " (" + id + ")?\n"
+                + "WARNING: This will cascade-delete all ongoing and completed jobs assigned to this technician!",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                String sql = "DELETE FROM technician WHERE tech_id=?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int result = pst.executeUpdate();
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "Technician Deleted Successfully!", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    loadTechnicianTable();
+                    loadTechnicianCards(); // Refresh cards in UI dashboard
+                    clearTechnicianFields();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Delete Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    if (pst != null) {
+                        pst.close();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnUserDel1ActionPerformed
+
+    private void btnUserAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAdd2ActionPerformed
+        String id = txtName4.getText().trim();
+        String name = txtName3.getText().trim();
+        String priceStr = txtSpeality1.getText().trim();
+        String status = combRole2.getSelectedItem().toString();
+
+        if (name.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double priceVal;
+        try {
+            priceVal = Double.parseDouble(priceStr);
+            if (priceVal <= 0) {
+                JOptionPane.showMessageDialog(this, "Price must be a positive number!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Price format! Must be a valid positive number.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int price = (int) Math.round(priceVal);
+
+        // Check if service ID already exists in DB
+        try {
+            String checkSql = "SELECT COUNT(*) FROM services WHERE service_id = ?";
+            PreparedStatement checkPst = db.con.prepareStatement(checkSql);
+            checkPst.setString(1, id);
+            ResultSet checkRs = checkPst.executeQuery();
+            if (checkRs.next() && checkRs.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(this, "Service ID " + id + " already exists!\nPlease click Clear to generate a new ID, or Update to modify the existing record.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                checkRs.close();
+                checkPst.close();
+                return;
+            }
+            checkRs.close();
+            checkPst.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database check failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            String sql = "INSERT INTO services (service_id, service_name, price, status) VALUES (?, ?, ?, ?)";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setInt(3, price);
+            pst.setString(4, status);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Service Added Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadServicesTable();
+                clearServiceFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Save Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserAdd2ActionPerformed
+
+    private void btnUserUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdate2ActionPerformed
+        int selectedRow = jTable5.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a service from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = txtName4.getText().trim();
+        String name = txtName3.getText().trim();
+        String priceStr = txtSpeality1.getText().trim();
+        String status = combRole2.getSelectedItem().toString();
+
+        if (name.isEmpty() || priceStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double priceVal;
+        try {
+            priceVal = Double.parseDouble(priceStr);
+            if (priceVal <= 0) {
+                JOptionPane.showMessageDialog(this, "Price must be a positive number!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Price format! Must be a valid positive number.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int price = (int) Math.round(priceVal);
+
+        try {
+            String sql = "UPDATE services SET service_name=?, price=?, status=? WHERE service_id=?";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setInt(2, price);
+            pst.setString(3, status);
+            pst.setString(4, id);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Service Updated Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadServicesTable();
+                clearServiceFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Update Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserUpdate2ActionPerformed
+
+    private void btnUserDel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDel2ActionPerformed
+        int selectedRow = jTable5.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a service from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = jTable5.getValueAt(selectedRow, 0).toString();
+        String name = jTable5.getValueAt(selectedRow, 1).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete service: " + name + " (" + id + ")?\n"
+                + "WARNING: This will cascade-delete all job services associated with this service!",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                String sql = "DELETE FROM services WHERE service_id=?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int result = pst.executeUpdate();
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "Service Deleted Successfully!", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    loadServicesTable();
+                    clearServiceFields();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Delete Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    if (pst != null) {
+                        pst.close();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnUserDel2ActionPerformed
+
+    private void btnUserAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAdd3ActionPerformed
+        String id = txtName6.getText().trim();
+        String name = txtName5.getText().trim();
+        String status = combRole3.getSelectedItem().toString();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill Bay Name!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Check if bay ID already exists
+        try {
+            String checkSql = "SELECT COUNT(*) FROM bay_table WHERE bay_id = ?";
+            PreparedStatement checkPst = db.con.prepareStatement(checkSql);
+            checkPst.setString(1, id);
+            ResultSet checkRs = checkPst.executeQuery();
+            if (checkRs.next() && checkRs.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(this, "Bay ID " + id + " already exists!\nPlease click Clear to generate a new ID, or Update to modify the existing record.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                checkRs.close();
+                checkPst.close();
+                return;
+            }
+            checkRs.close();
+            checkPst.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database check failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            String sql = "INSERT INTO bay_table (bay_id, bay_name, status) VALUES (?, ?, ?)";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, status);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Bay Added Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadBaysTable();
+                loadBayStatus(); // Refresh dashboard panels
+                clearBayFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Save Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserAdd3ActionPerformed
+
+    private void btnUserUpdate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdate3ActionPerformed
+        int selectedRow = jTable6.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a bay from the table to update!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = txtName6.getText().trim();
+        String name = txtName5.getText().trim();
+        String status = combRole3.getSelectedItem().toString();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill Bay Name!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            String sql = "UPDATE bay_table SET bay_name=?, status=? WHERE bay_id=?";
+            pst = db.con.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setString(2, status);
+            pst.setString(3, id);
+
+            int result = pst.executeUpdate();
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this, "Bay Updated Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                loadBaysTable();
+                loadBayStatus(); // Refresh dashboard panels
+                clearBayFields();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Update Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnUserUpdate3ActionPerformed
+
+    private void btnUserDel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDel3ActionPerformed
+        int selectedRow = jTable6.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a bay from the table to delete!", "Selection Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = jTable6.getValueAt(selectedRow, 0).toString();
+        String name = jTable6.getValueAt(selectedRow, 1).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete bay: " + name + " (" + id + ")?\n"
+                + "WARNING: This will cascade-delete all ongoing and completed jobs assigned to this service bay!",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                String sql = "DELETE FROM bay_table WHERE bay_id=?";
+                pst = db.con.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int result = pst.executeUpdate();
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(this, "Bay Deleted Successfully!", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    loadBaysTable();
+                    loadBayStatus(); // Refresh dashboard panels
+                    clearBayFields();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Delete Failed: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    if (pst != null) {
+                        pst.close();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnUserDel3ActionPerformed
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        int selectedRow = jTable4.getSelectedRow();
+        if (selectedRow != -1) {
+            txtName2.setText(jTable4.getValueAt(selectedRow, 0).toString());
+            txtName1.setText(jTable4.getValueAt(selectedRow, 1).toString());
+            txtNIC1.setText(jTable4.getValueAt(selectedRow, 2).toString());
+            txtPhone1.setText(jTable4.getValueAt(selectedRow, 3).toString());
+            txtSpeality.setText(jTable4.getValueAt(selectedRow, 4).toString());
+            combRole1.setSelectedItem(jTable4.getValueAt(selectedRow, 5).toString());
+        }
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        int selectedRow = jTable5.getSelectedRow();
+        if (selectedRow != -1) {
+            txtName4.setText(jTable5.getValueAt(selectedRow, 0).toString());
+            txtName3.setText(jTable5.getValueAt(selectedRow, 1).toString());
+            txtSpeality1.setText(jTable5.getValueAt(selectedRow, 2).toString());
+            combRole2.setSelectedItem(jTable5.getValueAt(selectedRow, 3).toString());
+        }
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        int selectedRow = jTable6.getSelectedRow();
+        if (selectedRow != -1) {
+            txtName6.setText(jTable6.getValueAt(selectedRow, 0).toString());
+            txtName5.setText(jTable6.getValueAt(selectedRow, 1).toString());
+            combRole3.setSelectedItem(jTable6.getValueAt(selectedRow, 2).toString());
+        }
+    }//GEN-LAST:event_jTable6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -2999,6 +4519,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel CardPanel;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Spair;
+    private javax.swing.JButton UClear;
+    private javax.swing.JButton UClear1;
+    private javax.swing.JButton UClear2;
+    private javax.swing.JButton UClear3;
     private com.toedter.calendar.JYearChooser YearChooser;
     private javax.swing.JPanel acce;
     private javax.swing.JButton accesChart;
@@ -3024,6 +4548,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnInven;
+    private javax.swing.JButton btnPrintPDF;
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSave;
@@ -3033,6 +4558,18 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnServiceBill;
     private javax.swing.JButton btnTech;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUserAdd;
+    private javax.swing.JButton btnUserAdd1;
+    private javax.swing.JButton btnUserAdd2;
+    private javax.swing.JButton btnUserAdd3;
+    private javax.swing.JButton btnUserDel;
+    private javax.swing.JButton btnUserDel1;
+    private javax.swing.JButton btnUserDel2;
+    private javax.swing.JButton btnUserDel3;
+    private javax.swing.JButton btnUserUpdate;
+    private javax.swing.JButton btnUserUpdate1;
+    private javax.swing.JButton btnUserUpdate2;
+    private javax.swing.JButton btnUserUpdate3;
     private javax.swing.JPanel buttons;
     private javax.swing.JPanel card1;
     private javax.swing.JPanel card2;
@@ -3047,6 +4584,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMake;
     private javax.swing.JComboBox<String> cmbName;
     private javax.swing.JComboBox<String> cmbName1;
+    private javax.swing.JComboBox<String> combRole;
+    private javax.swing.JComboBox<String> combRole1;
+    private javax.swing.JComboBox<String> combRole2;
+    private javax.swing.JComboBox<String> combRole3;
     private javax.swing.JComboBox<String> conbTableSelect;
     private javax.swing.JPanel head;
     private javax.swing.JPanel image;
@@ -3055,6 +4596,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel inventMain;
     private javax.swing.JTable invoiceTable;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3068,6 +4611,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -3108,25 +4652,69 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -3134,6 +4722,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblAdmin;
@@ -3174,12 +4769,24 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtCustName;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFinalPrice;
     private javax.swing.JTextField txtFinalPrice1;
     private javax.swing.JTextField txtLisen;
     private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtNIC;
+    private javax.swing.JTextField txtNIC1;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtName2;
+    private javax.swing.JTextField txtName3;
+    private javax.swing.JTextField txtName4;
+    private javax.swing.JTextField txtName5;
+    private javax.swing.JTextField txtName6;
     private javax.swing.JTextField txtNic;
     private javax.swing.JTextField txtNumber;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtPhone1;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtPrice1;
     private javax.swing.JTextField txtQtuInvent;
@@ -3189,7 +4796,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch2;
     private javax.swing.JTextField txtSearch3;
     private javax.swing.JTextField txtSearch5;
+    private javax.swing.JTextArea txtSpeality;
+    private javax.swing.JTextArea txtSpeality1;
     private javax.swing.JTextField txtTown;
+    private javax.swing.JTextField txtUname;
     // End of variables declaration//GEN-END:variables
 
     private void customiseButtons(JButton btnSave, JButton btnUpdate, JButton btnDelete) {
@@ -3863,5 +5473,298 @@ public class Dash extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void loadUserTable() {
+        try {
+            String sql = "SELECT id, name, uName, email, nic, phone, role FROM user";
+            pst = db.con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.setRowCount(0);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("name"));
+                v.add(rs.getString("uName"));
+                v.add(rs.getString("email"));
+                v.add(rs.getString("nic"));
+                v.add(rs.getString("phone"));
+                v.add(rs.getString("role"));
+
+                dtm.addRow(v);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading users: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void clearUserFields() {
+        txtName.setText("");
+        txtUname.setText("");
+        txtEmail.setText("");
+        txtNIC.setText("");
+        txtPhone.setText("");
+        combRole.setSelectedIndex(0);
+        jTable1.clearSelection();
+    }
+
+    private void UClearActionPerformed(java.awt.event.ActionEvent evt) {
+        clearUserFields();
+    }
+
+    private void UClear1ActionPerformed(java.awt.event.ActionEvent evt) {
+        clearTechnicianFields();
+    }
+
+    private void UClear2ActionPerformed(java.awt.event.ActionEvent evt) {
+        clearServiceFields();
+    }
+
+    private void UClear3ActionPerformed(java.awt.event.ActionEvent evt) {
+        clearBayFields();
+    }
+
+    private void loadTechnicianTable() {
+        try {
+            String sql = "SELECT tech_id, name, nic, phone, specialty, status FROM technician";
+            pst = db.con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            DefaultTableModel dtm = new DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{"ID", "Name", "NIC", "Phone", "Specialty", "Status"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable4.setModel(dtm);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("tech_id"));
+                v.add(rs.getString("name"));
+                v.add(rs.getString("nic"));
+
+                // Pad phone with leading zero if it has 9 digits
+                String phoneStr = rs.getString("phone");
+                if (phoneStr != null && phoneStr.length() == 9) {
+                    phoneStr = "0" + phoneStr;
+                }
+                v.add(phoneStr);
+
+                v.add(rs.getString("specialty"));
+                v.add(rs.getString("status"));
+
+                dtm.addRow(v);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading technicians: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private String generateTechnicianID() {
+        String techId = "";
+        boolean exists = true;
+        java.util.Random rand = new java.util.Random();
+        while (exists) {
+            techId = "TECH-" + String.format("%04d", rand.nextInt(10000));
+            try {
+                String sql = "SELECT COUNT(*) FROM technician WHERE tech_id=?";
+                PreparedStatement pstCheck = db.con.prepareStatement(sql);
+                pstCheck.setString(1, techId);
+                ResultSet rsCheck = pstCheck.executeQuery();
+                if (rsCheck.next() && rsCheck.getInt(1) == 0) {
+                    exists = false;
+                }
+                rsCheck.close();
+                pstCheck.close();
+            } catch (SQLException e) {
+                exists = false; // fallback if connection fails
+            }
+        }
+        return techId;
+    }
+
+    private void clearTechnicianFields() {
+        txtName2.setText(generateTechnicianID());
+        txtName1.setText("");
+        txtNIC1.setText("");
+        txtPhone1.setText("");
+        txtSpeality.setText("");
+        combRole1.setSelectedIndex(0);
+        jTable4.clearSelection();
+    }
+
+    private void loadServicesTable() {
+        try {
+            String sql = "SELECT service_id, service_name, price, status FROM services";
+            pst = db.con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            DefaultTableModel dtm = new DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{"Service ID", "Service Name", "Price", "Status"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable5.setModel(dtm);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("service_id"));
+                v.add(rs.getString("service_name"));
+                v.add(rs.getString("price"));
+                v.add(rs.getString("status"));
+
+                dtm.addRow(v);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading services: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private String generateServiceID() {
+        String serId = "";
+        boolean exists = true;
+        java.util.Random rand = new java.util.Random();
+        while (exists) {
+            serId = "SER-" + String.format("%04d", rand.nextInt(10000));
+            try {
+                String sql = "SELECT COUNT(*) FROM services WHERE service_id=?";
+                PreparedStatement pstCheck = db.con.prepareStatement(sql);
+                pstCheck.setString(1, serId);
+                ResultSet rsCheck = pstCheck.executeQuery();
+                if (rsCheck.next() && rsCheck.getInt(1) == 0) {
+                    exists = false;
+                }
+                rsCheck.close();
+                pstCheck.close();
+            } catch (SQLException e) {
+                exists = false; // fallback if connection fails
+            }
+        }
+        return serId;
+    }
+
+    private void clearServiceFields() {
+        txtName4.setText(generateServiceID());
+        txtName3.setText("");
+        txtSpeality1.setText("");
+        combRole2.setSelectedIndex(0);
+        jTable5.clearSelection();
+    }
+
+    private void loadBaysTable() {
+        try {
+            String sql = "SELECT bay_id, bay_name, status FROM bay_table";
+            pst = db.con.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            DefaultTableModel dtm = new DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{"Bay ID", "Bay Name", "Status"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            jTable6.setModel(dtm);
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString("bay_id"));
+                v.add(rs.getString("bay_name"));
+                v.add(rs.getString("status"));
+
+                dtm.addRow(v);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading bays: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private String generateBayID() {
+        String nextBayId = "BAY-01";
+        try {
+            String sql = "SELECT bay_id FROM bay_table ORDER BY bay_id DESC LIMIT 1";
+            PreparedStatement pstCheck = db.con.prepareStatement(sql);
+            ResultSet rsCheck = pstCheck.executeQuery();
+            if (rsCheck.next()) {
+                String lastId = rsCheck.getString("bay_id");
+                if (lastId.startsWith("BAY-")) {
+                    try {
+                        int num = Integer.parseInt(lastId.substring(4));
+                        nextBayId = "BAY-" + String.format("%02d", num + 1);
+                    } catch (NumberFormatException e) {
+                        nextBayId = "BAY-" + String.format("%02d", new java.util.Random().nextInt(99) + 1);
+                    }
+                }
+            }
+            rsCheck.close();
+            pstCheck.close();
+        } catch (SQLException e) {
+            // fallback
+        }
+        return nextBayId;
+    }
+
+    private void clearBayFields() {
+        txtName6.setText(generateBayID());
+        txtName5.setText("");
+        combRole3.setSelectedIndex(0);
+        jTable6.clearSelection();
     }
 }
