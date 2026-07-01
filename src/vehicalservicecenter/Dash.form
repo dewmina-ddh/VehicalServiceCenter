@@ -2139,13 +2139,12 @@
                         <Component class="javax.swing.JComboBox" name="cmbMake">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="6">
-                                <StringItem index="0" value="Motor Bicycle"/>
-                                <StringItem index="1" value="TreeWheel"/>
-                                <StringItem index="2" value="Car"/>
-                                <StringItem index="3" value="Van"/>
-                                <StringItem index="4" value="SUV"/>
-                                <StringItem index="5" value="Lorry"/>
+                              <StringArray count="5">
+                                <StringItem index="0" value="Car"/>
+                                <StringItem index="1" value="Van"/>
+                                <StringItem index="2" value="SUV"/>
+                                <StringItem index="3" value="Lorry"/>
+                                <StringItem index="4" value="Bus"/>
                               </StringArray>
                             </Property>
                           </Properties>

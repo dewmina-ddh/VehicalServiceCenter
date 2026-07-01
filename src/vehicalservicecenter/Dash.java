@@ -1286,7 +1286,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel27.setText("Make");
 
-        cmbMake.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Bicycle", "TreeWheel", "Car", "Van", "SUV", "Lorry" }));
+        cmbMake.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car", "Van", "SUV", "Lorry", "Bus" }));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel28.setText("Fuel Type");
@@ -4141,7 +4141,30 @@ public class Dash extends javax.swing.JFrame {
 
     private void btnAdminCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCActionPerformed
 
-        String confirmPass = JOptionPane.showInputDialog(this, "Enter Your Password to Access Admin Panel", "Admin Verification", JOptionPane.QUESTION_MESSAGE);
+        javax.swing.JPasswordField pf = new javax.swing.JPasswordField();
+        pf.addAncestorListener(new javax.swing.event.AncestorListener() {
+            @Override
+            public void ancestorAdded(javax.swing.event.AncestorEvent event) {
+                pf.requestFocusInWindow();
+            }
+            @Override
+            public void ancestorRemoved(javax.swing.event.AncestorEvent event) {}
+            @Override
+            public void ancestorMoved(javax.swing.event.AncestorEvent event) {}
+        });
+
+        int option = JOptionPane.showConfirmDialog(
+                this,
+                new Object[]{"Enter Your Password to Access Admin Panel:", pf},
+                "Admin Verification",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        String confirmPass = null;
+        if (option == JOptionPane.OK_OPTION) {
+            confirmPass = new String(pf.getPassword());
+        }
 
         if (confirmPass != null && !confirmPass.trim().isEmpty()) {
             PreparedStatement pstCheck = null;
