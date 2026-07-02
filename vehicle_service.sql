@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2026 at 03:20 AM
+-- Generation Time: Jun 29, 2026 at 09:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `vehicle_service`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accessories`
+--
+
+CREATE TABLE `accessories` (
+  `item_id` varchar(20) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `brand` varchar(50) NOT NULL,
+  `details` varchar(100) NOT NULL,
+  `qty` int(11) NOT NULL DEFAULT 0,
+  `unit_price` double NOT NULL DEFAULT 0,
+  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +77,7 @@ INSERT INTO `bay_table` (`bay_id`, `bay_name`, `status`, `vehicle_no`, `recorded
 ('BAY-03', 'Service Bay 03', 'Available', NULL, '2026-06-19 13:05:35'),
 ('BAY-04', 'Service Bay 04', 'Available', NULL, '2026-05-28 01:26:19'),
 ('BAY-05', 'Service Bay 05', 'Available', NULL, '2026-06-19 08:46:57'),
-('BAY-06', 'Service Bay 06', 'Available', NULL, '2026-06-19 12:35:36');
+('BAY-06', 'Service Bay 06', 'occupied', NULL, '2026-06-25 13:08:19');
 
 -- --------------------------------------------------------
 
@@ -109,7 +125,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`item_id`, `catagory`, `brand`, `details`, `qty`, `unit_price`, `recorded_at`) VALUES
-(1, 'Car Care', '3M', 'Microfiber Cloth', 150, 800, '2026-06-07 03:19:05'),
+(1, 'Car Care', '3M', 'Microfiber Cloth', 176, 800, '2026-06-26 09:10:51'),
 (2, 'Car Care', 'Generic', 'Cotton Wash Cloth', 200, 300, '2026-06-07 03:19:05'),
 (3, 'Car Care', 'Wurth', 'Wash Sponge Large', 80, 600, '2026-06-07 03:19:05'),
 (4, 'Car Care', '3M', 'Car Shampoo 1L', 60, 1500, '2026-06-07 03:19:05'),
@@ -228,6 +244,7 @@ CREATE TABLE `invoice` (
 
 INSERT INTO `invoice` (`inv_id`, `job_id`, `date`, `total_amount`, `discount`, `net_amount`, `pay_amount`, `payment_method`, `balance`, `payment_status`, `cust_name`, `bill_type`, `recoded_user`, `recorded_at`) VALUES
 ('INV-1502', 'JOB-2713', '18:30:02', 9600, 0, 9600, 10000, 'Cash', 400, 'Paid', 'damaith', 'Service Bill', 'frame0', '2026-06-19 13:00:30'),
+('INV-2064', 'JOB-8327', '18:38:19', 15000, 0, 15000, 0, 'Cash', 0, 'Pending', NULL, NULL, 'User', '2026-06-25 13:08:19'),
 ('INV-3721', 'JOB-9326', '18:44:27', 9600, 0, 9600, 10000, 'Cash', 400, 'Paid', 'damaith', 'Service Bill', 'frame0', '2026-06-19 13:14:49'),
 ('INV-6901', 'JOB-4643', '18:35:18', 9600, 0, 9600, 10000, 'Cash', 400, 'Paid', 'damaith', 'Service Bill', 'frame0', '2026-06-19 13:05:35'),
 ('INV-9427', 'JOB-2479', '07:34:47', 75700, 0, 75700, 76000, 'Cash', 300, 'Paid', 'dasdas', 'Service Bill', NULL, '2026-06-19 08:46:57');
@@ -320,6 +337,18 @@ INSERT INTO `job_services` (`job_id`, `service_id`, `price`, `recorded_at`) VALU
 ('JOB-6178', 'SRV004', 1200, '2026-06-06 01:56:36'),
 ('JOB-6178', 'SRV005', 500, '2026-06-06 01:56:36'),
 ('JOB-6178', 'SRV006', 400, '2026-06-06 01:56:36'),
+('JOB-8327', 'SRV002', 1000, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV003', 5000, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV004', 1200, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV005', 500, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV006', 400, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV010', 15000, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV012', 8000, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV013', 2500, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV014', 3500, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV015', 1800, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV016', 2000, '2026-06-25 13:08:19'),
+('JOB-8327', 'SRV017', 1500, '2026-06-25 13:08:19'),
 ('JOB-8718', 'SRV001', 1500, '2026-06-09 13:52:34'),
 ('JOB-8718', 'SRV002', 1000, '2026-06-09 13:52:34'),
 ('JOB-8718', 'SRV003', 5000, '2026-06-09 13:52:34'),
@@ -365,6 +394,7 @@ INSERT INTO `job_table` (`job_id`, `vehicle_no`, `service_type`, `additional_ser
 ('JOB-4878', 'BEO-8269', 'Normal Service', '', 'BAY-04', 'TECH-02', '123', '20:21:09', 1500.00, 'Completed', '2026-06-19 09:15:46'),
 ('JOB-5418', 'BEO-8269', 'Normal Service', '', 'BAY-01', 'TECH-01', '123', '07:04:08', 1500.00, 'Completed', '2026-06-19 09:18:25'),
 ('JOB-6178', 'BDZ-6960', 'Normal Service', '', 'BAY-02', 'TECH-03', '123', '07:26:36', 1500.00, 'Completed', '2026-06-19 12:31:52'),
+('JOB-8327', 'ABC-1234', 'Full Service', '', 'BAY-06', 'TECH-03', '23000', '18:38:19', 15000.00, 'Ongoing', '2026-06-25 13:08:19'),
 ('JOB-8718', 'BEO-8269', 'Normal Service', '', 'BAY-06', 'TECH-03', '123', '19:22:34', 1500.00, 'Completed', '2026-06-19 12:35:36'),
 ('JOB-9326', 'ABC-1234', 'Normal Service', '', 'BAY-01', 'TECH-01', '23000', '18:44:27', 1500.00, 'Completed', '2026-06-19 13:14:49');
 
@@ -378,33 +408,61 @@ CREATE TABLE `services` (
   `service_id` varchar(20) NOT NULL,
   `service_name` varchar(100) NOT NULL,
   `price` int(10) NOT NULL,
-  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` varchar(20) NOT NULL DEFAULT 'Available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`service_id`, `service_name`, `price`, `recorded_at`) VALUES
-('SRV001', 'Normal Service', 1500, '2026-05-28 01:26:19'),
-('SRV002', 'Body Wash & Vacuum', 1000, '2026-06-05 01:43:58'),
-('SRV003', 'Engine Oil Change', 5000, '2026-06-05 01:43:58'),
-('SRV004', 'Oil Filter Replacement', 1200, '2026-06-05 01:43:58'),
-('SRV005', 'Fluid Level Check', 500, '2026-06-05 01:43:58'),
-('SRV006', 'Air Filter Cleaning', 400, '2026-06-05 01:43:58'),
-('SRV010', 'Full Service', 15000, '2026-05-28 01:26:19'),
-('SRV011', 'Normal Service (Full)', 1500, '2026-06-05 01:43:58'),
-('SRV012', 'Full Lubrication Service', 8000, '2026-06-05 01:43:58'),
-('SRV013', 'Wheel Alignment & Balancing', 2500, '2026-06-05 01:43:58'),
-('SRV014', 'Engine Tune-up & Scanning', 3500, '2026-06-05 01:43:58'),
-('SRV015', 'Brake System Servicing', 1800, '2026-06-05 01:43:58'),
-('SRV016', 'Under-carriage Degreasing & Washing', 2000, '2026-06-05 01:43:58'),
-('SRV017', 'AC System Inspection & Top-up', 1500, '2026-06-05 01:43:58'),
-('SRV020', 'Brake Pad Replacement', 4500, '2026-05-28 01:26:19'),
-('SRV021', 'Battery Charging & Replacement', 12000, '2026-05-28 01:26:19'),
-('SRV022', 'Spark Plug Replacement', 950, '2026-05-28 01:26:19'),
-('SRV023', 'Wiper Blade Replacement', 1750, '2026-05-28 01:26:19'),
-('SRV024', 'Headlight/Tail-light Bulb Replacement', 650, '2026-05-28 01:26:19');
+INSERT INTO `services` (`service_id`, `service_name`, `price`, `recorded_at`, `status`) VALUES
+('SRV001', 'Normal Service', 2000, '2026-06-26 05:19:12', 'Available'),
+('SRV002', 'Body Wash & Vacuum', 1000, '2026-06-05 01:43:58', 'Available'),
+('SRV003', 'Engine Oil Change', 5000, '2026-06-05 01:43:58', 'Available'),
+('SRV004', 'Oil Filter Replacement', 1200, '2026-06-05 01:43:58', 'Available'),
+('SRV005', 'Fluid Level Check', 500, '2026-06-05 01:43:58', 'Available'),
+('SRV006', 'Air Filter Cleaning', 400, '2026-06-05 01:43:58', 'Available'),
+('SRV010', 'Full Service', 15000, '2026-05-28 01:26:19', 'Available'),
+('SRV011', 'Normal Service (Full)', 1500, '2026-06-05 01:43:58', 'Available'),
+('SRV012', 'Full Lubrication Service', 8000, '2026-06-05 01:43:58', 'Available'),
+('SRV013', 'Wheel Alignment & Balancing', 2500, '2026-06-05 01:43:58', 'Available'),
+('SRV014', 'Engine Tune-up & Scanning', 3500, '2026-06-05 01:43:58', 'Available'),
+('SRV015', 'Brake System Servicing', 1800, '2026-06-05 01:43:58', 'Available'),
+('SRV016', 'Under-carriage Degreasing & Washing', 2000, '2026-06-05 01:43:58', 'Available'),
+('SRV017', 'AC System Inspection & Top-up', 1500, '2026-06-05 01:43:58', 'Available'),
+('SRV020', 'Brake Pad Replacement', 4500, '2026-05-28 01:26:19', 'Available'),
+('SRV021', 'Battery Charging & Replacement', 12000, '2026-05-28 01:26:19', 'Available'),
+('SRV022', 'Spark Plug Replacement', 950, '2026-05-28 01:26:19', 'Available'),
+('SRV023', 'Wiper Blade Replacement', 1750, '2026-05-28 01:26:19', 'Available'),
+('SRV024', 'Headlight/Tail-light Bulb Replacement', 650, '2026-05-28 01:26:19', 'Available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spare_parts`
+--
+
+CREATE TABLE `spare_parts` (
+  `part_id` varchar(20) NOT NULL,
+  `part_name` varchar(100) NOT NULL,
+  `brand` varchar(50) NOT NULL,
+  `details` varchar(100) NOT NULL,
+  `qty` int(11) NOT NULL DEFAULT 0,
+  `unit_price` double NOT NULL DEFAULT 0,
+  `recorded_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `spare_parts`
+--
+
+INSERT INTO `spare_parts` (`part_id`, `part_name`, `brand`, `details`, `qty`, `unit_price`, `recorded_at`) VALUES
+('SP-0001', 'Brake Pads', 'Akebono', 'Front Left', 8, 4500, '2026-06-26 06:10:03'),
+('SP-0002', 'Brake Pads', 'Brembo', 'Rear Right', 3, 12000, '2026-06-26 05:45:14'),
+('SP-0003', 'Spark Plugs', 'NGK', 'Iridium IX', 25, 2500, '2026-06-26 05:45:14'),
+('SP-0004', 'Air Filter', 'Toyota', 'Premium AC', 2, 6000, '2026-06-26 05:45:14'),
+('SP-0005', 'Oil Filter', 'Bosch', 'Premium Lube', 15, 2200, '2026-06-26 05:45:14');
 
 -- --------------------------------------------------------
 
@@ -429,7 +487,7 @@ CREATE TABLE `technician` (
 INSERT INTO `technician` (`tech_id`, `name`, `nic`, `phone`, `specialty`, `status`, `recorded_at`) VALUES
 ('TECH-01', 'Sunil Perera', '198512345678', 771234567, 'Hybrid & Engine Tuning', 'Available', '2026-06-19 13:14:49'),
 ('TECH-02', 'Kamal Silva', '199087654321', 719876543, 'Wheel Alignment & Suspension', 'Available', '2026-06-19 13:05:35'),
-('TECH-03', 'Nimal Fernando', '199345678912', 754567890, 'Auto Electrical & Air Conditioning', 'Available', '2026-06-19 12:31:52'),
+('TECH-03', 'Nimal Fernando', '199345678912', 754567890, 'Auto Electrical & Air Conditioning', 'Busy', '2026-06-25 13:08:19'),
 ('TECH-04', 'Ruwan Kumara', '198854321987', 723456789, 'General Service & Lube', 'Available', '2026-06-19 08:46:57'),
 ('TECH-05', 'Ajith Kumara', '199511223344', 781122334, 'Body Wash & Interior Cleaning', 'Available', '2026-06-19 05:52:54');
 
@@ -445,8 +503,8 @@ CREATE TABLE `user` (
   `uName` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `nic` varchar(12) NOT NULL,
+  `phone` int(20) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `confirm` varchar(255) NOT NULL,
   `role` varchar(10) NOT NULL,
   `change_pass` tinyint(4) NOT NULL DEFAULT 0,
   `recorded_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -456,9 +514,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `uName`, `email`, `nic`, `password`, `confirm`, `role`, `change_pass`, `recorded_time`) VALUES
-(2, 'Dama', 'dama', 'dama@gmail.com', '123456789', 'admin123', 'admin123', 'admin', 0, '2026-05-28 01:26:20'),
-(3, 'Dewmina', 'dew', 'dewmina@gmail.com', '111111111111', 'dew@123', 'dew@123', 'user', 0, '2026-05-28 01:26:20');
+INSERT INTO `user` (`id`, `name`, `uName`, `email`, `nic`, `phone`, `password`, `role`, `change_pass`, `recorded_time`) VALUES
+(2, 'Dama', 'dama', 'dama@gmail.com', '123456789', NULL, 'admin123', 'admin', 0, '2026-05-28 01:26:20'),
+(3, 'Dewmina', 'dew', 'dewmina@gmail.com', '111111111111', NULL, 'dew@123', 'user', 0, '2026-05-28 01:26:20'),
+(4, 'dewmina', 'dewmina', 'dewmina@gmail.com', '200524402775', 701052405, '200524402775', 'User', 0, '2026-06-26 03:56:16');
 
 -- --------------------------------------------------------
 
@@ -491,6 +550,12 @@ INSERT INTO `vehical_table` (`vehical_no`, `make`, `brand`, `model`, `fuel`, `re
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accessories`
+--
+ALTER TABLE `accessories`
+  ADD PRIMARY KEY (`item_id`);
 
 --
 -- Indexes for table `appointment`
@@ -556,6 +621,12 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`service_id`);
 
 --
+-- Indexes for table `spare_parts`
+--
+ALTER TABLE `spare_parts`
+  ADD PRIMARY KEY (`part_id`);
+
+--
 -- Indexes for table `technician`
 --
 ALTER TABLE `technician`
@@ -594,7 +665,7 @@ ALTER TABLE `invoice_items`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
